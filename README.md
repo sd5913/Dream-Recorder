@@ -55,8 +55,10 @@ PROGRESS.md       weekly progress and tutor feedback
 
 | Member | Role / ownership |
 | --- | --- |
-| WeiYing | Concept, prototype, scene library |
-| _add teammates_ | _add_ |
+| Chen Jingyi | |
+| Fang Shuhan| _add_ |
+| Wei Ying | |
+| Li Zihui | |
 
 ## Credits
 
