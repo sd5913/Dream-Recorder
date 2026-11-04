@@ -1,0 +1,43 @@
+Weight: 40% of the course grade · Final deadline: Sunday 6 December 2026, 23:59 Hong Kong time
+
+Repository requirement: Your group must use one shared public repository owned by the sd5913 organizationLinks to an external site.. The repository URL must start with https://github.com/sd5913/.
+
+Build something together
+Make an original app, game, installation or other interactive project with your team. Explain who it is for, what they do and how it responds. Include multimedia appropriate to your idea. Agree your scope with the instructor and test a small interaction early. AI can help you build; the finished project does not have to contain AI.
+
+Begin this week
+Accept your invitation to the sd5913 organizationLinks to an external site.. Create one shared public repository owned by sd5913, for example sd5913/group-your-project, and give your teammates write access. If using a starter template, choose Owner: sd5913. Ask the instructor if the organization is missing from the Owner menu.
+
+Submit its repository URL here as soon as it exists; an initial README is enough to register the project. Keep developing the same repository afterwards. If your team already has a personal repository, ask the instructor to help transfer it into sd5913 while preserving its history. The final deadline applies to the finished work.
+
+What the repository should show
+The working project and source code, with the idea and intended audience described.
+A README.md with prerequisites, setup, how to run or access the result, platforms and limitations. Link a live deployment or downloadable build when appropriate.
+Meaningful team contributions, small commits and documented weekly progress. Show shared planning, task ownership, review/test evidence and how the next plan changes as you learn. GitHub Projects and Issues are recommended; an equivalent accessible shared record is valid. Link the board and progress notes from the README and ensure the instructor can access them.
+Credits for code, assets, data and tools, including how AI was used. Use original or appropriately licensed material.
+Instructions to configure any required secrets. Never submit passwords, API tokens, signing keys or private personal data.
+Choose tools and delivery targets that suit your project. App stores and a particular framework are not mandatory. Test the experience with another person.
+
+Weekly tutor deliveries
+Meet your assigned tutor during your scheduled tutorial slot in each remaining teaching week. These are the Thursday class-week dates; your tutor confirms the exact meeting time.
+
+Class week	Delivery focus
+5 November 2026	First working interaction
+12 November 2026	Integrated core experience
+19 November 2026	Playtest and feedback
+26 November 2026	Delivery candidate: build, deployment or installation setup
+3 December 2026	Final tutor delivery review
+Bring a usable increment, relevant test/playtest evidence and your main blocker or question. Record tutor feedback and the next goal with owners. Adapt the scope with your tutor. These records support the existing execution criterion; there is no additional Canvas upload or grade component.
+
+Open Group Project 2026Links to an external site., click Use this template, and choose sd5913 as the owner. It includes weekly iterations and dated review cards. Name the Project for your group, link the repository, give teammates Write access and link the board from your README. An equivalent accessible shared record remains valid. The final Canvas deadline, 6 December, 23:59 HKT, is separate from the tutor meetings.
+
+Marking
+Creative idea: 25% — novelty and value.
+Code: 50% — works, meets requirements and handles complexity well.
+Execution: 25% — small, steady increments and documented weekly progress, evidenced by shared planning, team contributions, review and adaptation.
+These are shares of the group-project mark; the project is worth 40% of the course grade.
+
+The execution criterion assesses how the team develops the project over time. Keep brief weekly goals, completed work, feedback, blockers and next steps. Raw commit/card counts, formal Scrum titles and ceremony attendance are not the criteria. This is ongoing documentation linked from the same repository; no additional Canvas upload is introduced.
+
+Submit
+Submit your group's sd5913-owned repository URL using this assignment, for example https://github.com/sd5913/group-your-project. Check that the repository owner is sd5913 and all teammates have write access. Keep the final repository and README accessible for assessment by Sunday 6 December 2026, 23:59 HKT. Follow the Canvas group submission instructions. This is separate from individual Assignment 3.
