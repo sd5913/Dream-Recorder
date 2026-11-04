@@ -37,7 +37,7 @@ docs/             assignment brief
 SPEC.md           project spec for AI coding tools (also CLAUDE.md, AGENTS.md, .cursorrules)
 PROGRESS.md       weekly progress and tutor feedback
 ```
-3. Live demo: _add GitHub Pages link here_.
+3. Live demo: https://sd5913.github.io/Dream-Recorder/
 
 ## Platforms and limitations
 
