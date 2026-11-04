@@ -5,7 +5,7 @@ const Snd={ctx:null,on:false,master:null,nodes:[],
     try{this.ctx=new AC();}catch(e){return false;}
     const c=this.ctx;this.master=c.createGain();this.master.gain.value=0;
     const lp=c.createBiquadFilter();lp.type='lowpass';lp.frequency.value=1500;
-    const dl=c.createDelay(1);dl.delay.value=.34;const fb=c.createGain();fb.gain.value=.38;dl.connect(fb);fb.connect(dl);
+    const dl=c.createDelay(1);dl.delayTime.value=.34;const fb=c.createGain();fb.gain.value=.38;dl.connect(fb);fb.connect(dl);
     this.master.connect(lp);lp.connect(c.destination);lp.connect(dl);dl.connect(c.destination);return true;},
   mood(){if(!this.on||!this.ctx)return;const c=this.ctx,t=c.currentTime;
     this.nodes.forEach(n=>{try{n.g.gain.cancelScheduledValues(t);n.g.gain.linearRampToValueAtTime(0,t+1.2);n.o.stop(t+1.3);}catch(e){}});this.nodes=[];
