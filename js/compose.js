@@ -4,15 +4,19 @@ function buildScene(n,s,RS,seed){SP=RS/s;OUT=[];R=rng(seed^hash(n));SC[n].build(
 function bbox(st){let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;st.forEach(o=>o.pts.forEach(p=>{x0=Math.min(x0,p[0]);x1=Math.max(x1,p[0]);y0=Math.min(y0,p[1]);y1=Math.max(y1,p[1]);}));return{x0,y0,x1,y1};}
 function compose(names,seed,RS){
   const items=names.map(n=>{const st=buildScene(n,1,RS,seed),b=bbox(st);return{n,hw:(b.x1-b.x0)/2,hh:(b.y1-b.y0)/2,cat:SC[n].cat};});
-  const by=c=>items.filter(i=>i.cat===c),sky=by('sky'),hero=by('hero'),gr=by('ground'),gap=.06,cands=[];
-  const add=rows=>{rows=rows.filter(r=>r.length);if(rows.length)cands.push(rows);};
-  add([sky,hero,gr]);
-  if(sky.length&&hero.length)add([hero.concat(sky),gr]);
-  if(items.length>1)add([items.slice()]);
+  /* room available on screen, in scene units (U pixels = 1 unit) */
+  const topBar=$('#top').getBoundingClientRect().bottom;
+  const LH=Math.max(1.2,(2*(cy-topBar)-48)/U),LW=Math.min(Math.max(1.2,(W-30)/U),Math.max(LH*1.35,1.7)),gap=.06,cands=[];
+  const RANK={sky:0,hero:1,ground:2};
+  /* every order that keeps sky above heroes above ground, split into rows in every possible way */
+  const perms=a=>a.length<2?[a]:a.flatMap((x,i)=>perms(a.filter((_,j)=>j!==i)).map(p=>[x].concat(p)));
+  const splits=n=>n===1?[[1]]:n===2?[[2],[1,1]]:[[3],[2,1],[1,2],[1,1,1]];
+  perms(items).filter(p=>p.every((x,i)=>!i||RANK[p[i-1].cat]<=RANK[x.cat])).forEach(p=>{
+    splits(p.length).forEach(sp=>{let k=0;cands.push(sp.map(c=>{const r=p.slice(k,k+c);k+=c;return r;}));});});
   let best=null;
   cands.forEach(rows=>{
     const rw=rows.map(r=>r.reduce((a,i)=>a+i.hw*2,0)+(r.length-1)*gap),rh=rows.map(r=>Math.max(...r.map(i=>i.hh*2)));
-    const totH=rh.reduce((a,b)=>a+b,0)+(rows.length-1)*gap,s=Math.min(1.8,1.86/totH,1.86/Math.max(...rw));
+    const totH=rh.reduce((a,b)=>a+b,0)+(rows.length-1)*gap,s=Math.min(2.2,LH/totH,LW/Math.max(...rw));
     if(!best||s>best.s+.02)best={rows,rw,rh,totH,s};
   });
   const {rows,rw,rh,totH,s}=best;
