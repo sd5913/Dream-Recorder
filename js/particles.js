@@ -3,7 +3,9 @@
 let parts=[],dying=[],T=0,E=EMO.calm,emoKey='calm',userEmo=null,cur=null,token=0,saveTimer=0;
 function tint(p){
   let h=p.base[0]+p.jh,s=p.base[1],l=p.base[2]+p.jl;
-  if(E.rainbow)h=h+p.ux*110+p.uy*70+T*0;
+  const tn=p.si>=0&&cur&&cur.tone;
+  if(tn){if(tn.h!=null)h=tn.h+p.jh;s*=tn.s;l+=tn.l;}
+  else if(E.rainbow)h=h+p.ux*110+p.uy*70+T*0;
   else{const d=((E.hue-h+540)%360)-180;h=h+d*E.mix;}
   h=((h%360)+360)%360;s=clamp(s*E.s,0,100);l=clamp(l+E.l,14,90);
   p.css=`hsl(${h.toFixed(0)} ${s.toFixed(0)}% ${l.toFixed(0)}%)`;
