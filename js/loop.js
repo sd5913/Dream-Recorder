@@ -21,12 +21,12 @@ function frame(now){
     const al=Math.min(1,a/.5);
     const c=Math.cos(p.a)*DPR,s=Math.sin(p.a)*DPR;
     ctx.setTransform(c,s,-s,c,p.x*DPR,p.y*DPR);
-    ctx.globalAlpha=al;ctx.fillStyle=p.css;ctx.fillText(p.t,0,0);
+    ctx.globalAlpha=al*(p.dim||1);ctx.fillStyle=p.css;ctx.fillText(p.t,0,0);
   }
   if(dying.length){
     for(const p of dying){p.fade-=dt*1.15;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.96;p.vy*=.96;p.a+=p.va*dt+dt*p.spin*.2;
       if(p.fade<=0||p.age<p.delay)continue;
-      const c=Math.cos(p.a)*DPR,s=Math.sin(p.a)*DPR;ctx.setTransform(c,s,-s,c,p.x*DPR,p.y*DPR);ctx.globalAlpha=p.fade;ctx.fillStyle=p.css;ctx.fillText(p.t,0,0);}
+      const c=Math.cos(p.a)*DPR,s=Math.sin(p.a)*DPR;ctx.setTransform(c,s,-s,c,p.x*DPR,p.y*DPR);ctx.globalAlpha=p.fade*(p.dim||1);ctx.fillStyle=p.css;ctx.fillText(p.t,0,0);}
     dying=dying.filter(p=>p.fade>0);
   }
   ctx.globalAlpha=1;ctx.setTransform(DPR,0,0,DPR,0,0);
