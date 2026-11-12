@@ -65,5 +65,5 @@ PROGRESS.md       weekly progress and tutor feedback
 - Code: original, written for this project.
 - Fonts: system fonts only in the app.
 - No third-party images, audio files or datasets. All visuals are generated from the user's text; sound is synthesised with WebAudio.
-- **AI use:** Claude (Anthropic) helped write and test the prototype code and the pitch slides. The concept, direction and design decisions are the team's.
+- **AI use:** Claude (Anthropic) helped write and test the prototype code and the pitch slides. Codex (OpenAI) helped integrate and check the composition and rendering updates. The concept, direction and design decisions are the team's.
 - The visual idea was inspired by a typography reference video (words forming a sunflower); no footage or assets from it are used.
