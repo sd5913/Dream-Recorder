@@ -16,7 +16,6 @@ const EMO_KW={
   strange:'奇怪|怪|诡|变成|消失|不对|weird|strange|odd|surreal|disappear',
   calm:'平静|安静|宁静|温柔|慢慢|calm|quiet|peace|gentle|slow'
 };
-const rxOf=s=>new RegExp(s.split('|').map(w=>/^[a-z]/i.test(w)?'\\b'+w+'(?:s|es|ing|ed)?\\b':w).join('|'),'ig');
 function detectEmotion(t){
   let best='calm',n=0;
   for(const k in EMO_KW){const m=t.match(rxOf(EMO_KW[k]));if(m&&m.length>n){n=m.length;best=k;}}
