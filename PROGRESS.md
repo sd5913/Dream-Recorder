@@ -19,6 +19,12 @@ Each week: goal, done, evidence, tutor feedback, blockers, next goal with owners
 - **Tutor feedback:** _fill in after meeting_
 - **Next:** review and merge this change, then integrate the other members' scene and detection work before adding the English interface.
 
+- **Member C contribution:** imported the supplied scene package in three focused commits: 9 animals, 12 icons and 39 everyday-object archetypes, plus their staged script includes in `index.html`. The supplied application files are preserved without edits.
+- **Evidence:** all three new JavaScript modules pass syntax checks. Chromium previews were run after each import (steps 1–2 at 390×844; step 3 at 1440×900); the existing page renders, but the new modules report `LEX is not defined` because `js/lexicon.js` is absent from both this package and current `main`.
+- **Blockers:** this is a draft contribution, pending the team's prerequisite work. Supply the shared lexicon and update scene registration/detection so modules loaded after `things.js` receive keyword matchers. Reconcile overlapping keywords (for example, the current cat scene also matches dog) and preserve teammates' changes to `index.html` during integration. A's PR #1 is still open at import time.
+- **Next:** integrate the prerequisite team work, then test new scene generation on phone and desktop before marking the PR ready or merging. Functional checks of the 60 new scenes are pending.
+- **Integration note (15 Nov):** The shared `js/lexicon.js` is now on `main`, so the former missing-lexicon blocker is resolved. New scenes still require functional browser testing before merging.
+
 ## 19 Nov 2026 · Playtest and feedback
 ## 26 Nov 2026 · Delivery candidate (deployment)
 ## 3 Dec 2026 · Final tutor delivery review
