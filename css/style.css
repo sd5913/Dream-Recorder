@@ -26,6 +26,9 @@ button:focus-visible,textarea:focus-visible{outline:2px solid var(--emo);outline
 #cap{margin-top:auto;pointer-events:none;text-align:center;font-size:13px;min-height:42px;padding-bottom:6px;color:var(--dim);transition:opacity .6s}
 #cap .tags{color:var(--fg);letter-spacing:.08em}
 #cap .emo{color:var(--emo);margin-left:.6em}
+#cap .why{display:block;margin-top:2px;font-size:12px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 14px}
+#cap .miss{pointer-events:auto;margin-left:.8em;font-size:12px;color:var(--dim);border-bottom:1px solid var(--line);padding:0 1px}
+#cap .miss:hover{color:var(--fg);border-color:var(--emo)}
 #cap .hint{display:block;margin-top:2px;font-size:12px}
 
 #dock{flex:none;display:flex;flex-direction:column;gap:8px;padding-bottom:max(12px,env(safe-area-inset-bottom,0px));
