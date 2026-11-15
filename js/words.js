@@ -50,3 +50,38 @@ function layoutWords(strokes,pool,seed,names){
   });
   return res;
 }
+
+/* ---------- words that matched no scene: they drift around the picture as dim "dream dust" ---------- */
+const STOP=new Set(('我 你 他 她 它 的 了 在 是 有 和 就 都 也 很 还 又 一个 一直 怎么 什么 没有 不是 自己 突然 然后 可是 但是 因为 所以 这个 那个 已经 开始 好像 感觉 我们 他们 一样 一点 越来越 所有 终于 最后 一些 不会 可以 看不懂 '+
+  'that with from this then when were have been they their there what just could would about into over while where which kept never even very much some only also than them these those').split(' '));
+function unmatchedTokens(pool){
+  const out=[];
+  for(const t of pool){
+    const w=t.replace(/[，。！？、；：,.!?…"“”'’‘]/g,'').trim();
+    if(!w||STOP.has(w.toLowerCase()))continue;
+    if(isCJK(w)?cjkLen(w)<2:w.length<4)continue;
+    if(out.includes(w))continue;
+    if(matchScenes(w).length)continue;
+    out.push(w);
+  }
+  return out;
+}
+function dustWords(tokens,seed,list){
+  if(!tokens.length)return [];
+  const rnd=rng(seed^0x51ed270b),n=Math.min(30,Math.max(8,tokens.length*3)),out=[];
+  const topBar=$('#top').getBoundingClientRect().bottom;
+  const lim=Math.min(.98,(W/2-14)/U),limy=Math.max(.5,(cy-topBar-fontPx*1.5)/U),minD=fontPx*1.6/U;
+  for(let tries=0;out.length<n&&tries<n*40;tries++){
+    const ux=(rnd()*2-1)*lim,uy=(rnd()*2-1)*limy;
+    if(list.some(q=>Math.hypot(q.ux-ux,q.uy-uy)<minD))continue;
+    if(out.some(q=>Math.hypot(q.ux-ux,q.uy-uy)<minD*1.8))continue;
+    out.push({t:tokens[out.length%tokens.length],ux,uy,ang:(rnd()-.5)*.5,base:[215,24,72],jh:(rnd()-.5)*20,jl:(rnd()-.5)*8,
+      idx:list.length+out.length,spin:(rnd()<.5?-1:1)*(2+rnd()*5),ph:rnd()*TAU,si:-1,dim:.42});
+  }
+  return out;
+}
+/* the full set of word particles for the current dream: picture + dust */
+function buildList(c){
+  const list=layoutWords(compose(c.names,c.seed,fontPx*1.12/U),c.pool,c.seed,c.names);
+  return list.concat(dustWords(c.dust,c.seed,list));
+}
