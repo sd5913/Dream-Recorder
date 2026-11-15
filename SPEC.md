@@ -24,16 +24,22 @@ Course context: group project for "Designing Multimedia Entertainment". Marking:
 | File | Purpose |
 | --- | --- |
 | `js/core.js` | DOM helpers, canvas context, seeded RNG (`hash`, `rng`). |
+| `js/lexicon.js` | **Keyword lexicon** `LEX` (scene -> words), `LEX_WEIGHT`, `EMO_FALLBACK` (default scenes per emotion when nothing matches), `matchScenes`, `pickScenes`. Edit this file to teach the app new words. |
 | `js/emotion.js` | `EMO` table (calm, joy, fear, sad, strange, nostalgia: hue, sway, tremble, rainbow, mix) and `detectEmotion`. |
 | `js/geometry.js` | Stroke helpers (`S`, `arcP`, `ellP`, `bez`, `spiralP`, `offs`), `hatch()` scanline polygon fill (even-odd, holes), `hatchDiscs`. |
 | `js/scenes/sky.js` | `SC` + `def(name, zh, cat, kw, build)`; sun, moon, stars, cloud, rain. `cat` is sky / hero / ground; `kw` is the keyword regex source. |
 | `js/scenes/world.js` | sea, fish, flight, house, door, stairs, tree, forest, mountain. |
-| `js/scenes/things.js` | fire, eye, cat, butterfly, flower, snake, falling, road, city, paper, person, swirl fallback, `detectScenes`. |
-| `js/compose.js` | `compose()`: up to 3 matched scenes into sky / hero / ground rows, tries candidate layouts, keeps the largest scale. |
-| `js/words.js` | `tokenize()` (Intl.Segmenter, merges CJK) and `layoutWords()` (words along strokes by arc length; deterministic per text). |
+| `js/scenes/things.js` | fire, eye, cat, butterfly, flower, snake, falling, road, city, paper, person, swirl, and `detectScenes(text, emotion)` (keywords; one symbol if there is room, concept words first, unclassified nouns last; emotion fallback if nothing matches). |
+| `js/scenes/animals.js` | Side-view animals: elephant, horse, tiger, lion, deer, rabbit, bear, dog/wolf, generic beast. |
+| `js/scenes/objects.js` | 39 everyday-object archetypes (cup, bottle, phone, chair, shirt, car, ...). Words and the head-word rule live in `lexicon.js`. |
+| `js/scenes/icons.js` | Objects and symbols: heart, clock, key, boat, bridge, tower, candle, umbrella, feather, crown, skull, hourglass. |
+| `js/symbols.js` | Abstract symbols for words not in the lexicon (`symbolBuild`, `ensureSymbol`, `symbolWords` finds likely nouns) and colour words (`TONES`, `detectTone`). |
+| `js/compose.js` | `compose()`: up to 3 scenes, tries every order and row split that keeps sky above hero above ground, keeps the layout with the largest scale that fits the free screen area. |
+| `js/words.js` | `tokenize()` (Intl.Segmenter, merges CJK), `layoutWords()` (words along strokes by arc length; deterministic per text), `unmatchedTokens()` and `dustWords()` (words that matched no scene drift around the picture as dim dust), `buildList()` (picture + dust). |
 | `js/particles.js` | Particle state, emotion tint, `spawn`, `retire`. |
 | `js/canvas.js` | Font loading and `resize()`. |
 | `js/sound.js` | `Snd` WebAudio soundscape, off by default. |
+| `js/misses.js` | Local log of dreams the app did not understand (`missList`, `logMiss`), for improving the lexicon after playtests. |
 | `js/archive.js` | localStorage archive (`dream-recorder-v1`, 24 entries, JPEG thumbnails). |
 | `js/dream.js` | `commit(text, src, forceEmo, instant)`: detect keywords and emotion, compose, layout, animate. |
 | `js/pointer.js` | Pointer tracking for touch repulsion. |
@@ -43,14 +49,20 @@ Course context: group project for "Designing Multimedia Entertainment". Marking:
 
 Keyword matching: CJK uses substring; ASCII uses `\bword(?:s|es|ing|ed)?\b`. Font size is `clamp(U*0.042, 7, 12)` px.
 
-## 4. How to add a scene
+## 4. Testing the lexicon
 
-1. Call `def('name', '中文名', 'sky|hero|ground', 'kw1|kw2|中文词', build)`.
+`node tests/classify.js` checks the object / combo / concept / unclassified decision on 96 words. The full mapping logic is in `docs/mapping-logic.md`.
+
+`node tests/coverage.js` (or `-v` for per-dream detail) checks `tests/dreams.json` and reports no-match rate, recall and precision of the chosen scenes. When you add words, run it before and after. The `fresh` set was written after the lexicon expansion without tuning to it; add new real playtest dreams as a new set instead of tuning on old ones.
+
+## 5. How to add a scene
+
+1. Add the words to `LEX` in `js/lexicon.js`, then call `def('name', '中文名', 'sky|hero|ground', LEX.name, build)`.
 2. `build` returns strokes in a normalised box; reuse helpers (`hatch`, spirals, beziers).
 3. Check the keywords do not collide with other scenes (e.g. "楼梯" must not trigger city).
 4. Test with `__dream.commit('your dream text')` and screenshot at 390x844.
 
-## 5. Requirements checklist (what "done" means)
+## 6. Requirements checklist (what "done" means)
 
 Functional
 - [x] Input by text, optional voice
@@ -61,7 +73,9 @@ Functional
 - [x] Local archive
 - [ ] Playtest with at least one other person and record feedback in PROGRESS.md
 - [ ] Deployed demo (GitHub Pages) linked from README
-- [ ] More robust keyword understanding (synonyms; optional LLM later, behind a user-supplied key, never committed)
+- [x] Broader keyword understanding: lexicon with synonyms, emotion fallback, unmatched words as dust, "what did we miss?" log
+- [x] 89 elements (animals, 39 everyday-object archetypes found by head word), evidence-based abstract symbols (concept table, else "unclassified" and logged), colour words, larger pictures
+- [ ] Optional LLM matching later, behind a user-supplied key, never committed
 
 Ideas for upcoming weeks (adjust with tutor)
 - 12 Nov, integrated core experience: polish scene composition, more scenes, better onboarding.
@@ -69,7 +83,7 @@ Ideas for upcoming weeks (adjust with tutor)
 - 26 Nov, delivery candidate: deploy, README final, performance on low-end phones.
 - 3 Dec, final review.
 
-## 6. Working style for the AI
+## 7. Working style for the AI
 
 - Make small, focused changes; one feature per commit with a clear message.
 - After each change, run the page in a browser (e.g. Playwright at 390x844), check the console for errors and look at a screenshot.
