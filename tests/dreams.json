@@ -1,0 +1,884 @@
+[
+  {
+    "set": "dev",
+    "text": "我梦见自己在考试，卷子上一个字都看不懂，铃声马上就要响了",
+    "expect": [
+      "paper"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "梦里我的牙齿一颗一颗掉下来，我用手接着，怎么也拼不回去",
+    "expect": [
+      "tooth"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "有只巨大的老虎在走廊尽头看着我，我不敢动",
+    "expect": [
+      "tiger",
+      "door",
+      "eye"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我在一片很安静的湖面上划船，天空是粉色的",
+    "expect": [
+      "sea",
+      "cloud",
+      "boat"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我一直在追一辆公交车，却怎么也追不上，心里很着急",
+    "expect": [
+      "road",
+      "car"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "外婆在老家的厨房里做饭，屋子里全是香味，我感觉很温暖",
+    "expect": [
+      "person",
+      "house"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我从很高的楼上掉下去，却没有摔到，像羽毛一样飘着",
+    "expect": [
+      "falling",
+      "city",
+      "feather"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "整个城市被水淹没了，我们坐在屋顶上等待救援",
+    "expect": [
+      "city",
+      "sea",
+      "house"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我走进一个陌生的教室，所有同学都转过头来盯着我",
+    "expect": [
+      "paper",
+      "person",
+      "eye"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "一条很长的蛇缠在我的手臂上，却一点也不疼",
+    "expect": [
+      "snake",
+      "hand"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我在雪地里走了很久，远处有一间亮着灯的小木屋",
+    "expect": [
+      "house",
+      "cloud",
+      "candle"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "梦见前任突然出现在我家门口，说他回来了",
+    "expect": [
+      "person",
+      "door"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我变成了一只鸟，飞过很多山，最后停在一棵很大的树上",
+    "expect": [
+      "fly",
+      "mountain",
+      "tree"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "地震的时候我抱着一只小狗拼命往外跑",
+    "expect": [
+      "canine",
+      "road"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我在图书馆里找一本书，书架越来越高，怎么也够不到",
+    "expect": [
+      "paper",
+      "table"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "下着大雨，我撑着伞站在站台上，火车一直没有来",
+    "expect": [
+      "rain",
+      "road",
+      "umbrella"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我梦见自己在太空里漂浮，地球在脚下慢慢转",
+    "expect": [
+      "stars"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "妈妈在海边叫我回家，可是我怎么也游不过去",
+    "expect": [
+      "person",
+      "sea",
+      "house"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "一群蜘蛛从天花板上爬下来，我想喊却发不出声音",
+    "expect": [
+      "butterfly",
+      "house"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我们一家人在草地上野餐，阳光很好，大家都在笑",
+    "expect": [
+      "person",
+      "flower",
+      "sun"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我在迷宫一样的商场里迷路了，手机也没有电",
+    "expect": [
+      "city",
+      "road",
+      "phone"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我骑着自行车冲下长长的山坡，风吹得我睁不开眼",
+    "expect": [
+      "road",
+      "mountain",
+      "bicycle"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "梦里的房间没有窗户，墙壁慢慢向我靠近",
+    "expect": [
+      "house"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我坐在飞机上，机舱突然开始剧烈抖动",
+    "expect": [
+      "fly"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "小时候的操场上，我和朋友们在追着风筝跑",
+    "expect": [
+      "person",
+      "fly"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "黑暗的地下室里有人在敲门，一下又一下",
+    "expect": [
+      "house",
+      "door"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我站在悬崖边上，脚下的石头开始松动",
+    "expect": [
+      "mountain"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我梦见自己上台演讲，却发现什么都没有准备",
+    "expect": [
+      "person"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "月光下的花园里开满了白色的玫瑰，有只猫在看着我",
+    "expect": [
+      "moon",
+      "flower",
+      "cat"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "我在医院的走廊里推着一张空床，灯一盏一盏地灭了",
+    "expect": [
+      "city",
+      "door",
+      "candle"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "I was late for an exam and could not find the classroom anywhere",
+    "expect": [
+      "paper"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "A giant wave rose over the beach and I just stood there watching it",
+    "expect": [
+      "sea"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "I was flying over a city at night, the lights looked like stars",
+    "expect": [
+      "fly",
+      "city",
+      "stars"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "My teeth were falling out one by one while I talked to my boss",
+    "expect": [
+      "person",
+      "tooth"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "There was a wolf in the forest and it kept following me",
+    "expect": [
+      "canine",
+      "forest"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "I was running down an endless staircase and the walls kept closing in",
+    "expect": [
+      "stairs",
+      "road"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "I found an old key and opened a small door in my grandmother's house",
+    "expect": [
+      "door",
+      "house",
+      "person",
+      "key"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "A tiger sat quietly beside me on the train and nobody noticed",
+    "expect": [
+      "tiger",
+      "road"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "We were swimming in a lake and the water turned into glass",
+    "expect": [
+      "sea"
+    ]
+  },
+  {
+    "set": "dev",
+    "text": "I was driving a car but the brakes stopped working on the highway",
+    "expect": [
+      "road",
+      "car"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "我梦见自己穿着睡衣去上班，全公司的人都在看我",
+    "expect": [
+      "city",
+      "person",
+      "eye",
+      "shirt"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "一只白色的兔子带我穿过一片发光的草地",
+    "expect": [
+      "rabbit",
+      "flower"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "我在海底的城市里散步，鱼群从头顶游过",
+    "expect": [
+      "sea",
+      "fish",
+      "city"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "爸爸站在老屋门口向我招手，可我走不过去",
+    "expect": [
+      "person",
+      "house",
+      "door"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "我被一个看不见的东西追着，在黑漆漆的隧道里跑",
+    "expect": [
+      "road",
+      "door"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "考试快结束了，我才发现整张试卷都没写",
+    "expect": [
+      "paper"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "天空突然裂开一道光，所有人都抬头看",
+    "expect": [
+      "cloud"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "我在高高的山顶上看日出，云海像潮水一样涌动",
+    "expect": [
+      "mountain",
+      "sun",
+      "cloud"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "梦里我变成了小孩，坐在奶奶的怀里听故事",
+    "expect": [
+      "person"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "一场大火烧掉了我们的房子，我只来得及抱走一只猫",
+    "expect": [
+      "fire",
+      "house",
+      "cat"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "我在雨中的街道上奔跑，鞋子丢了一只",
+    "expect": [
+      "rain",
+      "road"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "梦见一个陌生人对我说，你不属于这里",
+    "expect": [
+      "person"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "I was standing at the edge of a cliff while a storm rolled in over the sea",
+    "expect": [
+      "mountain",
+      "rain",
+      "sea"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "My mother and I were walking through a garden full of butterflies",
+    "expect": [
+      "person",
+      "flower",
+      "butterfly"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "I kept falling through the floor of my bedroom into a dark room",
+    "expect": [
+      "falling",
+      "house"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "A huge snake lay across the road and I could not get past",
+    "expect": [
+      "snake",
+      "road"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "I was on a bus that drove straight into the ocean",
+    "expect": [
+      "road",
+      "sea",
+      "car"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "There was a dragon sleeping on top of the school building",
+    "expect": [
+      "snake",
+      "paper",
+      "city"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "I climbed a ladder to the moon and the stars were singing",
+    "expect": [
+      "stairs",
+      "moon",
+      "stars"
+    ]
+  },
+  {
+    "set": "holdout",
+    "text": "A stranger knocked on my window at midnight and I could not move",
+    "expect": [
+      "person",
+      "house",
+      "stars"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "我在婚礼上穿着一件水蓝色的裙子，所有人都在鼓掌",
+    "expect": [
+      "person",
+      "dress"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "夜里的游泳池没有人，水面上漂着很多发光的花瓣",
+    "expect": [
+      "sea",
+      "flower",
+      "stars"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "我乘电梯一直往下，门打开后是一片森林",
+    "expect": [
+      "door",
+      "forest"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "奶奶牵着我的手穿过一座很老的桥，桥下是黑色的河",
+    "expect": [
+      "person",
+      "sea",
+      "bridge"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "我在雪山上滑雪，突然脚下的雪裂开了",
+    "expect": [
+      "mountain",
+      "cloud",
+      "falling"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "梦里我养了一只会说话的鹦鹉，它站在我肩膀上唱歌",
+    "expect": [
+      "fly",
+      "note"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "我在一辆停不下来的火车上，窗外的风景越来越快",
+    "expect": [
+      "road"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "天上下起了红色的雨，街上的人都撑起了伞",
+    "expect": [
+      "rain",
+      "city",
+      "person",
+      "umbrella"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "我回到小学的教室，黑板上写满了我看不懂的公式",
+    "expect": [
+      "paper"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "我被困在一座很高的塔里，只能看见窗外的星星",
+    "expect": [
+      "house",
+      "stars",
+      "tower"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "我的手机一直在响，可是怎么也找不到它在哪",
+    "expect": [
+      "house",
+      "phone"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "森林深处有一只发光的鹿，它回头看了我一眼",
+    "expect": [
+      "forest",
+      "deer",
+      "eye"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "I was standing on a rooftop at sunrise when the whole city began to fly",
+    "expect": [
+      "city",
+      "sun",
+      "fly"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "A crowd of people were chasing me through a market and I could not scream",
+    "expect": [
+      "person",
+      "road",
+      "city",
+      "mouth"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "I found a hidden door behind the bookshelf in my childhood bedroom",
+    "expect": [
+      "door",
+      "house",
+      "paper",
+      "table"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "The ocean was on fire and the sky was purple",
+    "expect": [
+      "sea",
+      "fire",
+      "cloud"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "My sister and I were lost in a snowy forest with a small dog",
+    "expect": [
+      "person",
+      "forest",
+      "cloud",
+      "canine"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "I was singing on a stage but no sound came out of my mouth",
+    "expect": [
+      "person",
+      "note",
+      "mouth"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "A butterfly landed on my hand and turned into a flower",
+    "expect": [
+      "butterfly",
+      "flower",
+      "hand"
+    ]
+  },
+  {
+    "set": "fresh",
+    "text": "I walked up a spiral staircase that never ended, and the moon was below me",
+    "expect": [
+      "stairs",
+      "moon"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "我在一座很高的钟楼里，时间突然停住了，钟声一直在响",
+    "expect": [
+      "tower",
+      "clock"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "有一头白色的大象站在我的床边，眼睛湿湿的",
+    "expect": [
+      "elephant",
+      "house",
+      "eye"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "我划着一条小船，船上放着一盏灯，水面像镜子一样",
+    "expect": [
+      "boat",
+      "candle",
+      "sea"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "皇后把一把金钥匙交给我，说打开那扇门",
+    "expect": [
+      "crown",
+      "key",
+      "door"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "我在沙漠里走了很久，手里抱着一个旧沙漏",
+    "expect": [
+      "mountain",
+      "hourglass"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "一只熊在雨里撑着伞，我站在桥上看着它",
+    "expect": [
+      "bear",
+      "umbrella",
+      "bridge",
+      "rain"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "我的心跳得很快，有人在黑暗里叫我的名字",
+    "expect": [
+      "heart",
+      "person"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "天空中飘着很多羽毛，一只鹿在森林里回头看我",
+    "expect": [
+      "feather",
+      "deer",
+      "forest",
+      "cloud"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "我拿着一束花走进墓地，骷髅在雾里对我笑",
+    "expect": [
+      "flower",
+      "skull",
+      "cloud"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "巨大的海浪卷起了一艘船，船上的人都在尖叫",
+    "expect": [
+      "sea",
+      "boat",
+      "person",
+      "mouth"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "宇宙飞船降落在我家屋顶上，外星人走了出来",
+    "expect": [
+      "stars",
+      "house",
+      "fly",
+      "person"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "我骑着一匹白马穿过燃烧的村庄",
+    "expect": [
+      "horse",
+      "fire"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "我在咖啡馆里遇见了一只会说话的狐狸",
+    "expect": [
+      "city",
+      "canine",
+      "cup"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "一条龙盘在塔顶，把月亮含在嘴里",
+    "expect": [
+      "snake",
+      "tower",
+      "moon"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "我的手机变成了一只蝴蝶飞走了",
+    "expect": [
+      "butterfly",
+      "fly",
+      "phone"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "我被关进一个巨大的玻璃瓶里，外面的人在敲打",
+    "expect": [
+      "person",
+      "bottle"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "I was holding a lantern in a dark tunnel and a bear was sleeping on the tracks",
+    "expect": [
+      "candle",
+      "door",
+      "bear"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "The queen gave me a red umbrella and told me not to open it",
+    "expect": [
+      "crown",
+      "umbrella"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "A giant clock fell from the sky into the sea",
+    "expect": [
+      "clock",
+      "falling",
+      "sea"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "My grandmother's house was full of white rabbits",
+    "expect": [
+      "person",
+      "house",
+      "rabbit"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "I crossed a bridge made of glass while a wolf watched me",
+    "expect": [
+      "bridge",
+      "canine",
+      "eye"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "A skeleton was playing the piano in the middle of a forest",
+    "expect": [
+      "skull",
+      "forest",
+      "piano"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "The elephant turned into a cloud and floated over the city",
+    "expect": [
+      "elephant",
+      "cloud",
+      "city"
+    ]
+  },
+  {
+    "set": "round2",
+    "text": "I could not open the lock and the key kept disappearing",
+    "expect": [
+      "key"
+    ]
+  }
+]
