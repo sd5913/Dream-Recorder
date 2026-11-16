@@ -16,8 +16,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webki
 button:focus-visible,textarea:focus-visible{outline:2px solid var(--emo);outline-offset:2px}
 
 #top{display:flex;align-items:center;justify-content:space-between;height:52px;flex:none}
-.brand{font:italic 400 20px/1 var(--font-brand);letter-spacing:.01em}
-.tools{display:flex;gap:6px}
+.brand{font:italic 400 20px/1 var(--font-brand);letter-spacing:.01em;white-space:nowrap}
+.tools{display:flex;gap:2px}
+.tbtn{white-space:nowrap}
+#btnLang{padding:0 8px;font-weight:600;letter-spacing:.02em}
 .tbtn{display:flex;align-items:center;gap:6px;height:36px;padding:0 10px;border-radius:8px;color:var(--dim);font-size:13px}
 .tbtn:hover,.tbtn[aria-pressed="true"]{color:var(--fg)}
 .tbtn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
