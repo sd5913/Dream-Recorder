@@ -10,6 +10,8 @@ Course: Designing Multimedia Entertainment · Group project 2026 (sd5913)
 - **What they do:** type or speak a dream (or a few keywords), optionally pick an emotion.
 - **How it responds:** keywords select scenes from a library of 26 elements; the user's own words are laid along the scene's strokes; emotion changes colour and motion; touching or dragging scatters the words; the result can be saved to a local archive.
 
+- **Language:** the interface is available in Chinese and English (button at the top right, `EN` / `中`). It starts in the browser's language and remembers your choice. Dreams can be typed in either language.
+
 ## Multimedia
 
 - Real-time typography animation (HTML5 Canvas, spring physics)
@@ -66,7 +68,7 @@ PROGRESS.md       weekly progress and tutor feedback
 ## Credits
 
 - Code: original, written for this project.
-- Fonts: system fonts only in the app.
+- Fonts: Google Fonts when online, with system font fallbacks offline.
 - No third-party images, audio files or datasets. All visuals are generated from the user's text; sound is synthesised with WebAudio.
 - **AI use:** Claude (Anthropic) helped write and test the prototype code and the pitch slides. The concept, direction and design decisions are the team's.
 - The visual idea was inspired by a typography reference video (words forming a sunflower); no footage or assets from it are used.

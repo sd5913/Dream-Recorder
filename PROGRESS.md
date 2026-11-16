@@ -45,3 +45,8 @@ Round 3b (12 Nov, idea from the team: combine existing images like tarot cards):
 - **Evidence:** `node tests/classify.js` 96 words; the combo words were written together with the table, so that part only proves the rules run. No JS errors across 104 dreams in Chromium.
 - **Known gaps:** small pictures such as the hourglass get lost among dust words; the table is hand-written.
 
+Round 4 (16 Nov, English version of the program):
+- **Done:** `js/i18n.js` with a Chinese and an English text table; a language button (`EN` / `中`) switches the whole interface live: buttons, placeholder, sample dreams, mood names, scene names, the evidence line under the picture, archive texts and toasts. It starts in the browser language and remembers the choice in localStorage. The caption is now rebuilt by `renderCaption()` so it can change language without redrawing the dream.
+- **Evidence:** Chromium at 390×844 and 1440×900: switching to English translates the controls, samples, caption and archive, then switching back restores Chinese; no page errors. Classification and coverage checks still pass.
+- **Known gaps:** only the interface is translated (the Chinese and English keyword lists were already both in the lexicon); the app text on the pitch slides and the Chinese docs are not translated.
+

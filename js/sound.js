@@ -22,7 +22,7 @@ const Snd={ctx:null,on:false,master:null,nodes:[],
   pluck2(f){const c=this.ctx,t=c.currentTime,o=c.createOscillator(),g=c.createGain();o.type='triangle';o.frequency.value=f;
     g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.25,t+.02);g.gain.exponentialRampToValueAtTime(.0008,t+1.8);o.connect(g);g.connect(this.master);o.start(t);o.stop(t+1.9);},
   toggle(){
-    if(!this.on){if(!this.init()){toast('此设备不支持声音');return;}this.ctx.resume&&this.ctx.resume();this.on=true;this.master.gain.linearRampToValueAtTime(1,this.ctx.currentTime+.3);this.mood();this.bloom();}
+    if(!this.on){if(!this.init()){toast(tx('noSound'));return;}this.ctx.resume&&this.ctx.resume();this.on=true;this.master.gain.linearRampToValueAtTime(1,this.ctx.currentTime+.3);this.mood();this.bloom();}
     else{this.on=false;const t=this.ctx.currentTime;this.master.gain.linearRampToValueAtTime(0,t+.5);this.nodes.forEach(n=>{try{n.o.stop(t+.6);}catch(e){}});this.nodes=[];}
-    $('#btnSound').setAttribute('aria-pressed',String(this.on));$('#sndLab').textContent=this.on?'声音 开':'声音';}
+    $('#btnSound').setAttribute('aria-pressed',String(this.on));$('#sndLab').textContent=this.on?tx('soundOn'):tx('sound');}
 };

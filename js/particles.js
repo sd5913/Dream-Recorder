@@ -15,7 +15,7 @@ function applyEmotion(k){
   const u=E.ui,css=`hsl(${u[0]} ${u[1]}% ${u[2]}%)`;document.documentElement.style.setProperty('--emo',css);
   parts.forEach(tint);Snd.mood();
   document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.k===userEmo)));
-  const e=$('#cap .emo');if(e)e.textContent=E.zh;
+  const e=$('#cap .emo');if(e)e.textContent=emoName(emoKey);
 }
 function spawn(list,instant){
   const out=list.map((q,i)=>{

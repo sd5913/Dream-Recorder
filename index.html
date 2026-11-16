@@ -10,32 +10,34 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<canvas id="cv" aria-label="由梦境文字组成的图像"></canvas>
+<canvas id="cv" data-i18n-aria="aCanvas" aria-label="由梦境文字组成的图像"></canvas>
 <div id="ui">
   <div id="top">
     <div class="brand">Dream Recorder</div>
     <div class="tools">
-      <button class="tbtn" id="btnSound" aria-pressed="false" title="梦境音景"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 010 7"/></svg><span id="sndLab">声音</span></button>
-      <button class="tbtn" id="btnArch" title="梦境档案"><svg viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="5" rx="1"/><path d="M5 9v10h14V9M10 13h4"/></svg>档案 <span class="n" id="archN">0</span></button>
+      <button class="tbtn" id="btnSound" aria-pressed="false" data-i18n-title="tSound" title="梦境音景"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 010 7"/></svg><span id="sndLab">声音</span></button>
+      <button class="tbtn" id="btnArch" data-i18n-title="tArch" title="梦境档案"><svg viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="5" rx="1"/><path d="M5 9v10h14V9M10 13h4"/></svg><span data-i18n="archive">档案</span> <span class="n" id="archN">0</span></button>
+      <button class="tbtn" id="btnLang" data-i18n="tLang" title="English / 中文">EN</button>
     </div>
   </div>
   <div id="cap" aria-live="polite"></div>
   <section id="dock">
-    <div class="row" id="samples"><span class="lab">示例</span></div>
-    <div class="row" id="emos" role="group" aria-label="梦里的情绪"><span class="lab">情绪</span></div>
+    <div class="row" id="samples"><span class="lab" data-i18n="samples">示例</span></div>
+    <div class="row" id="emos" role="group" data-i18n-aria="aEmo" aria-label="梦里的情绪"><span class="lab" data-i18n="emotion">情绪</span></div>
     <form id="form" autocomplete="off">
-      <textarea id="inp" rows="1" placeholder="写下你的梦…" enterkeyhint="send"></textarea>
-      <button type="button" class="sq" id="mic" aria-pressed="false" title="语音输入" hidden><svg viewBox="0 0 24 24"><rect x="9" y="3.5" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0013 0M12 18v3"/></svg></button>
-      <button type="submit" id="go">生成</button>
+      <textarea id="inp" rows="1" data-i18n-ph="placeholder" placeholder="写下你的梦…" enterkeyhint="send"></textarea>
+      <button type="button" class="sq" id="mic" aria-pressed="false" data-i18n-title="tMic" title="语音输入" hidden><svg viewBox="0 0 24 24"><rect x="9" y="3.5" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0013 0M12 18v3"/></svg></button>
+      <button type="submit" id="go" data-i18n="go">生成</button>
     </form>
   </section>
 </div>
 <aside id="arch" hidden>
-  <header><h2>梦境档案</h2><button class="tbtn" id="archClose">关闭</button></header>
+  <header><h2 data-i18n="archTitle">梦境档案</h2><button class="tbtn" id="archClose" data-i18n="close">关闭</button></header>
   <div id="grid"></div>
 </aside>
 <div id="toast" role="status"></div>
 <script src="js/core.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/lexicon.js"></script>
 <script src="js/emotion.js"></script>
 <script src="js/geometry.js"></script>
