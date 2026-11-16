@@ -31,20 +31,25 @@ A modern browser (Chrome, Edge, Safari or Firefox). No build step, no dependenci
 ```
 index.html        page markup, loads the scripts in order
 css/style.css     layout and theme
-js/               core, emotion, geometry, scenes/, compose, words, particles,
-                  canvas, sound, archive, dream, pointer, loop, ui, main
+js/               core, lexicon, emotion, geometry, scenes/, compose, words, particles,
+                  canvas, sound, archive, misses, dream, pointer, loop, ui, main
+tests/            sample dreams and lexicon coverage script
 docs/             assignment brief
 SPEC.md           project spec for AI coding tools (also CLAUDE.md, AGENTS.md, .cursorrules)
 PROGRESS.md       weekly progress and tutor feedback
 ```
-3. Live demo: https://sd5913.github.io/Dream-Recorder/
+3. Live demo: _add GitHub Pages link here_.
 
 ## Platforms and limitations
 
 - Designed for phone screens, also works on desktop.
 - Voice input only appears in browsers that support SpeechRecognition.
-- Keyword matching is rule-based: 26 scenes, Chinese and English keywords; unmatched text becomes a swirl.
+- Keyword matching is rule-based: 85 scenes (animals, 39 everyday objects, nature, places), Chinese and English keywords in `js/lexicon.js`. Full list: [docs/vocabulary-and-mapping.md](docs/vocabulary-and-mapping.md). If nothing matches, the detected emotion chooses a default pair of scenes; words that matched nothing drift around the picture as dim dust, and an unknown everyday object is matched by its last character or word (玻璃瓶 → bottle, `paper bag` → bag) onto one of 40 object drawings, an abstract idea (memory, loneliness, secret...) gets a shape from a documented table, and only truly unknown words get an arbitrary shape marked "未归类". Colour words (white, red, ...) tint the picture. Rare or unusual dream objects are still missed (use the "少了什么？" button to log them).
 - The archive is stored in the browser's localStorage (24 entries) and is not synced between devices.
+
+## Testing
+
+`node tests/coverage.js` measures how well the lexicon understands the sample dreams in `tests/dreams.json` (needs Node 16+). Results are tracked in [PROGRESS.md](PROGRESS.md).
 
 ## Project management
 
@@ -55,16 +60,13 @@ PROGRESS.md       weekly progress and tutor feedback
 
 | Member | Role / ownership |
 | --- | --- |
-| Chen Jingyi | |
-| Fang Shuhan| _add_ |
-| Wei Ying | |
-| Li Zihui | |
+| WeiYing | Concept, prototype, scene library |
+| _add teammates_ | _add_ |
 
 ## Credits
 
 - Code: original, written for this project.
 - Fonts: system fonts only in the app.
 - No third-party images, audio files or datasets. All visuals are generated from the user's text; sound is synthesised with WebAudio.
-- **AI use:** Claude (Anthropic) helped write and test the prototype code and the pitch slides. Codex (OpenAI) helped integrate and check the composition and rendering updates. The concept, direction and design decisions are the team's.
-- **AI integration assistance:** OpenAI Codex helped import member C's supplied scene files, check JavaScript syntax, preview the import and identify pending dependencies. The supplied application code was preserved.
+- **AI use:** Claude (Anthropic) helped write and test the prototype code and the pitch slides. The concept, direction and design decisions are the team's.
 - The visual idea was inspired by a typography reference video (words forming a sunflower); no footage or assets from it are used.
