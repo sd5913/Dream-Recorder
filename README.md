@@ -1,5 +1,5 @@
 # Dream Recorder
-
+https://sd5913.github.io/Dream-Recorder/
 A mobile-first web app that turns a recorded dream into a picture made of the dream's own words. Words follow paths to form dream objects and scenes (sea, moon, door, stairs, flight…). Touch pushes the words away and they spring back.
 
 Course: Designing Multimedia Entertainment · Group project 2026 (sd5913)
