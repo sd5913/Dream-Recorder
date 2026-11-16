@@ -24,6 +24,7 @@ Course context: group project for "Designing Multimedia Entertainment". Marking:
 | File | Purpose |
 | --- | --- |
 | `js/core.js` | DOM helpers, canvas context, seeded RNG (`hash`, `rng`). |
+| `js/i18n.js` | Interface language (zh / en): `STR` text table, `tx(key)`, `emoName`, `sceneName`, `applyLang`, `setLang`. Only the interface is translated; dreams can be typed in either language. Add new UI text to both languages here. |
 | `js/lexicon.js` | **Keyword lexicon** `LEX` (scene -> words), `LEX_WEIGHT`, `EMO_FALLBACK` (default scenes per emotion when nothing matches), `matchScenes`, `pickScenes`. Edit this file to teach the app new words. |
 | `js/emotion.js` | `EMO` table (calm, joy, fear, sad, strange, nostalgia: hue, sway, tremble, rainbow, mix) and `detectEmotion`. |
 | `js/geometry.js` | Stroke helpers (`S`, `arcP`, `ellP`, `bez`, `spiralP`, `offs`), `hatch()` scanline polygon fill (even-odd, holes), `hatchDiscs`. |
