@@ -11,22 +11,22 @@ function snap(){
 }
 function save(text,emo){
   archive.unshift({id:Date.now(),text,emo,ts:Date.now(),thumb:snap()});archive=archive.slice(0,24);
-  persist();renderArchive();toast('已存入梦境档案');
+  persist();renderArchive();toast(tx('saved'));
 }
 const pad2=n=>String(n).padStart(2,'0');
 function renderArchive(){
   $('#archN').textContent=archive.length;
   const g=$('#grid');g.textContent='';
-  if(!archive.length){const d=document.createElement('p');d.className='empty';d.textContent='还没有记录。生成一个梦，它会自动保存在这里，之后可以重新打开并拨动文字。';g.append(d);return;}
+  if(!archive.length){const d=document.createElement('p');d.className='empty';d.textContent=tx('empty');g.append(d);return;}
   archive.forEach(a=>{
     const w=document.createElement('div');w.className='card';
     const b=document.createElement('button');b.className='card';b.style.cssText='display:flex;flex-direction:column;gap:6px;text-align:left;width:100%';
     const d=new Date(a.ts);
     if(a.thumb){const im=document.createElement('img');im.src=a.thumb;im.alt='';b.append(im);}
-    const m=document.createElement('span');m.className='meta';m.textContent=`${pad2(d.getMonth()+1)}/${pad2(d.getDate())} ${pad2(d.getHours())}:${pad2(d.getMinutes())} · ${(EMO[a.emo]||EMO.calm).zh}`;
+    const m=document.createElement('span');m.className='meta';m.textContent=`${pad2(d.getMonth()+1)}/${pad2(d.getDate())} ${pad2(d.getHours())}:${pad2(d.getMinutes())} · ${emoName(a.emo||'calm')}`;
     const t=document.createElement('span');t.className='txt';t.textContent=a.text;b.append(m,t);
     b.onclick=()=>{closeArchive();$('#inp').value=a.text;autosize();commit(a.text,'archive',a.emo);};
-    const x=document.createElement('button');x.className='del';x.textContent='×';x.setAttribute('aria-label','删除这条记录');
+    const x=document.createElement('button');x.className='del';x.textContent='×';x.setAttribute('aria-label',tx('del'));
     x.onclick=()=>{archive=archive.filter(z=>z.id!==a.id);persist();renderArchive();};
     w.append(b,x);g.append(w);});
 }
