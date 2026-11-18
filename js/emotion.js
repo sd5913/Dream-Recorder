@@ -9,11 +9,11 @@ const EMO={
   nostalgia:{zh:'怀念',hue:30,mix:.38,s:.8,l:-2,k:9,c:4,sway:.01,fr:.5,trem:0,ui:[32,60,64],chord:[87.3,130.8,174.6,220,261.6],scale:[349.2,392,440,523.3,587.3]}
 };
 const EMO_KW={
-  fear:'怕|恐|吓|惊|追|逃|坠|掉|噩梦|尖叫|fear|scar|afraid|nightmare|chase|falling|terror',
+  fear:'怕|恐|吓|惊|追|逃|坠|掉|噩梦|尖叫|fear|scar|afraid|nightmare|chase|falling|terror|困住|被困|出不去|逃不掉|trapped|鬼|黑影|丧尸|僵尸|动不了|蜘蛛|虫子|血|怪物|没复习|迟到|来不及|ghost|zombie|monster|spider|blood|late',
   joy:'开心|快乐|笑|幸福|兴奋|自由|happy|joy|fun|laugh|free',
   sad:'哭|悲|伤|难过|孤独|失去|死|去世|sad|cry|lonely|loss|grief',
   nostalgia:'想念|怀念|小时候|童年|以前|过去|老家|miss|childhood|nostalg|old home',
-  strange:'奇怪|怪|诡|变成|消失|不对|weird|strange|odd|surreal|disappear',
+  strange:'奇怪|怪|诡|变成|消失|不对|weird|strange|odd|surreal|disappear|倒着|融化|颠倒|倒过来|越变越|变成了|两个月亮|melt|upside down',
   calm:'平静|安静|宁静|温柔|慢慢|calm|quiet|peace|gentle|slow'
 };
 function detectEmotion(t){

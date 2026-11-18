@@ -8,17 +8,17 @@ const LEX={
   stars:'星|夜|太空|宇宙|银河|地球|行星|宇航员|黑夜|午夜|深夜|流星|许愿|魔法|外星|飞碟|火箭|night|star|midnight|galaxy|universe|space|planet|astronaut|evening|dark|meteor|wish|magic|alien|ufo|rocket',
   cloud:'云|雾|天空|雪|天际|阴天|天堂|漂浮|飘|裂开|光芒|霞|彩虹|大风|风吹|刮风|微风|狂风|cloud|sky|snow|fog|mist|heaven|float|floating|sunlight|rainbow|wind|windy|breeze|haze',
   rain:'雨|暴风|雷|闪电|台风|眼泪|流泪|哭|湿|淋|rain|storm|thunder|lightning|typhoon|tears|cry|crying|wet|drip|drizzle',
-  sea:'海|湖|河|水|浪|洪|游泳|游过|游着|潜水|溺水|淹|池塘|瀑布|沙滩|沉没|岛|溪|泳池|sea|ocean|water|lake|river|swim|swimming|wave|flood|beach|dive|drown|pool|waterfall|tide|sink|bath|island|stream|pond',
+  sea:'海|湖|河|水|浪|洪|游泳|游过|游着|潜水|溺水|淹|池塘|瀑布|沙滩|沉没|岛|溪|泳池|sea|ocean|water|lake|river|swim|swimming|wave|flood|beach|dive|drown|pool|waterfall|tide|sink|bath|island|stream|pond|海啸|巨浪|大浪',
   fish:'鱼|鲸|鲨|海豚|章鱼|水母|螃蟹|虾|钓鱼|鱼缸|鱼群|海底|dolphin|octopus|jellyfish|fish|whale|shark|crab|shrimp|aquarium|fishing|seafood|turtle|乌龟',
-  fly:'飞|翅|翼|鸟|翔|天使|风筝|气球|降落|起飞|滑翔|升空|直升机|降落伞|鹦鹉|鸽子|乌鸦|老鹰|鹰|天鹅|麻雀|燕子|海鸥|蝙蝠|凤凰|猫头鹰|fly|flying|bird|wing|plane|flies|flew|airplane|aircraft|angel|kite|balloon|glide|soar|hover|helicopter|parachute|airport|parrot|pigeon|crow|eagle|hawk|swan|sparrow|swallow|seagull|bat|phoenix|owl|dove',
-  house:'房|屋|家里|回家|老家|我家|在家|公寓|阁楼|地下室|客厅|厨房|卧室|宿舍|窗|床|墙|屋顶|天花板|浴室|卫生间|厕所|搬家|house|home|room|bedroom|dorm|kitchen|apartment|attic|basement|window|bed|wall|roof|ceiling|living room|bathroom|toilet|floor',
-  door:'门|走廊|电梯|隧道|入口|出口|洞|通道|门口|洞穴|地道|hole|door|hallway|corridor|elevator|gate|tunnel|entrance|exit|cave|portal|passage|knock|doorway',
+  fly:'飞|翅|翼|鸟|翔|天使|风筝|气球|降落|起飞|滑翔|升空|直升机|降落伞|鹦鹉|鸽子|乌鸦|老鹰|鹰|天鹅|麻雀|燕子|海鸥|蝙蝠|凤凰|猫头鹰|fly|flying|bird|wing|flies|flew|aircraft|angel|kite|balloon|glide|soar|hover|helicopter|parachute|parrot|pigeon|crow|eagle|hawk|swan|sparrow|swallow|seagull|bat|phoenix|owl|dove',
+  house:'房|屋|家里|回家|老家|我家|在家|公寓|阁楼|地下室|客厅|厨房|宿舍|窗|墙|屋顶|天花板|浴室|卫生间|厕所|搬家|house|home|room|dorm|kitchen|apartment|attic|basement|window|wall|roof|ceiling|living room|bathroom|toilet|floor',
+  door:'门|走廊|隧道|入口|出口|洞|通道|门口|洞穴|地道|hole|door|hallway|corridor|gate|tunnel|entrance|exit|cave|portal|passage|knock|doorway',
   stairs:'楼梯|台阶|阶梯|梯子|爬楼|上楼|下楼|扶梯|攀登|stairs|staircase|stair|step|steps|ladder|upstairs|downstairs|escalator|climb|climbing',
   tree:'树|叶|枫|竹子|果树|树枝|种子|苹果|果实|水果|tree|leaf|leaves|branch|oak|pine|bamboo|fruit|apple|seed',
   forest:'森林|树林|丛林|山林|露营|野外|forest|woods|jungle|camp|camping|woodland',
   mountain:'山|悬崖|峰|峡谷|岩石|石头|高处|爬山|雪山|断崖|沙漠|洞窟|mountain|hill|cliff|peak|valley|canyon|summit|rock|slope|stone|desert',
   fire:'火焰|火光|火灾|大火|着火|烧|燃|爆炸|火山|岩浆|战争|炸弹|枪|硝烟|烟|愤怒|生气|恶魔|地狱|火柴|fire|burn|burning|flame|explosion|bomb|war|gun|shoot|smoke|lava|volcano|blast|angry|rage|devil|demon|hell',
-  eye:'眼睛|眼神|眼球|眼珠|睁眼|盯|凝视|注视|窥|偷看|监视|目光|被看|看着我|看我|瞳孔|镜子|注意|eye|eyes|stare|gaze|watching|watched|spy|stalk|mirror|blind|camera|observe',
+  eye:'眼睛|眼神|眼球|眼珠|睁眼|盯|凝视|注视|窥|偷看|监视|目光|被看|看着我|看我|瞳孔|镜子|注意|eye|eyes|stare|gaze|watching|watched|spy|stalk|mirror|blind|observe',
   cat:'猫|宠物|cat|kitten|pet',
   elephant:'大象|白象|象牙|象群|elephant|ivory',
   horse:'马匹|白马|黑马|骏马|小马|骑马|赛马|马群|斑马|horse|pony|zebra|stallion|mare',
@@ -29,25 +29,25 @@ const LEX={
   bear:'熊|熊猫|北极熊|黑熊|bear|panda|teddy',
   canine:'狗|小狗|狼|狐狸|野狼|犬|dog|puppy|wolf|fox|hound|jackal',
   beast:'奶牛|公牛|牛群|黄牛|水牛|小牛|斗牛|山羊|绵羊|羊群|小羊|猪|小猪|野猪|驴|骆驼|动物|野兽|怪物|巨兽|猛兽|animal|beast|monster|cow|sheep|goat|pig|donkey|camel|creature|bull',
-  butterfly:'蝶|虫|蜘蛛|蜜蜂|蚂蚁|蟑螂|苍蝇|蚊子|蜻蜓|萤火虫|butterfly|moth|insect|bug|spider|bee|ant|cockroach|mosquito|dragonfly|firefly',
+  butterfly:'蝶|蜜蜂|蜻蜓|萤火虫|butterfly|moth|bee|mosquito|dragonfly|firefly|蝴蝶',
   flower:'花|向日葵|草地|草坪|花园|玫瑰|樱花|莲|草|稻田|麦田|田野|petal|sunflower|flower|rose|garden|bloom|tulip|lotus|grass|daisy|lily|meadow|blossom|field',
   snake:'蛇|龙|蟒|蜥蜴|鳄鱼|恐龙|毒|snake|dragon|serpent|lizard|crocodile|dinosaur|poison|venom',
   falling:'坠|掉|跌|摔|跳下|跳楼|跳崖|跳水|失重|悬空|崩塌|塌|沉下|失足|蹦极|fall|falling|fell|fallen|drop|dropped|jump|plunge|slip|collapse|tumble|bungee',
-  road:'路|追|跑|逃|赶|车|火车|地铁|公交|公路|铁轨|站台|车站|高速|奔跑|迷路|迟到|错过|旅行|散步|步行|走路|远方|终点|旅途|road|walk|walking|path|chase|chasing|run|running|escape|train|subway|highway|late|missed|travel|journey|trip|hurry|lost|traffic',
-  city:'城|高楼|大楼|大厦|街|商场|商店|超市|医院|机场|广场|摩天|市区|办公室|公司|上班|工作|酒店|餐厅|咖啡|银行|电影院|酒吧|city|building|street|town|mall|shop|store|hospital|office|work|company|skyscraper|downtown|market|hotel|restaurant|cafe|bank|cinema|bar',
-  paper:'考试|试卷|卷子|考场|作业|书|学校|课|教室|论文|作文|答题|毕业|成绩|不及格|交卷|演讲|报告|信|笔|黑板|exam|test|paper|homework|book|school|class|classroom|lecture|essay|thesis|deadline|grade|study|letter|diploma|speech|pen|blackboard',
-  person:'人|朋友|妈|爸|孩子|小孩|老师|同学|家人|奶奶|爷爷|外婆|外公|姐姐|哥哥|弟弟|妹妹|前任|爱人|恋人|男朋友|女朋友|老公|老婆|同事|老板|婴儿|老人|陌生人|鬼|幽灵|影子|我们|他们|医生|警察|士兵|女孩|男孩|姑娘|歌手|演员|观众|person|friend|mother|father|family|child|girl|boy|someone|teacher|grandma|grandpa|sister|brother|ex|lover|boyfriend|girlfriend|husband|wife|boss|colleague|baby|stranger|crowd|people|ghost|shadow|everyone|doctor|police|soldier|kid|teenager|audience|singer|actor',
+  road:'路|追|跑|逃|赶|车|公路|车站|高速|奔跑|迷路|迟到|错过|旅行|散步|步行|走路|远方|终点|旅途|road|walk|walking|path|chase|chasing|run|running|escape|highway|late|missed|travel|journey|trip|hurry|lost|traffic',
+  city:'城|高楼|大楼|大厦|街|商场|商店|超市|广场|摩天|市区|办公室|公司|上班|工作|酒店|餐厅|银行|电影院|酒吧|city|building|street|town|mall|shop|store|office|work|company|skyscraper|downtown|market|hotel|restaurant|cafe|bank|cinema|bar|咖啡馆|咖啡店',
+  paper:'考试|试卷|卷子|考场|作业|书|课|论文|作文|答题|毕业|成绩|不及格|交卷|演讲|报告|信|笔|exam|test|paper|homework|book|lecture|essay|thesis|deadline|grade|study|letter|diploma|speech|pen',
+  person:'人|朋友|妈|爸|孩子|小孩|家人|奶奶|爷爷|外婆|外公|姐姐|哥哥|弟弟|妹妹|前任|爱人|恋人|男朋友|女朋友|老公|老婆|同事|老板|婴儿|老人|陌生人|我们|他们|警察|士兵|女孩|男孩|姑娘|歌手|演员|观众|person|friend|mother|father|family|child|girl|boy|someone|grandma|grandpa|sister|brother|ex|lover|boyfriend|girlfriend|husband|wife|boss|colleague|baby|stranger|crowd|people|shadow|everyone|police|soldier|kid|teenager|audience|singer|actor|逝去的亲人',
   heart:'爱心|心脏|心跳|心碎|爱情|恋爱|表白|亲吻|拥抱|思念|暗恋|love|heart|kiss|romance|hug|crush',
   clock:'时钟|钟表|钟|手表|时间|闹钟|倒计时|钟声|clock|watch|time|alarm|countdown|bell',
   key:'钥匙|锁|密码|key|keys|lock|password',
   boat:'船|舟|游艇|帆|划船|轮船|潜艇|boat|ship|sail|yacht|canoe|ferry|submarine|raft',
   bridge:'桥|天桥|大桥|吊桥|bridge',
   tower:'塔|灯塔|钟楼|城堡|高塔|tower|castle|lighthouse|spire|fortress',
-  candle:'蜡烛|烛|灯|火把|手电筒|candle|lamp|lantern|torch|flashlight|bulb',
+  candle:'蜡烛|烛|灯|火把|手电筒|candle|lamp|lantern|torch|flashlight|bulb|蜡',
   umbrella:'伞|雨伞|撑伞|umbrella|parasol',
   feather:'羽毛|羽|feather|plume',
   crown:'皇冠|王冠|国王|女王|王子|公主|皇帝|皇后|宫殿|王位|king|queen|prince|princess|crown|throne|emperor|royal|palace',
-  skull:'骷髅|头骨|骨头|死亡|去世|死去|死了|尸体|坟墓|墓|棺材|葬礼|skull|bone|death|dead|corpse|grave|coffin|funeral|skeleton|tomb',
+  skull:'骷髅|头骨|骨头|死亡|死去|死了|尸体|坟墓|墓|棺材|葬礼|skull|bone|death|dead|corpse|grave|coffin|funeral|skeleton|tomb',
   hourglass:'沙漏|沙子|永恒|时光|岁月|hourglass|sand|eternity|forever',
   cup:'杯|水杯|茶杯|咖啡|cup|mug|teacup|goblet|coffee|tea',
   bottle:'瓶|酒瓶|药瓶|bottle|flask',
@@ -78,16 +78,24 @@ const LEX={
   egg:'鸡蛋|蛋壳|彩蛋|蛋|egg|eggs',
   coin:'钱|硬币|金币|金钱|财富|宝藏|coin|money|cash|dollar|treasure|rich',
   cake:'蛋糕|月饼|糕|饼|糖|甜点|生日|cake|cookie|dessert|candy|sweet|birthday|pie|pastry',
-  bread:'面包|水果|苹果|香蕉|西瓜|fruit|apple|banana|馒头|食物|吃|饿|米饭|面条|肉|菜|汤|饺子|bread|food|rice|noodle|meat|eat|eating|hungry|dinner|lunch|breakfast|meal|pizza|burger',
+  bread:'面包|香蕉|西瓜|banana|馒头|食物|吃|饿|米饭|面条|肉|菜|汤|饺子|bread|food|rice|noodle|meat|eat|eating|hungry|dinner|lunch|breakfast|meal|pizza|burger|做饭',
   picture:'画|照片|相框|油画|海报|壁画|painting|picture|photo|frame|poster|portrait|artwork',
   piano:'琴|钢琴|乐器|piano|organ',
   guitar:'吉他|小提琴|琵琶|弦|guitar|violin|cello',
   note:'歌|唱|音乐|曲|旋律|音符|舞|song|sing|singing|music|melody|dance|dancing|concert',
-  hand:'手指|手掌|拳头|握手|牵手|双手|右手|左手|手臂|伸手|fingers|fist|palm|handshake|hand|hands',
+  hand:'手指|手掌|拳头|握手|牵手|双手|右手|左手|手臂|伸手|fingers|fist|palm|handshake|hand|hands|手上|手心|手背|手腕',
   tooth:'牙|tooth|teeth|dentist',
   mouth:'嘴|嘴唇|唇|尖叫|大喊|喊叫|mouth|lips|scream|shout',
   foot:'脚|赤脚|腿|脚印|foot|feet|barefoot|footprint|leg|toe',
   gear:'机器|机械|齿轮|工厂|零件|电路|machine|machinery|gear|factory|engine|robot|motor',
+  classroom:'教室|课堂|黑板|讲台|老师|同学|学校|上课|下课|校园|高中|初中|小学|大学|课桌|classroom|school|teacher|blackboard|lesson|classmate|class',
+  hospital:'医院|病房|医生|护士|急诊|手术|打针|看病|住院|救护车|hospital|doctor|nurse|clinic|surgery|ambulance',
+  train:'火车|地铁|列车|高铁|轻轨|站台|车厢|铁轨|train|subway|metro|railway|platform',
+  plane:'飞机|航班|机场|登机|机舱|空姐|坠机|airplane|plane|aeroplane|flight|airport|jet',
+  elevator:'电梯|升降机|elevator|lift',
+  bed:'床|病床|床上|床边|卧室|bed|bedroom',
+  ghost:'鬼|女鬼|幽灵|鬼魂|丧尸|僵尸|黑影|怨灵|鬼屋|ghost|zombie|zombies|phantom|haunted|wraith',
+  insect:'虫|虫子|蜘蛛|蟑螂|蚂蚁|苍蝇|蚊子|蛆|蜈蚣|蝗虫|insect|insects|bug|bugs|spider|spiders|cockroach|ant|ants|maggot|centipede',
   swirl:'变化|旋转|循环|轮回|转变|眩晕|change|spin|cycle|transform|dizzy|dizziness'
 };
 
@@ -95,21 +103,14 @@ const LEX={
 const LEX_WEIGHT={person:.4};
 
 /* when no keyword matches, draw these scenes for the detected emotion instead of a plain swirl */
-const EMO_FALLBACK={
-  calm:['moon','cloud'],
-  joy:['sun','flower'],
-  fear:['eye','door'],
-  sad:['rain','road'],
-  strange:['stairs','eye'],
-  nostalgia:['house','stars']
-};
+/* (the old per-mood default scenes are gone: a dream with nothing recognisable now gets a three-card spread from the abstract deck, js/tarot.js) */
 
 const rxOf=s=>new RegExp(s.split('|').sort((a,b)=>b.length-a.length).map(w=>/^[a-z]/i.test(w)?'\\b'+w+'(?:s|es|ing|ed)?\\b':w).join('|'),'ig');
 const LEX_RX={};
 for(const k in LEX)LEX_RX[k]=LEX[k]==='$^'?null:rxOf(LEX[k]);
 
 /* object archetypes: in a compound word the LAST part names the kind of thing (草帽 is a hat, not grass; paper bag is a bag, not paper) */
-const OBJ_SCENES=new Set('cup bottle bowl kettle jar box bag suitcase envelope phone laptop tv camera chair table sofa shirt dress hat shoe knife hammer scissors car bicycle ball egg coin cake bread picture piano guitar note hand tooth mouth foot gear'.split(' '));
+const OBJ_SCENES=new Set('bed train plane elevator classroom hospital ghost insect cup bottle bowl kettle jar box bag suitcase envelope phone laptop tv camera chair table sofa shirt dress hat shoe knife hammer scissors car bicycle ball egg coin cake bread picture piano guitar note hand tooth mouth foot gear'.split(' '));
 
 /* every scene that matches the text: how many hits, where the first hit is, which words hit */
 function matchScenes(text){
@@ -152,7 +153,7 @@ function pickScenes(matches){
 }
 
 /* compound words that contain a scene word by accident: removed from the text before that scene is matched */
-const LEX_NOT={ball:'地球',bag:'面包|包子|包括|包装|包围',egg:'蛋糕',gear:'',cake:'蛋糕糕',hand:'',tooth:'',coin:'钱包',sea:'',foot:'脚下|脚步'};
+const LEX_NOT={ball:'地球',bag:'面包|包子|包括|包装|包围',egg:'蛋糕',gear:'',cake:'蛋糕糕',tooth:'',coin:'钱包',sea:'水果',hand:'手机|手表|手术|手续|手艺|手套|手电',foot:'脚下|脚步'};
 LEX_NOT.cake='';
 const NOT_RX={};for(const k in LEX_NOT)if(LEX_NOT[k])NOT_RX[k]=new RegExp(LEX_NOT[k],'g');
 
@@ -163,9 +164,32 @@ const CONCEPT={
   orbit:{why:'围绕与距离',words:'孤独|寂寞|孤单|分离|离别|距离|关系|陪伴|牵挂|lonely|loneliness|alone|distance|relationship|goodbye|separation'},
   burst:{why:'突然向外迸发',words:'快乐|幸福|兴奋|惊喜|庆祝|派对|烟花|力量|能量|冲击|happy|happiness|joy|excited|surprise|party|celebrate|firework|energy|power|shock'},
   pyramid:{why:'尖锐、层层逼近',words:'危险|恐惧|威胁|压力|噩梦|恐慌|害怕|焦虑|danger|threat|pressure|nightmare|fear|panic|terror|anxiety|afraid'},
-  knot:{why:'缠绕、解不开',words:'秘密|谜|迷宫|复杂|混乱|纠结|矛盾|命运|secret|mystery|maze|chaos|confus|tangled|fate|puzzle'},
+  knot:{why:'缠绕、解不开',words:'秘密|谜|迷宫|复杂|混乱|纠结|矛盾|secret|mystery|maze|chaos|confus|tangled|puzzle'},
   crystal:{why:'透明、发光、易碎',words:'希望|梦想|灵魂|精神|纯洁|真相|美丽|愿望|hope|dream|soul|spirit|truth|pure|beauty|innocent'},
-  drop:{why:'一点点汇聚、孕育',words:'生命|诞生|出生|成长|新生|孕育|悲伤|难过|伤心|life|birth|born|grow|growth|sorrow|sadness|grief'}
+  drop:{why:'一点点汇聚、孕育',words:'生命|诞生|出生|成长|新生|孕育|悲伤|难过|伤心|life|birth|born|grow|growth|sorrow|sadness|grief'},
+  halo:{why:'安宁、被照亮',words:'安宁|神圣|宁静|祝福|治愈|peace|peaceful|sacred|blessing|serene|healing'},
+  phases:{why:'盈亏、等待',words:'等待|期待|盼望|反复|循环往复|waiting|anticipation|again and again'},
+  constellation:{why:'相连、命运',words:'命运|缘分|注定|相遇|联系|宿命|fate|destiny|connection|encounter'},
+  veil:{why:'遮蔽、朦胧',words:'模糊|朦胧|恍惚|看不清|迷雾|隐约|blurry|hazy|vague|unclear|veiled'},
+  bloom:{why:'打开、生长',words:'温柔|心动|喜欢|暗恋|拥抱|tender|tenderness|affection|crush|hug|embrace'},
+  shards:{why:'破碎、震惊',words:'破碎|崩溃|碎了|裂开|心碎|打碎|broken|shatter|shattered|crack|collapse|heartbreak'},
+  cage:{why:'困住、出不去',words:'困住|被困|束缚|牢笼|逃不出|囚禁|出不去|trapped|stuck|cage|prison|confined|locked in'},
+  spiral:{why:'卷入、失控',words:'漩涡|卷入|失控|疯狂|晕眩|vortex|whirl|madness|out of control'},
+  mirror:{why:'另一个自己',words:'另一个我|另一个自己|倒影|分身|双胞胎|自我|镜子|reflection|twin|myself|doppelganger|mirror'},
+  arch:{why:'将要跨过',words:'开始|入口|门槛|边界|转折|出发|beginning|threshold|entrance|border|turning point'},
+  ascent:{why:'向上、挣脱',words:'升起|上升|飞升|超越|挣脱|rise|rising|ascend|transcend|break free'},
+  descent:{why:'下沉、失去',words:'下沉|沉没|失落|堕落|沉沦|绝望|sink|sinking|drown|drowning|despair'},
+  fan:{why:'展开、自由',words:'展开|解脱|释放|舒展|unfold|release|liberation|relief'},
+  roots:{why:'来处、扎根',words:'故乡|老家|祖先|起源|归属|童年|hometown|ancestor|ancestors|roots|origin|belonging|childhood'},
+  loop:{why:'一遍又一遍，回到原点',words:'一遍又一遍|重复|又回到|回到原点|无限循环|时间循环|倒着走|似曾相识|again and again|over and over|time loop|deja vu|déjà vu|backwards'},
+  melt:{why:'融化、变形',words:'融化|溶化|化掉|变软|扭曲|变形|滴下来|melt|melting|melted|warped|distorted|dripping'},
+  nest:{why:'越变越大或越变越小，没有尽头',words:'越变越大|越变越小|变大|变小|巨大的我|缩小|套娃|无穷无尽|层层|bigger and bigger|smaller and smaller|shrink|shrinking|giant|tiny|endless'},
+  eyes:{why:'被看着',words:'被盯着|被看着|有人看|盯着我|监视|偷看|偷窥|无数双眼睛|watched|staring|stared|being watched|surveillance'},
+  shadow:{why:'看不清的身影',words:'影子|身后|背后有人|阴影|看不清脸|没有脸|无脸|shadow|shadows|silhouette|faceless|someone behind'},
+  crack:{why:'脚下裂开',words:'地震|裂缝|裂开|塌了|塌陷|崩塌|地陷|earthquake|crack|cracked|sinkhole|collapsed'},
+  thorns:{why:'刺、疼',words:'刺|荆棘|扎|疼|痛|流血|血|thorn|thorns|pain|hurt|bleeding|blood'},
+  dunes:{why:'空旷、荒芜',words:'荒原|荒野|空无一人|荒漠|一望无际|wasteland|empty|deserted|barren'},
+  inversion:{why:'颠倒、反过来',words:'倒过来|颠倒|倒挂|上下颠倒|反过来|倒立|upside down|inverted|reversed|flipped'}
 };
 const CONCEPT_RX={};for(const k in CONCEPT)CONCEPT_RX[k]=rxOf(CONCEPT[k].words);
 function conceptMatches(text){
@@ -180,7 +204,8 @@ function conceptMatches(text){
 const COMBO=[
   ['时间|岁月|永恒|time|eternity','hourglass','moon','流逝，在夜里'],
   ['爱情|恋爱|爱人|相爱|love|romance','heart','flower','心，会开花'],
-  ['死亡|去世|葬礼|离世|death|funeral|dying','skull','candle','终结，与余光'],
+  ['死亡|葬礼|death|funeral|dying','skull','candle','终结，与余光'],
+  ['去世的|过世的|已故|离世|死去的|deceased|late grandma|late grandpa','person','candle','逝去的人，与烛光'],
   ['自由|逃离|逃走|freedom|escape','fly','cloud','离开地面，没有边界'],
   ['战争|争吵|冲突|吵架|war|conflict|argument|fight','fire','knife','火与刃'],
   ['成功|胜利|成就|success|victory|triumph','crown','sun','加冕，在阳光下'],
@@ -196,7 +221,6 @@ const COMBO=[
   ['衰老|变老|老去|aging|elderly','hourglass','tree','年轮'],
   ['天堂|天国|heaven|paradise','stairs','cloud','向上的台阶，在云里'],
   ['地狱|深渊|hell|abyss','fire','stairs','向下的台阶，在火里'],
-  ['幽灵|鬼魂|鬼|ghost|spirit|haunt','skull','moon','夜里的骨'],
   ['魔法|奇迹|魔术|magic|miracle|wizard','stars','feather','轻盈的光'],
   ['友谊|朋友|友情|friend|friends|friendship','hand','heart','握住的手'],
   ['毕业|学位|graduation|graduate','hat','paper','帽子与证书'],
@@ -214,3 +238,17 @@ function comboMatches(text){
     if(m)out.push({word:m[0],a:c[1],b:c[2],why:c[3],first:m.index,kind:'combo'});});
   return out.sort((x,y)=>x.first-y.first);
 }
+
+/* typical dreams that are a situation rather than a thing (Nielsen et al. 2003, Typical Dreams Questionnaire): drawn as two pictures */
+COMBO.push(
+  ['迟到|来不及|赶不上|late for|running late|missed the','clock','road','时间在路上耗尽'],
+  ['没复习|考不及格|挂科|考砸|不会做|failed the exam|unprepared','paper','clock','空白的卷子与时间'],
+  ['前任|旧情|ex-boyfriend|ex-girlfriend|my ex','heart','shards','旧的心，碎了'],
+  ['鬼压床|睡眠瘫痪|动不了|醒不过来|sleep paralysis|could not move','bed','ghost','床边的黑影'],
+  ['裸体|没穿衣服|光着|naked|nude','person','eye','被所有人看着'],
+  ['找不到厕所|厕所|卫生间|toilet|bathroom','door','card:knot','门后还是门'],
+  ['掉牙|牙齿掉|牙掉|teeth falling|lost my teeth','tooth','falling','牙一颗颗掉落'],
+  ['迷路|找不到路|走不出去|lost my way|got lost','road','card:knot','路缠成了结'],
+  ['电梯坠|电梯掉|电梯失控|elevator fell|elevator dropped','elevator','falling','失控地下坠']
+);
+COMBO_RX.length=0;COMBO.forEach(c=>COMBO_RX.push(rxOf(c[0])));
