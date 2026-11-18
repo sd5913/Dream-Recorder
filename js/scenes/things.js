@@ -81,17 +81,30 @@ function detectScenes(text,emo,dust){
   /* 1. combo cards, while there is room for both pictures */
   for(const c of combos){
     const need=[c.a,c.b].filter(n=>!out.includes(n));
-    if(need.length&&need.length<=room()){need.forEach(n=>out.push(n));basis.push({word:c.word,kind:'combo',why:c.why,parts:[c.a,c.b]});}
+    if(need.length&&need.length<=room()){need.forEach(n=>out.push(n.startsWith('card:')?ensureCard(n.slice(5)):n));basis.push({word:c.word,kind:'combo',why:c.why,parts:[c.a,c.b]});}
     else if(!need.length)basis.push({word:c.word,kind:'combo',why:c.why,parts:[c.a,c.b]});
   }
-  /* 2. nothing at all: emotion defaults, plus symbols */
-  let use=[];
+  /* 2. nothing recognisable at all: read the mood and lay out a three-card spread from the abstract deck (sky, heart, ground).
+        A concept word fixes the heart card; an unknown noun is written onto the heart card that the reading chose. */
+  let use=[];const rd=readMood(text,emo);
   if(!out.length){
-    const fb=EMO_FALLBACK[emo]||['swirl'];
-    use=cand.slice(0,2);out=cand.length?[fb[0]]:fb.slice();out.fallback=true;
-  }else if(out.length<2)use=cand.slice(0,1);
-  basis.push(...use);out.basis=basis;
-  use.forEach(u=>out.push(ensureSymbol(u.word,u.fam)));
+    const con=cand.find(c=>c.kind==='concept'),noun=cand.find(c=>c.kind==='unclassified');
+    const fixed={};if(con&&CARD[con.fam])fixed[CARD[con.fam].layer]=CARD[con.fam];
+    const spread=drawSpread(rd,text,fixed);
+    spread.forEach(({pos,card})=>{
+      if(con&&card.fam===con.fam){out.push(ensureSymbol(con.word,card.fam));basis.push(con);use.push(con);}
+      else if(pos==='heart'&&noun){const u={word:noun.word,fam:card.fam,kind:'tarot',why:card.mz,pos};out.push(ensureSymbol(noun.word,card.fam));basis.push(u);use.push(u);}
+      else{out.push(ensureCard(card.fam));basis.push({word:'',fam:card.fam,kind:'card',why:card.mz,pos});}
+    });
+    out.fallback=true;out.reading=rd;out.spread=spread.map(s=>({pos:s.pos,fam:s.card.fam}));
+  }else if(out.length<2&&cand.length){
+    /* one picture only: add a second from the best evidence; an unknown noun gets the heart card that fits the mood best */
+    const c=cand[0],used=new Set(out.map(n=>SC[n]&&SC[n].fam).filter(Boolean));
+    const u=c.kind==='concept'?c:{word:c.word,fam:pickCard(rd,text,'heart',used).fam,kind:'tarot',why:'',pos:'heart'};
+    if(u.kind==='tarot')u.why=CARD[u.fam].mz;
+    out.push(ensureSymbol(u.word,u.fam));basis.push(u);use.push(u);
+  }
+  out.basis=basis;
   out.hits=hits;out.symbols=use.map(u=>u.word);
   return out;
 }
