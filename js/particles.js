@@ -4,6 +4,16 @@ let parts=[],dying=[],T=0,E=EMO.calm,emoKey='calm',userEmo=null,cur=null,token=0
 /* one palette per dream: every colour is pulled into a band of about +/-45 degrees around the mood's hue.
    Warm things stay on the warm side of the band and cool things on the cool side, so scenes stay distinguishable but belong together. */
 function harmHue(h,mood){const d=((h-mood+540)%360)-180;return mood+46*Math.tanh(d/80);}
+/* Shared by every generated/reopened dream. Independent phase and frequency
+   give each phrase a small breathing drift, without moving the whole drawing.
+   Reduced-motion mode keeps a smaller, slower drift and suppresses big effects. */
+function wordDrift(p,time){
+  const phase=p.ph,pace=(.72+.3*Math.sin(phase*1.31))*(.9+Math.min(E.fr,1.5)*.08)*(reduce?.72:1);
+  const size=clamp(U*.014,1.6,3.5)*(p.dim?1.25:1)*(reduce?.7:1),t=time*pace;
+  return {x:size*(Math.sin(t+phase)+.2*Math.sin(t*.43+phase*1.73)),
+    y:size*(Math.cos(t*.81+phase*1.37)+.18*Math.sin(t*.57+phase)),
+    a:Math.sin(t*.68+phase*1.61)*.018*(reduce?.5:1)};
+}
 function tint(p){
   let h=p.base[0]+p.jh,s=p.base[1],l=p.base[2]+p.jl;
   /* a colour word (white elephant) colours the things, not the sky or the ground, unless the picture is a single scene */
@@ -11,7 +21,11 @@ function tint(p){
   if(tn){if(tn.h!=null)h=tn.h+p.jh;s*=tn.s;l+=tn.l;}
   else if(E.rainbow)h=h+p.ux*110+p.uy*70+T*0;
   else h=harmHue(h,E.hue);
-  h=((h%360)+360)%360;s=clamp(s*E.s,0,100);l=clamp(l+E.l,14,90);
+  const light=p.light==null?.72:p.light;
+  h=((h%360)+360)%360;
+  s=clamp(s*E.s*(.65+.08*light),0,64);
+  l=clamp((l+E.l)*(.85+.15*light),14,86);
+  p.opacity=p.dim ? .74 : (.38+.57*light);
   p.css=`hsl(${h.toFixed(0)} ${s.toFixed(0)}% ${l.toFixed(0)}%)`;
 }
 function applyEmotion(k){
@@ -33,6 +47,7 @@ function spawn(list,instant){
   return out;
 }
 function retire(){
+  if(reduce){parts=[];dying=[];return;}
   dying=dying.concat(parts.map(p=>{const dx=p.x-cx,dy=p.y-cy,d=Math.hypot(dx,dy)||1,f=U*(.5+Math.random()*1.1);
     p.vx=dx/d*f+(Math.random()-.5)*U*.5;p.vy=dy/d*f+(Math.random()-.5)*U*.5;p.fade=1;return p;}));
   parts=[];

@@ -1,8 +1,13 @@
 'use strict';
 /* ---------- archive ---------- */
-const KEY='dream-recorder-v1';let archive=[];
-try{archive=JSON.parse(localStorage.getItem(KEY)||'[]')||[];}catch(e){archive=[];}
-function persist(){try{localStorage.setItem(KEY,JSON.stringify(archive));}catch(e){}}
+const KEY=new URLSearchParams(location.search).has('demo')?'dream-recorder-demo-v1':'dream-recorder-v1';let archive=[];
+try{const a=JSON.parse(localStorage.getItem(KEY)||'[]');archive=Array.isArray(a)?a.filter(a=>a&&typeof a.text==='string'&&a.text.trim()).slice(0,24):[];}catch(e){archive=[];}
+/* Commit to memory only after storage succeeds. Retry without thumbnails on quota pressure. */
+function persist(next=archive){
+  try{localStorage.setItem(KEY,JSON.stringify(next));archive=next;return 'saved';}catch(e){}
+  const lean=next.map(a=>({...a,thumb:''}));
+  try{localStorage.setItem(KEY,JSON.stringify(lean));archive=lean;return 'savedTrim';}catch(e){return null;}
+}
 function snap(){
   const o=document.createElement('canvas'),n=220;o.width=o.height=n;const c=o.getContext('2d');
   c.fillStyle='#050507';c.fillRect(0,0,n,n);
@@ -10,8 +15,10 @@ function snap(){
   try{return o.toDataURL('image/jpeg',.72);}catch(e){return'';}
 }
 function save(text,emo){
-  archive.unshift({id:Date.now(),text,emo,ts:Date.now(),thumb:snap()});archive=archive.slice(0,24);
-  persist();renderArchive();toast(tx('saved'));
+  const shape=typeof dreamShape==='function'?dreamShape():null;
+  const next=[{id:Date.now()+'-'+Math.random().toString(36).slice(2,8),text,emo,ts:Date.now(),thumb:snap(),shape},...archive].slice(0,24);
+  const result=persist(next);if(!result){toast(tx('saveFail'));return false;}
+  renderArchive();toast(tx(result));return true;
 }
 const pad2=n=>String(n).padStart(2,'0');
 function renderArchive(){
@@ -27,8 +34,8 @@ function renderArchive(){
     const t=document.createElement('span');t.className='txt';t.textContent=a.text;b.append(m,t);
     b.onclick=()=>{closeArchive();$('#inp').value=a.text;autosize();commit(a.text,'archive',a.emo);};
     const x=document.createElement('button');x.className='del';x.textContent='×';x.setAttribute('aria-label',tx('del'));
-    x.onclick=()=>{archive=archive.filter(z=>z.id!==a.id);persist();renderArchive();};
+    x.onclick=()=>{if(!persist(archive.filter(z=>z.id!==a.id))){toast(tx('delFail'));return;}renderArchive();};
     w.append(b,x);g.append(w);});
 }
-function openArchive(){$('#arch').hidden=false;}
-function closeArchive(){$('#arch').hidden=true;}
+function openArchive(){flushSave();$('#arch').hidden=false;setSkyView(skyView);}
+function closeArchive(){$('#arch').hidden=true;stopSky();}
