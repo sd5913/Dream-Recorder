@@ -71,7 +71,8 @@
     "expect": [
       "paper",
       "person",
-      "eye"
+      "eye",
+      "classroom"
     ]
   },
   {
@@ -130,7 +131,8 @@
     "expect": [
       "rain",
       "road",
-      "umbrella"
+      "umbrella",
+      "train"
     ]
   },
   {
@@ -153,8 +155,8 @@
     "set": "dev",
     "text": "一群蜘蛛从天花板上爬下来，我想喊却发不出声音",
     "expect": [
-      "butterfly",
-      "house"
+      "house",
+      "insect"
     ]
   },
   {
@@ -195,7 +197,8 @@
     "set": "dev",
     "text": "我坐在飞机上，机舱突然开始剧烈抖动",
     "expect": [
-      "fly"
+      "fly",
+      "plane"
     ]
   },
   {
@@ -243,14 +246,17 @@
     "expect": [
       "city",
       "door",
-      "candle"
+      "candle",
+      "hospital",
+      "bed"
     ]
   },
   {
     "set": "dev",
     "text": "I was late for an exam and could not find the classroom anywhere",
     "expect": [
-      "paper"
+      "paper",
+      "classroom"
     ]
   },
   {
@@ -308,7 +314,8 @@
     "text": "A tiger sat quietly beside me on the train and nobody noticed",
     "expect": [
       "tiger",
-      "road"
+      "road",
+      "train"
     ]
   },
   {
@@ -473,7 +480,8 @@
     "expect": [
       "snake",
       "paper",
-      "city"
+      "city",
+      "classroom"
     ]
   },
   {
@@ -516,7 +524,8 @@
     "text": "我乘电梯一直往下，门打开后是一片森林",
     "expect": [
       "door",
-      "forest"
+      "forest",
+      "elevator"
     ]
   },
   {
@@ -549,7 +558,8 @@
     "set": "fresh",
     "text": "我在一辆停不下来的火车上，窗外的风景越来越快",
     "expect": [
-      "road"
+      "road",
+      "train"
     ]
   },
   {
@@ -566,7 +576,8 @@
     "set": "fresh",
     "text": "我回到小学的教室，黑板上写满了我看不懂的公式",
     "expect": [
-      "paper"
+      "paper",
+      "classroom"
     ]
   },
   {
@@ -621,7 +632,8 @@
       "door",
       "house",
       "paper",
-      "table"
+      "table",
+      "bed"
     ]
   },
   {
@@ -683,7 +695,8 @@
     "expect": [
       "elephant",
       "house",
-      "eye"
+      "eye",
+      "bed"
     ]
   },
   {
@@ -879,6 +892,289 @@
     "text": "I could not open the lock and the key kept disappearing",
     "expect": [
       "key"
+    ]
+  },
+  {
+    "text": "我梦见考试要开始了，我还没复习，坐在教室里一道题都不会",
+    "set": "typical",
+    "expect": [
+      "paper",
+      "classroom"
+    ]
+  },
+  {
+    "text": "上班要迟到了，我在地铁里一直看手表",
+    "set": "typical",
+    "expect": [
+      "train",
+      "clock"
+    ]
+  },
+  {
+    "text": "梦见和前任在咖啡馆吵架，最后她哭着走了",
+    "set": "typical",
+    "expect": [
+      "person",
+      "cup",
+      "heart"
+    ]
+  },
+  {
+    "text": "我回到高中的教室，老师在黑板上写字，同学们都在",
+    "set": "typical",
+    "expect": [
+      "classroom",
+      "person"
+    ]
+  },
+  {
+    "text": "手机一直响，是老板打来的，我不敢接",
+    "set": "typical",
+    "expect": [
+      "phone",
+      "person"
+    ]
+  },
+  {
+    "text": "我在机场赶飞机，行李箱打不开，广播在催登机",
+    "set": "typical",
+    "expect": [
+      "plane",
+      "suitcase"
+    ]
+  },
+  {
+    "text": "I was late for an important meeting and my car would not start",
+    "set": "typical",
+    "expect": [
+      "car",
+      "clock"
+    ]
+  },
+  {
+    "text": "梦见去世的外婆在厨房给我做饭",
+    "set": "typical",
+    "expect": [
+      "person",
+      "house",
+      "bread"
+    ]
+  },
+  {
+    "text": "我在医院排队，妈妈躺在病床上",
+    "set": "typical",
+    "expect": [
+      "hospital",
+      "bed",
+      "person"
+    ]
+  },
+  {
+    "text": "梦见捡到很多钱，一张一张数不完",
+    "set": "typical",
+    "expect": [
+      "coin"
+    ]
+  },
+  {
+    "text": "I dreamed I was back at school and could not find my classroom",
+    "set": "typical",
+    "expect": [
+      "classroom"
+    ]
+  },
+  {
+    "text": "我在家里发现了一个从来没见过的房间，里面有一张床",
+    "set": "typical",
+    "expect": [
+      "house",
+      "door",
+      "bed"
+    ]
+  },
+  {
+    "text": "有个看不清脸的人一直在后面追我，我拼命跑",
+    "set": "typical",
+    "expect": [
+      "person",
+      "road"
+    ]
+  },
+  {
+    "text": "我的牙一颗一颗掉下来，满嘴都是血",
+    "set": "typical",
+    "expect": [
+      "tooth",
+      "mouth"
+    ]
+  },
+  {
+    "text": "半夜醒来动不了，床边站着一个黑影",
+    "set": "typical",
+    "expect": [
+      "bed",
+      "ghost"
+    ]
+  },
+  {
+    "text": "房间里爬满了蜘蛛和虫子，墙上也是",
+    "set": "typical",
+    "expect": [
+      "insect",
+      "house"
+    ]
+  },
+  {
+    "text": "电梯突然往下坠，停不下来",
+    "set": "typical",
+    "expect": [
+      "elevator",
+      "falling"
+    ]
+  },
+  {
+    "text": "I was chased by a monster through a dark forest",
+    "set": "typical",
+    "expect": [
+      "beast",
+      "forest"
+    ]
+  },
+  {
+    "text": "梦见丧尸围城，我躲在楼顶",
+    "set": "typical",
+    "expect": [
+      "ghost",
+      "city"
+    ]
+  },
+  {
+    "text": "地震了，房子塌了，我被压在下面",
+    "set": "typical",
+    "expect": [
+      "house"
+    ]
+  },
+  {
+    "text": "海啸来了，巨浪把整个城市淹没",
+    "set": "typical",
+    "expect": [
+      "sea",
+      "city"
+    ]
+  },
+  {
+    "text": "一个女鬼站在镜子前面梳头",
+    "set": "typical",
+    "expect": [
+      "ghost"
+    ]
+  },
+  {
+    "text": "飞机在空中解体，我从天上掉下去",
+    "set": "typical",
+    "expect": [
+      "plane",
+      "falling"
+    ]
+  },
+  {
+    "text": "I kept falling from a building and woke up just before I hit the ground",
+    "set": "typical",
+    "expect": [
+      "falling",
+      "city"
+    ]
+  },
+  {
+    "text": "我会飞，飞过整个城市，云在脚下",
+    "set": "typical",
+    "expect": [
+      "fly",
+      "city",
+      "cloud"
+    ]
+  },
+  {
+    "text": "楼梯一直往上，怎么爬都到不了顶",
+    "set": "typical",
+    "expect": [
+      "stairs"
+    ]
+  },
+  {
+    "text": "我变成了一条鱼，在天上游",
+    "set": "typical",
+    "expect": [
+      "fish"
+    ]
+  },
+  {
+    "text": "时钟的指针倒着走，同一天一遍又一遍地重复",
+    "set": "typical",
+    "expect": [
+      "clock"
+    ]
+  },
+  {
+    "text": "房子越变越大，我越变越小",
+    "set": "typical",
+    "expect": [
+      "house"
+    ]
+  },
+  {
+    "text": "整座城市倒过来挂在天上",
+    "set": "typical",
+    "expect": [
+      "city"
+    ]
+  },
+  {
+    "text": "我的手融化了，像蜡一样滴下来",
+    "set": "typical",
+    "expect": [
+      "hand",
+      "candle"
+    ]
+  },
+  {
+    "text": "一只会说话的猫带我穿过一扇门",
+    "set": "typical",
+    "expect": [
+      "cat",
+      "door"
+    ]
+  },
+  {
+    "text": "火车开进了海里，窗外有鲸鱼",
+    "set": "typical",
+    "expect": [
+      "train",
+      "sea",
+      "fish"
+    ]
+  },
+  {
+    "text": "I opened a door and it led to another door, and another, forever",
+    "set": "typical",
+    "expect": [
+      "door"
+    ]
+  },
+  {
+    "text": "去世的爷爷坐在我对面，像什么都没发生过一样",
+    "set": "typical",
+    "expect": [
+      "person",
+      "chair"
+    ]
+  },
+  {
+    "text": "天上有两个月亮，地上的影子都在动",
+    "set": "typical",
+    "expect": [
+      "moon"
     ]
   }
 ]
