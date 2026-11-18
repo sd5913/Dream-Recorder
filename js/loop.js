@@ -3,6 +3,7 @@
 let last=performance.now();
 function frame(now){
   const dt=Math.min(.033,(now-last)/1000||.016);last=now;T+=dt;
+  drawBg(dt);
   ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,cv.width,cv.height);
   ctx.textAlign='center';ctx.textBaseline='middle';ctx.font=`${fontPx}px ${FONT}`;
   const RR=U*.3,amp=reduce?0:E.sway*U,tr=reduce?0:E.trem*U;

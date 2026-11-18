@@ -50,3 +50,8 @@ Round 4 (16 Nov, English version of the program):
 - **Evidence:** Chromium at 390×844 and 1440×900: switching to English translates the controls, samples, caption and archive, then switching back restores Chinese; no page errors. Classification and coverage checks still pass.
 - **Known gaps:** only the interface is translated (the Chinese and English keyword lists were already both in the lexicon); the app text on the pitch slides and the Chinese docs are not translated.
 
+Round 5 (18 Nov, member A picture and motion):
+- **Done:** unified colour palette per dream, staged scene composition with depth, word transitions between dreams, a living background, mood-specific synthesized sound, live preview while typing, preservation of a pending archive save when another dream starts, and local PNG export.
+- **Evidence:** Chromium at 390×844 and 1440×900 generated dreams without page errors; live preview updated after typing, a quick second submission retained the first archive entry, and a settled dream exported as a visible PNG. Syntax checks and the existing classification and coverage scripts passed.
+- **Next:** group review of this branch, then integrate the next member's changes in the agreed order.
+
