@@ -55,3 +55,9 @@ Round 5 (18 Nov, member A picture and motion):
 - **Evidence:** Chromium at 390×844 and 1440×900 generated dreams without page errors; live preview updated after typing, a quick second submission retained the first archive entry, and a settled dream exported as a visible PNG. Syntax checks and the existing classification and coverage scripts passed.
 - **Next:** group review of this branch, then integrate the next member's changes in the agreed order.
 
+Round 6 (18 Nov, member C / Wei Ying / WINN06, abstract deck):
+- **Done:** integrated the supplied C files after A's PR #7 was merged. Added 31 abstract cards with drawing paths, layer, energy and mood affinities; moved symbol drawing into `js/tarot.js`. Dreams without a concrete scene or combo now receive a sky/centre/ground spread based on mood and motion words. Concept mappings are retained, while unknown nouns can label the selected card. Mood words and common English verbs are filtered out of symbol candidates.
+- **Evidence:** JavaScript syntax and `git diff --check` passed. `node tests/classify.js`: 96/96. `node tests/coverage.js`: 104 dreams, recall 90%, precision 89%. `node tests/tarot.js`: all 31 cards drew without errors; all 18 sample spreads had distinct cards in the correct layers and repeatable selection; 18/18 centre cards ranked among the five most compatible with the chosen mood. These are automated checks on team-written examples, not user playtest results.
+- **Blocker:** browser visual and interaction checks are pending because the available browser could not access the local test page.
+- **Next:** C and a teammate review the fallback picture on phone and desktop, try different moods and a recognised-object dream, then merge C before B begins.
+

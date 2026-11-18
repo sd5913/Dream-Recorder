@@ -47,12 +47,14 @@ PROGRESS.md       weekly progress and tutor feedback
 
 - Designed for phone screens, also works on desktop.
 - Voice input only appears in browsers that support SpeechRecognition.
-- Keyword matching is rule-based: 85 scenes (animals, 39 everyday objects, nature, places), Chinese and English keywords in `js/lexicon.js`. Full list: [docs/vocabulary-and-mapping.md](docs/vocabulary-and-mapping.md). If nothing matches, the detected emotion chooses a default pair of scenes; words that matched nothing drift around the picture as dim dust, and an unknown everyday object is matched by its last character or word (玻璃瓶 → bottle, `paper bag` → bag) onto one of 40 object drawings, an abstract idea (memory, loneliness, secret...) gets a shape from a documented table, and only truly unknown words get an arbitrary shape marked "未归类". Colour words (white, red, ...) tint the picture. Rare or unusual dream objects are still missed (use the "少了什么？" button to log them).
+- Keyword matching is rule-based: 85 scenes (animals, 39 everyday objects, nature, places), Chinese and English keywords in `js/lexicon.js`. Full list: [docs/vocabulary-and-mapping.md](docs/vocabulary-and-mapping.md). An unknown everyday object is matched by its last character or word (玻璃瓶 → bottle, `paper bag` → bag); abstract concepts use a documented shape mapping. When no concrete scene or combo matches, mood and motion words select three abstract cards, arranged as sky, centre and ground. The 31 cards, their meanings and mood affinities are defined in [js/tarot.js](js/tarot.js); these are design choices, not psychological interpretations. Unknown nouns can label the selected card, and unmatched words drift as dim dust. Colour words (white, red, ...) tint the picture. Rare or unusual dream objects are still missed (use the "少了什么？" button to log them).
 - The archive is stored in the browser's localStorage (24 entries) and is not synced between devices.
 
 ## Testing
 
 `node tests/coverage.js` measures how well the lexicon understands the sample dreams in `tests/dreams.json` (needs Node 16+). Results are tracked in [PROGRESS.md](PROGRESS.md).
+
+`node tests/classify.js` checks classification rules; `node tests/tarot.js` checks the abstract deck drawings, mood and energy readings, and repeatable three-card selection.
 
 ## Project management
 
@@ -71,5 +73,5 @@ PROGRESS.md       weekly progress and tutor feedback
 - Code: original, written for this project.
 - Fonts: Google Fonts when online, with system font fallbacks offline.
 - No third-party images, audio files or datasets. All visuals are generated from the user's text; sound is synthesised with WebAudio.
-- **AI use:** Claude (Anthropic) helped write and test the prototype code and the pitch slides. Codex (OpenAI) helped integrate and check the picture and motion updates. The concept, direction and design decisions are the team's.
+- **AI use:** Claude (Anthropic) helped write and test the prototype code and the pitch slides. Codex (OpenAI) helped integrate and check the picture and motion updates, and integrate member C's supplied abstract-deck files and run the automated checks. The concept, direction and design decisions are the team's.
 - The visual idea was inspired by a typography reference video (words forming a sunflower); no footage or assets from it are used.
