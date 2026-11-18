@@ -1,77 +1,98 @@
 # Dream Recorder
-https://sd5913.github.io/Dream-Recorder/
-A mobile-first web app that turns a recorded dream into a picture made of the dream's own words. Words follow paths to form dream objects and scenes (sea, moon, door, stairs, flight…). Touch pushes the words away and they spring back.
 
-Course: Designing Multimedia Entertainment · Group project 2026 (sd5913)
+Dream Recorder turns a dream into a picture made from its own words. The words follow the outlines of objects and scenes, drift gently, and spring back after touch or drag. Saved dreams can be explored as camera-facing nebulae in a perspective-projected 3D archive.
 
-## Who it is for and what they do
+Course: Designing Multimedia Entertainment · Group project 2026 · Repository: [sd5913/Dream-Recorder](https://github.com/sd5913/Dream-Recorder)
 
-- **Audience:** people who want to keep the feeling of a dream, not just the events, shortly after waking or when looking back at old dreams.
-- **What they do:** type or speak a dream (or a few keywords), optionally pick an emotion.
-- **How it responds:** keywords select scenes from a library of 26 elements; the user's own words are laid along the scene's strokes; emotion changes colour and motion; touching or dragging scatters the words; the result can be saved to a local archive.
+## Audience and interaction
 
-- **Language:** the interface is available in Chinese and English (button at the top right, `EN` / `中`). It starts in the browser's language and remembers your choice. Dreams can be typed in either language.
+For people who want to keep the feeling of a dream as well as its events. Type a dream in Chinese or English, or use optional browser voice input. Keyword and concept rules choose scenes; the dream's words form the picture. Six moods change the palette and motion. The interface can be switched between Chinese and English.
 
-## Multimedia
+- All scene drawings and all six moods use a softer colour palette with brighter centres and fading edges.
+- Every phrase has independent, small drifting movement and slight rotation while the overall picture remains anchored.
+- These are shared rendering rules for both reopened archive entries and future generated dreams.
+- Text typed into the input previews live. Press **Draw / 生成** to save; samples and live previews alone do not create archive entries.
+- Sound is synthesised with WebAudio and starts off. PNG export saves the current picture locally.
 
-- Real-time typography animation (HTML5 Canvas, spring physics)
-- Emotion-driven colour and motion
-- Optional WebAudio soundscape (off by default; touching words plays notes)
-- Optional voice input (browser speech recognition)
-- Live dream preview while typing, a composed background, and local PNG export
+## Run
 
-## Prerequisites
+Use a modern browser. The app is a static HTML/CSS/JavaScript project with Canvas 2D: no build, package installation, backend or API key is required.
 
-A modern browser (Chrome, Edge, Safari or Firefox). No build step, no dependencies, no secrets or API keys. Fonts are loaded from Google Fonts when online; the app falls back to system fonts offline.
+1. Open `index.html`, or serve this folder with `python -m http.server 8000` and open [localhost:8000](http://localhost:8000).
+2. To try six synthetic examples separately from real records, open `index.html?demo`.
+3. `index.html?demo&picture=2` starts with the house-and-cat picture. The `picture` index selects a sample; it does not enable a different rendering effect.
 
-## Run it
+Online fonts come from Google Fonts and load without blocking startup; system fonts are used when unavailable. The existing Pages address is [sd5913.github.io/Dream-Recorder](https://sd5913.github.io/Dream-Recorder/). **This handoff has not been pushed or deployed; the hosted page can differ from this source.**
 
-1. Clone the repository.
-2. Open `index.html` in a browser, or serve the folder: `python3 -m http.server 8000` then visit http://localhost:8000.
+## Archive
 
-## Project structure
+User submissions are saved after the picture settles, or earlier when another dream or the archive is opened. Records stay in the same browser and origin: real entries use `dream-recorder-v1`, and optional demo entries use `dream-recorder-demo-v1`. Up to 24 entries are retained.
 
-```
-index.html        page markup, loads the scripts in order
-css/style.css     layout and theme
-js/               core, lexicon, emotion, geometry, scenes/, compose, words, particles,
-                  canvas, sound, archive, misses, dream, pointer, loop, ui, main
-tests/            sample dreams and lexicon coverage script
-docs/             assignment brief
-SPEC.md           project spec for AI coding tools (also CLAUDE.md, AGENTS.md, .cursorrules)
-PROGRESS.md       weekly progress and tutor feedback
-```
-3. Live demo: _add GitHub Pages link here_.
-
-## Platforms and limitations
-
-- Designed for phone screens, also works on desktop.
-- Voice input only appears in browsers that support SpeechRecognition.
-- Keyword matching is rule-based: 85 scenes (animals, 39 everyday objects, nature, places), Chinese and English keywords in `js/lexicon.js`. Full list: [docs/vocabulary-and-mapping.md](docs/vocabulary-and-mapping.md). An unknown everyday object is matched by its last character or word (玻璃瓶 → bottle, `paper bag` → bag); abstract concepts use a documented shape mapping. When no concrete scene or combo matches, mood and motion words select three abstract cards, arranged as sky, centre and ground. The 31 cards, their meanings and mood affinities are defined in [js/tarot.js](js/tarot.js); these are design choices, not psychological interpretations. Unknown nouns can label the selected card, and unmatched words drift as dim dust. Colour words (white, red, ...) tint the picture. Rare or unusual dream objects are still missed (use the "少了什么？" button to log them).
-- The archive is stored in the browser's localStorage (24 entries) and is not synced between devices.
+- **Sky:** drag to orbit, use the wheel to move nearer/farther, select a nebula to fly to it, then select it again or press **Open / 打开**.
+- The scene uses 3D positions, particle depth and camera perspective, rendered through Canvas 2D. Each dream silhouette faces the viewer while its position changes with the camera.
+- **Keyboard:** focus the sky canvas, use left/right to select and Enter to open. A list view is also available.
+- Existing records without shape snapshots are reconstructed using the scene rules.
+- Storage failures display an error. A quota retry removes thumbnails before retrying; failed writes/deletions do not replace the current in-memory records.
 
 ## Testing
 
-`node tests/coverage.js` measures how well the lexicon understands the sample dreams in `tests/dreams.json` (needs Node 16+). Results are tracked in [PROGRESS.md](PROGRESS.md).
+Node.js 18 or newer is recommended **for tests only**. From this source folder run:
 
-`node tests/classify.js` checks classification rules; `node tests/tarot.js` checks the abstract deck drawings, mood and energy readings, and repeatable three-card selection.
+```text
+node tests/run.js
+```
 
-## Project management
+This checks JavaScript syntax and script references, then runs:
+- `classify.js`: 96 classification cases.
+- `coverage.js`: 104 team-written dreams; measures recall and precision.
+- `tarot.js`: the 31 abstract cards and repeatable mood/energy spreads.
+- `archive.js`: invalid data, successful saves, quota fallback, blocked saves and deletions.
+- `sky.js`: 12 camera-facing rotation cases, near/far perspective, dolly and clipping.
+- `appearance.js`: all six moods and six source hues, fading edges, bounded independent drift, named white colour, and both motion-preference modes.
 
-- Board: _link GitHub Project here_
-- Weekly progress and tutor feedback: [PROGRESS.md](PROGRESS.md)
+Automated browser checks, the manual review checklist and limitations are documented in [docs/archive-sky-handoff.md](docs/archive-sky-handoff.md). Automated examples do not replace another person's playtest.
 
-## Team and contributions
+## Structure
 
-| Member | Role / ownership |
-| --- | --- |
-| WeiYing | Concept, prototype, scene library |
-| _add teammates_ | _add_ |
+```text
+index.html             page and ordered classic scripts
+css/style.css          responsive layout
+js/                    shared rendering, words, physics, archive, sky, UI, audio, export
+js/scenes/             scene drawing rules
+js/demo.js             optional synthetic examples in separate storage
+tests/                 portable Node test scripts and sample dreams
+docs/                  assignment brief, mapping docs and handoff checks
+PROGRESS.md            retained project history and latest integration notes
+```
+
+## Team contributions and review
+
+The original README credits WeiYing with the concept and initial prototype; the existing progress notes associate member C with WINN06 / Wei Ying. The account-based record below is verified against PR metadata, changed files and commits on 18 November 2026.
+
+| GitHub account | Merged PRs | Contribution supported by those PRs |
+| --- | --- | --- |
+| JingyiChen888 (A) | [#1](https://github.com/sd5913/Dream-Recorder/pull/1), [#6](https://github.com/sd5913/Dream-Recorder/pull/6), [#7](https://github.com/sd5913/Dream-Recorder/pull/7) | composition and render hooks; bilingual UI; staged pictures, word morphing, background, sound and PNG export |
+| WINN06 (C) | [#2](https://github.com/sd5913/Dream-Recorder/pull/2), [#8](https://github.com/sd5913/Dream-Recorder/pull/8) | animals, icons and everyday objects; 31 abstract cards and mood/energy spreads |
+| Yawnz2Zn (B) | [#4](https://github.com/sd5913/Dream-Recorder/pull/4) | shared lexicon, vocabulary expansion, scene mapping and mapping documentation |
+| LiZihui-Lucy (D) | [#5](https://github.com/sd5913/Dream-Recorder/pull/5) | dust words, abstract/concept/combo symbols, evidence captions, miss log and recognition tests |
+
+This follow-up package adds archive reliability, the missing star-sky implementation, global soft gradients and phrase drift. It preserves earlier scene/lexicon/card work and does not attribute the seven merged PRs to the person submitting this follow-up.
+
+Review and planning records: [pull requests](https://github.com/sd5913/Dream-Recorder/pulls), [issues](https://github.com/sd5913/Dream-Recorder/issues), and [PROGRESS.md](PROGRESS.md). No unverified Project-board link is claimed.
+
+## Platforms and limitations
+
+- Designed for phones and desktops. Voice input depends on browser SpeechRecognition support and microphone access.
+- Recognition is rule-based, not an AI interpretation of a dream. The 31 abstract-card meanings are team design conventions, not psychological diagnoses.
+- Storage is browser-local, capped at 24 entries, and not synced across devices. Private mode, clearing site data or storage restrictions can affect retention.
+- Old archive thumbnails are cached images; reopening an entry rebuilds its picture with the current shared colour and motion rules.
+- Reduced-motion mode uses smaller, slower idle drift while suppressing larger entry effects and trembling.
+- Visual restoration was reconstructed from a reference and user feedback. It is not a recovered original implementation or a pixel-identical certification.
+- Actual external-person playtest feedback and final publication are still to be recorded.
 
 ## Credits
 
-- Code: original, written for this project.
-- Fonts: Google Fonts when online, with system font fallbacks offline.
-- No third-party images, audio files or datasets. All visuals are generated from the user's text; sound is synthesised with WebAudio.
-- **AI use:** Claude (Anthropic) helped write and test the prototype code and the pitch slides. Codex (OpenAI) helped integrate and check the picture and motion updates, and integrate member C's supplied abstract-deck files and run the automated checks. The concept, direction and design decisions are the team's.
-- The visual idea was inspired by a typography reference video (words forming a sunflower); no footage or assets from it are used.
+- Scene paths, typography, particles and sound are generated by project code; no third-party images, recorded audio, datasets or reference-video footage are included.
+- Fonts: Google Fonts when available, with system fallbacks.
+- AI assistance: Claude helped with the original prototype and pitch slides, as credited in the existing project. Codex helped integrate earlier picture/motion and abstract-card work, and prepare this archive/sky restoration, shared appearance/motion adjustments, tests and handoff documents. Concept, direction, review and submission decisions remain with the team.
+- The typography idea was inspired by a reference video of words forming a sunflower; its footage/assets are not shipped.

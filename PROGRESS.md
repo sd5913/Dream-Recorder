@@ -61,3 +61,26 @@ Round 6 (18 Nov, member C / Wei Ying / WINN06, abstract deck):
 - **Blocker:** browser visual and interaction checks are pending because the available browser could not access the local test page.
 - **Next:** C and a teammate review the fallback picture on phone and desktop, try different moods and a recognised-object dream, then merge C before B begins.
 
+
+## 18 November 2026 — Archive and sky follow-up, ready for teammate review
+
+Status: local handoff; not committed, pushed, merged or deployed. Based on main `7e624e78e48bec075aab1a929ecbce89bb219639`. GitHub review on this date confirmed PRs #1, #2, #4, #5, #6, #7 and #8 were merged. Earlier “pending” notes above describe their historical state.
+
+### Goal and changes
+- Fix archive saves/deletions that silently fail. Validate stored data, retry without thumbnails on quota pressure, commit memory only after storage succeeds, and flush pending saves before opening the archive.
+- Restore the missing sky behaviour behind the existing archive controls: perspective-projected 3D positions, camera-facing dream silhouettes, local particle depth, graduated star glow, soft gas, orbit/zoom/focus/re-entry, keyboard selection and list fallback.
+- Apply soft centre-to-edge colour gradients and independent gentle phrase drift in the shared renderer. Both reopened old records and all newly generated dreams use these rules. Keep named colour cues and touch/spring interaction.
+- In the browser's reduced-motion environment, keep a smaller/slower idle drift and suppress larger entry effects/trembling.
+- Add portable storage, sky and appearance regression tests and a single Node test runner; refresh README/credits and retain earlier history.
+
+### Review evidence
+- Previous browser runs at 1440×900 / 390×844 exercised save, immediate archive flush, list, reload, storage denial and legacy entries.
+- Sky browser runs at 1280×800 / 390×844 checked actual pointer drag, focus, re-entry and camera-facing geometry at 12 rotations.
+- Colour checks at 1920×920 / 390×844 switched all six moods without page errors.
+- Shared-effect checks reopened six synthetic legacy records (door, house/cat, sea/flying, falling, abstract and white elephant), then submitted a fresh dream through the real form. All sampled phrases moved, shared fading colours remained present, and there were no page errors. The mobile run checked two legacy records plus a fresh submission, under reduced-motion media.
+- A final Node run and archived output are included with this handoff. Browser reports and selected generated screenshots/recordings are evidence, not a substitute for external-person playtesting.
+
+### Ownership and next steps
+- Earlier work remains credited to the PR authors in README; this follow-up package is separate from those merged contributions.
+- Receiving teammate: apply the reviewed patch to the named base (or reconcile newer changes), run `node tests/run.js`, perform the browser checklist, then open a reviewable PR.
+- Team: verify real names/student IDs for submission, record a real person's playtest and any tutor feedback, and confirm the hosted version after a later deployment. Do not mark these as completed from automated checks.

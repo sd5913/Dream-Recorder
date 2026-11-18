@@ -97,5 +97,17 @@ function maskLayers(list){
 /* the full set of word particles for the current dream: picture + dust */
 function buildList(c){
   const list=maskLayers(layoutWords(compose(c.names,c.seed,fontPx*1.12/U),c.pool,c.seed,c.names));
+  /* Stable scene-space lighting: keep the middle gently lit and soften the
+     perimeter. Use target coordinates, so pushing words does not flash colours. */
+  const fields=new Map();
+  for(const p of list){
+    let b=fields.get(p.it);if(!b){b={x0:p.ux,x1:p.ux,y0:p.uy,y1:p.uy};fields.set(p.it,b);}
+    b.x0=Math.min(b.x0,p.ux);b.x1=Math.max(b.x1,p.ux);b.y0=Math.min(b.y0,p.uy);b.y1=Math.max(b.y1,p.uy);
+  }
+  for(const p of list){
+    const b=fields.get(p.it),rx=Math.max((b.x1-b.x0)/2,.12),ry=Math.max((b.y1-b.y0)/2,.12);
+    const x=(p.ux-(b.x0+b.x1)/2)/rx,y=(p.uy-(b.y0+b.y1)/2)/ry;
+    p.light=Math.exp(-1.15*(x*x*.52+y*y*.48));
+  }
   return list.concat(dustWords(c.dust,c.seed,list));
 }

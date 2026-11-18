@@ -19,7 +19,7 @@ function drawBg(dt,force){
   [[.28,.3,.62,0],[.74,.62,.55,40]].forEach(([gx,gy,gr,off],i)=>{
     const x=(gx+Math.sin(T*.05+i*2)*.08-par.x*.04)*w,y=(gy+Math.cos(T*.04+i)*.06-par.y*.04)*h,r=gr*m;
     const g=bgx.createRadialGradient(x,y,0,x,y,r);
-    g.addColorStop(0,`hsla(${(bgHue+off)%360} 60% 45% / .13)`);g.addColorStop(1,'hsla(0 0% 0% / 0)');
+    g.addColorStop(0,`hsla(${(bgHue+off)%360} 38% 43% / .11)`);g.addColorStop(1,'hsla(0 0% 0% / 0)');
     bgx.fillStyle=g;bgx.fillRect(0,0,w,h);});
   for(const d of DUST){
     const x=((d.x+T*.004*d.z-par.x*.05*d.z)%1+1)%1*w,y=((d.y-par.y*.05*d.z)%1+1)%1*h;
