@@ -43,7 +43,7 @@ function layoutWords(strokes,pool,seed,names){
       const ang=Math.atan2(p2[1]-p1[1],p2[0]-p1[0]);
       const base=typeof o.col==='function'?o.col(pm[0],pm[1]):o.col;
       res.push({t:tok,ux:pm[0],uy:pm[1],ang,base,jh:(rnd()-.5)*12,jl:(rnd()-.5)*10,idx:res.length,
-                spin:(rnd()<.5?-1:1)*(2+rnd()*5),ph:rnd()*TAU,si});
+                spin:(rnd()<.5?-1:1)*(2+rnd()*5),ph:rnd()*TAU,si,z:o.z||0,it:o.it,cat:o.cat});
       pi+=k+1;
       s+=w+gap;
     }
@@ -80,8 +80,22 @@ function dustWords(tokens,seed,list){
   }
   return out;
 }
+/* overlaps: go from the nearest scene to the farthest; a word that would sit on or right next to a word of a nearer scene is dropped,
+   so a thing standing in water loses its lower part and a backdrop is cut out around what stands in front of it */
+function maskLayers(list){
+  const cell=fontPx*1.2/U,occ=new Map(),key=(x,y)=>(x+2048)*4096+(y+2048);
+  const zs=[...new Set(list.map(p=>p.z))].sort((a,b)=>b-a);if(zs.length<2)return list;
+  const out=[];
+  for(const z of zs){
+    const keep=list.filter(p=>p.z===z).filter(p=>{const gx=Math.floor(p.ux/cell),gy=Math.floor(p.uy/cell);
+      for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++)if(occ.has(key(gx+dx,gy+dy)))return false;return true;});
+    keep.forEach(p=>occ.set(key(Math.floor(p.ux/cell),Math.floor(p.uy/cell)),1));
+    for(const p of keep)out.push(p);
+  }
+  return out;
+}
 /* the full set of word particles for the current dream: picture + dust */
 function buildList(c){
-  const list=layoutWords(compose(c.names,c.seed,fontPx*1.12/U),c.pool,c.seed,c.names);
+  const list=maskLayers(layoutWords(compose(c.names,c.seed,fontPx*1.12/U),c.pool,c.seed,c.names));
   return list.concat(dustWords(c.dust,c.seed,list));
 }

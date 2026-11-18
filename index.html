@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<canvas id="bg" aria-hidden="true"></canvas>
 <canvas id="cv" data-i18n-aria="aCanvas" aria-label="由梦境文字组成的图像"></canvas>
 <div id="ui">
   <div id="top">
@@ -17,6 +18,7 @@
     <div class="tools">
       <button class="tbtn" id="btnSound" aria-pressed="false" data-i18n-title="tSound" title="梦境音景"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 010 7"/></svg><span id="sndLab">声音</span></button>
       <button class="tbtn" id="btnArch" data-i18n-title="tArch" title="梦境档案"><svg viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="5" rx="1"/><path d="M5 9v10h14V9M10 13h4"/></svg><span data-i18n="archive">档案</span> <span class="n" id="archN">0</span></button>
+      <button class="tbtn" id="btnSave" data-i18n-title="tSave" data-i18n-aria="tSave" title="保存为图片" aria-label="保存为图片"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg></button>
       <button class="tbtn" id="btnLang" data-i18n="tLang" title="English / 中文">EN</button>
     </div>
   </div>
@@ -32,7 +34,11 @@
   </section>
 </div>
 <aside id="arch" hidden>
-  <header><h2 data-i18n="archTitle">梦境档案</h2><button class="tbtn" id="archClose" data-i18n="close">关闭</button></header>
+  <header><h2 data-i18n="archTitle">梦境档案</h2>
+    <div class="views" role="group"><button class="tbtn" id="viewSky" aria-pressed="true" data-i18n="viewSky">星空</button><button class="tbtn" id="viewList" aria-pressed="false" data-i18n="viewList">列表</button></div>
+    <button class="tbtn" id="archClose" data-i18n="close">关闭</button></header>
+  <div id="sky" hidden><canvas id="skyc" tabindex="0" role="img"></canvas></div>
+  <div id="skyInfo" hidden></div>
   <div id="grid"></div>
 </aside>
 <div id="toast" role="status"></div>
