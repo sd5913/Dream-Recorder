@@ -84,3 +84,12 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - Earlier work remains credited to the PR authors in README; this follow-up package is separate from those merged contributions.
 - Receiving teammate: apply the reviewed patch to the named base (or reconcile newer changes), run `node tests/run.js`, perform the browser checklist, then open a reviewable PR.
 - Team: verify real names/student IDs for submission, record a real person's playtest and any tutor feedback, and confirm the hosted version after a later deployment. Do not mark these as completed from automated checks.
+
+## 19 Nov 2026 — Restore archive sky script entry
+
+- Reproduced a missing-function error when opening the archive after the typical-dream merge: index.html omitted js/sky.js although the sky implementation remained in the repository.
+- Restored js/sky.js after archive.js and js/demo.js after main.js; both entries were removed in the typical-dream merge. Retained js/scenes/typical.js and all newer dream content.
+- The user's screenshot confirmed the six-nebula example at ?demo. Restored that existing preset initialization without changing archive keys, deleting records, or populating real-user archives.
+- Added an entry-point regression check to tests/sky.js. It fails against the broken HTML and passes with the restored script.
+- All six Node suites and the scene registry check passed. Desktop (1280x800) and phone (390x844) browser runs reproduced the error before the fix, then checked three legacy nebulae, focus/re-entry and list switching without page errors. New classroom/elevator/ghost scene definitions were retained.
+- This update was requested for direct GitHub integration. The fix PR records the merge and deployment verification outcome.
