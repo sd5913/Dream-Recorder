@@ -100,3 +100,10 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - Added explicit bilingual Example sky / My archive links on the normal sample row and archive header. Six preset dreams remain separate from real archives; no existing records are reset or migrated.
 - Restored non-blocking online font loading, which had also been reverted by the typical-scenes merge.
 - Added static regressions for the visible entry and font-loading mode; preserved sky/demo script guards and typical dream scenes. This follow-up is tracked in its PR and deployment checks.
+
+## 19 Nov 2026 — Correct unified archive behaviour
+
+- User clarified that the six original examples belong inside the normal archive, not behind another option. Removed the extra links and their layout/text changes from the preceding update.
+- The normal archive now combines the six built-in examples with saved personal entries and older demo-key entries. A saved copy of an example suppresses its built-in duplicate. Both existing stores are read without startup writes, resets or migrations; new saves use the existing personal key.
+- Build example geometry synchronously without committing a temporary dream or changing the visible picture. Sky and list use the same entries. Old ?demo links open this same archive for compatibility.
+- Tests cover six defaults with no writes, preservation of two personal plus six old examples, no duplicate presets and a future save appearing in the unified archive. All six suites and the scene registry checks pass. Browser and deployment results are tracked in the follow-up PR.
