@@ -9,7 +9,7 @@ Base: `7e624e78e48bec075aab1a929ecbce89bb219639`. Prepared 18 November 2026. Thi
 - `buildList` computes stable per-scene lighting fields. `tint` and the common frame loop apply the softer palette and edge opacity to every picture.
 - `wordDrift` gives individual phrases small independent translation and rotation. Reopened archives, samples, live typing and future generated dreams share this renderer; no named-dream exception enables these effects.
 - Existing thumbnails are cached snapshots. Reopening a record renders its current picture; new saved thumbnails/exports capture the updated appearance.
-- `js/demo.js` is optional synthetic review data in a separate storage key. Production startup remains `index.html` without query parameters.
+- `js/demo.js` supplies the six original examples to the normal archive. Saved personal records and earlier demo-key records are shown together; startup does not rewrite or reset either store.
 
 ## Automated tests
 

@@ -1,12 +1,26 @@
 'use strict';
-// Explicit preview mode uses its own storage key, separate from real dreams.
-if(new URLSearchParams(location.search).has('demo')){
-(async()=>{
- const samples=[['我梦见一朵巨大的向日葵，月亮挂在海边的天上','joy'],['深夜的楼梯尽头有一扇发光的门，我一直在爬，星星很近','calm'],['小时候的老房子，院子里有一只猫，我很想念那里','nostalgia'],['我在海里游着，忽然像鸟一样飞了起来，风很轻','calm'],['我一直在坠落，什么也抓不住，很害怕','fear'],['一切都很安静，我慢慢地呼吸','strange']];
- if(!archive.length)for(const [t,e] of samples){await commit(t,'demo',e,true);await new Promise(r=>setTimeout(r,100));save(t,e);}
- const params=new URLSearchParams(location.search),requested=Number(params.get('picture'));
- const preview=params.get('picture')&&Number.isInteger(requested)?clamp(requested,0,samples.length-1):1;
- await commit(samples[preview][0],'demo',samples[preview][1],true);
- const label=document.createElement('span');label.textContent=LANG==='en'?'Local preview · sample dreams':'本地演示 · 示例梦境';label.style.cssText='position:fixed;bottom:2px;right:18px;font:10px sans-serif;color:#78849a;z-index:8;pointer-events:none';document.body.append(label);
- if(params.has('picture')){closeArchive();$('#inp').value=samples[preview][0];autosize();}else openArchive();
-})();}
+/* The original six dreams belong to the normal archive, alongside saved entries.
+   They are built-in read-only examples, not a separate archive or stored copies. */
+const EXAMPLE_DREAMS=[
+ ['我梦见一朵巨大的向日葵，月亮挂在海边的天上','joy'],
+ ['深夜的楼梯尽头有一扇发光的门，我一直在爬，星星很近','calm'],
+ ['小时候的老房子，院子里有一只猫，我很想念那里','nostalgia'],
+ ['我在海里游着，忽然像鸟一样飞了起来，风很轻','calm'],
+ ['我一直在坠落，什么也抓不住，很害怕','fear'],
+ ['一切都很安静，我慢慢地呼吸','strange']
+];
+function exampleShape(text,emo){
+  const old={cur,E,SP,OUT,R};
+  try{
+    let pool=tokenize(text);const dust=unmatchedTokens(pool),names=detectScenes(text,emo,dust);
+    while(pool.length<14)pool=pool.concat(pool);
+    const c={text,names,seed:hash(text),pool,dust,tone:detectTone(text)};
+    cur=c;E=EMO[emo];
+    const list=buildList(c).filter(p=>!p.dim),step=Math.max(1,Math.ceil(list.length/640));
+    return list.filter((_,i)=>i%step===0).map(p=>{tint(p);return[+p.ux.toFixed(3),+p.uy.toFixed(3),p.css];});
+  }finally{cur=old.cur;E=old.E;SP=old.SP;OUT=old.OUT;R=old.R;}
+}
+archiveExamples=EXAMPLE_DREAMS.map(([text,emo],i)=>({id:'example:'+i,text,emo,ts:0,_preset:true,shape:exampleShape(text,emo)})).reverse();
+renderArchive();
+/* Old shared links open the same archive; no separate storage or mode. */
+if(new URLSearchParams(location.search).has('demo'))openArchive();

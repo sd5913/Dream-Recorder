@@ -52,9 +52,9 @@ function legacyShape(a){
   }finally{SP=old.SP;OUT=old.OUT;R=old.R;}
 }
 function rebuildSky(){
-  skyNodes=archive.map((a,i)=>{
-    const r=rng(hash(a.text)),angle=i*2.39996,ring=Math.sqrt(i+1)*1.5/Math.max(1,Math.sqrt(archive.length/7));
-    const centre=archive.length===1?[0,0,0]:[Math.cos(angle)*ring,Math.sin(angle)*ring*.58,(r()-.5)*5.2];
+  const entries=archiveEntries();skyNodes=entries.map((a,i)=>{
+    const r=rng(hash(a.text)),angle=i*2.39996,ring=Math.sqrt(i+1)*1.5/Math.max(1,Math.sqrt(archiveEntries().length/7));
+    const centre=archiveEntries().length===1?[0,0,0]:[Math.cos(angle)*ring,Math.sin(angle)*ring*.58,(r()-.5)*5.2];
     let shape=Array.isArray(a.shape)&&a.shape.length?a.shape:legacyShape(a);
     shape=shape.filter(p=>Array.isArray(p)&&Number.isFinite(p[0])&&Number.isFinite(p[1]));
     const hue=(EMO[a.emo]||EMO.calm).hue;
@@ -83,7 +83,7 @@ function sizeSky(){
 function setSkyView(v){
   skyView=v;const on=v==='sky';$('#sky').hidden=!on;$('#grid').hidden=on;$('#skyInfo').hidden=!on;
   $('#viewSky').setAttribute('aria-pressed',String(on));$('#viewList').setAttribute('aria-pressed',String(!on));
-  stopSky();if(on&&!$('#arch').hidden){rebuildSky();sizeSky();skyCanvas.setAttribute('aria-label',tx('skyAria',archive.length));renderSkyInfo();skyFrame();}
+  stopSky();if(on&&!$('#arch').hidden){rebuildSky();sizeSky();skyCanvas.setAttribute('aria-label',tx('skyAria',archiveEntries().length));renderSkyInfo();skyFrame();}
 }
 function stopSky(){cancelAnimationFrame(skyRAF);skyRAF=0;}
 function skyCamera(x,y,z){
@@ -146,12 +146,12 @@ function renderSkyInfo(){
   const panel=$('#skyInfo');panel.textContent='';
   const n=skyNodes[skySelected];
   if(!n){const h=document.createElement('p');h.className='sky-hint';h.textContent=tx('skyHint');panel.append(h);return;}
-  const meta=document.createElement('div');meta.className='meta';meta.textContent=new Date(n.a.ts).toLocaleString(LANG==='en'?'en-GB':'zh-CN')+' · '+emoName(n.a.emo||'calm');
+  const meta=document.createElement('div');meta.className='meta';meta.textContent=(n.a._preset?tx('samples'):new Date(n.a.ts).toLocaleString(LANG==='en'?'en-GB':'zh-CN'))+' · '+emoName(n.a.emo||'calm');
   const text=document.createElement('p');text.className='sky-dream';text.textContent=n.a.text;
   const row=document.createElement('div');row.className='sky-actions';
   const button=(label,fn)=>{const b=document.createElement('button');b.className='tbtn';b.textContent=tx(label);b.onclick=fn;row.append(b);};
   button('open',()=>enterSkyDream());button('skyBack',()=>{skySelected=-1;skyTarget=[0,0,0];skyTargetZoom=1;renderSkyInfo();});
-  button('delShort',()=>{if(!persist(archive.filter(a=>a.id!==n.a.id))){toast(tx('delFail'));return;}renderArchive();rebuildSky();renderSkyInfo();});panel.append(meta,text,row);
+  if(!n.a._preset)button('delShort',()=>{if(!removeArchiveEntry(n.a))return;renderArchive();rebuildSky();renderSkyInfo();});panel.append(meta,text,row);
 }
 function selectSky(i){
   if(i===skySelected){enterSkyDream();return;}
