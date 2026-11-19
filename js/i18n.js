@@ -27,8 +27,10 @@ empty:'Nothing here yet. Draw a dream and it is saved here automatically; reopen
     boot:'I dreamed of a giant sunflower turning slowly in the sea wind, the moon hanging in the sky, and when I reached for it, it grew brighter and brighter',micLang:'en-US',
     samplesList:[['Flying over the sea','I was swimming in the sea when I suddenly rose into the air like a bird, the wind very light'],['A door at night','At the top of a long staircase at midnight there was a glowing door, and I kept climbing, the stars so close'],['Old house and a cat','The old house from my childhood, a cat in the yard, and how much I missed it'],['Endless falling','I kept falling and could not grab anything, and I was terrified']]}
 };
-STR.zh.skyEmpty='还没有梦境。先写下一个梦，生成后它会成为这里的一团星云。';
-STR.en.skyEmpty='No dreams yet. Draw your first dream to create a nebula here.';
+STR.zh.skyEmpty='还没有保存的梦境。生成一个梦，或点击「示例星空」查看六个预置梦境。';
+STR.en.skyEmpty='No saved dreams yet. Draw a dream, or choose Example sky to explore the six preset dreams.';
+STR.zh.demoSky='示例星空';STR.en.demoSky='Example sky';
+STR.zh.myArchive='我的档案';STR.en.myArchive='My archive';
 const tx=(k,...a)=>{const v=(STR[LANG]||STR.zh)[k];return typeof v==='function'?v(...a):v;};
 const EMON={en:{calm:'Calm',joy:'Joy',fear:'Fear',sad:'Sad',strange:'Strange',nostalgia:'Nostalgic'}};
 const emoName=k=>LANG==='en'?(EMON.en[k]||k):(EMO[k]||EMO.calm).zh;
@@ -50,6 +52,7 @@ function applyLang(){
   document.querySelectorAll('[data-i18n-title]').forEach(e=>{e.title=tx(e.dataset.i18nTitle);});
   document.querySelectorAll('[data-i18n-aria]').forEach(e=>{e.setAttribute('aria-label',tx(e.dataset.i18nAria));});
   const sl=document.getElementById('sndLab');if(sl)sl.textContent=(window.Snd&&Snd.on)?tx('soundOn'):tx('sound');
+  document.querySelectorAll('[data-demo-link]').forEach(a=>{const demo=new URLSearchParams(location.search).has('demo');a.href=demo?location.pathname:'?demo';a.textContent=tx(demo?'myArchive':'demoSky');});
   if(typeof buildChrome==='function')buildChrome();
   if(typeof renderArchive==='function')renderArchive();
   if(typeof applyEmotion==='function'&&typeof emoKey!=='undefined')applyEmotion(emoKey);
