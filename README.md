@@ -100,3 +100,7 @@ Review and planning records: [pull requests](https://github.com/sd5913/Dream-Rec
 ### 19 Nov archive-sky entry fix
 
 The archive sky requires js/sky.js after js/archive.js and before js/ui.js. tests/sky.js now checks this entry and load order, in addition to the projection math, to catch omissions during later merges. This follow-up restores both the sky script and the js/demo.js entry for the existing six synthetic examples at ?demo, retaining the typical-dream scene module. Normal archives remain separate and existing records are not reset. Codex helped diagnose and verify the regression; repository/deployment results are tracked in the fix PR.
+
+### Normal-page example access
+
+The normal homepage now has an Example sky link in both the sample row and archive header. It opens the original six presets at `?demo`; that view links back to My archive. Presets stay in their separate key and existing real records are not modified. Online font CSS loads without blocking app initialization, with system-font fallback.

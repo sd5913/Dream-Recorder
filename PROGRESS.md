@@ -93,3 +93,10 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - Added an entry-point regression check to tests/sky.js. It fails against the broken HTML and passes with the restored script.
 - All six Node suites and the scene registry check passed. Desktop (1280x800) and phone (390x844) browser runs reproduced the error before the fix, then checked three legacy nebulae, focus/re-entry and list switching without page errors. New classroom/elevator/ghost scene definitions were retained.
 - This update was requested for direct GitHub integration. The fix PR records the merge and deployment verification outcome.
+
+## 19 Nov 2026 — Make example sky visible from the public homepage
+
+- Follow-up inspection of the public root page showed an Archive 0 view. Unlike the earlier screenshot at ?demo, the normal route intentionally does not seed demo records; no visible example-sky route made this distinction confusing.
+- Added explicit bilingual Example sky / My archive links on the normal sample row and archive header. Six preset dreams remain separate from real archives; no existing records are reset or migrated.
+- Restored non-blocking online font loading, which had also been reverted by the typical-scenes merge.
+- Added static regressions for the visible entry and font-loading mode; preserved sky/demo script guards and typical dream scenes. This follow-up is tracked in its PR and deployment checks.

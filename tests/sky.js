@@ -8,6 +8,8 @@ assert.ok(scripts.indexOf('js/archive.js')<scripts.indexOf('js/sky.js'),'load ar
 assert.ok(scripts.indexOf('js/sky.js')<scripts.indexOf('js/ui.js'),'load sky before wiring archive controls');
 assert.ok(scripts.includes('js/demo.js'),'index.html must load js/demo.js for the six preset dream examples');
 assert.ok(scripts.indexOf('js/main.js')<scripts.indexOf('js/demo.js'),'load demo examples after main');
+assert.ok(html.includes('id="demoSky"')&&html.includes('href="?demo"'),'normal page must expose the example sky entry');
+assert.match(html,/<link(?=[^>]*fonts\.googleapis\.com)(?=[^>]*media="print")/,'online fonts must not block application scripts');
 const canvas={getContext:()=>({}),addEventListener(){}};
 const c=vm.createContext({console,Map,Float32Array,Math,performance:{now:()=>0},$:()=>canvas,addEventListener(){},TAU:Math.PI*2,
  clamp:(v,a,b)=>Math.max(a,Math.min(b,v)),rng:()=>{let n=1;return()=>((n=(n*1664525+1013904223)>>>0)/4294967296);}});
