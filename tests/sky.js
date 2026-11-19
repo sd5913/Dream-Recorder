@@ -6,6 +6,8 @@ const scripts=Array.from(html.matchAll(/<script[^>]+src="([^"]+)"/g),m=>m[1]);
 assert.ok(scripts.includes('js/sky.js'),'index.html must load js/sky.js for archive sky controls');
 assert.ok(scripts.indexOf('js/archive.js')<scripts.indexOf('js/sky.js'),'load archive before sky');
 assert.ok(scripts.indexOf('js/sky.js')<scripts.indexOf('js/ui.js'),'load sky before wiring archive controls');
+assert.ok(scripts.includes('js/demo.js'),'index.html must load js/demo.js for the six preset dream examples');
+assert.ok(scripts.indexOf('js/main.js')<scripts.indexOf('js/demo.js'),'load demo examples after main');
 const canvas={getContext:()=>({}),addEventListener(){}};
 const c=vm.createContext({console,Map,Float32Array,Math,performance:{now:()=>0},$:()=>canvas,addEventListener(){},TAU:Math.PI*2,
  clamp:(v,a,b)=>Math.max(a,Math.min(b,v)),rng:()=>{let n=1;return()=>((n=(n*1664525+1013904223)>>>0)/4294967296);}});
