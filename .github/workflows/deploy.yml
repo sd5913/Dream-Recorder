@@ -1,0 +1,65 @@
+name: Deploy account archive to Cloudflare
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: dream-recorder-cloudflare-production
+  cancel-in-progress: false
+jobs:
+  configuration:
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.check.outputs.ready }}
+    steps:
+      - name: Check repository secrets without printing values
+        id: check
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_D1_DATABASE_ID: ${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}
+          CLOUDFLARE_WORKER_NAME: ${{ secrets.CLOUDFLARE_WORKER_NAME }}
+          APP_URL: ${{ secrets.APP_URL }}
+          OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
+          OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+        run: |
+          node --input-type=module <<'NODE'
+          import { appendFileSync } from 'node:fs';
+          const keys = ['CLOUDFLARE_API_TOKEN', 'CLOUDFLARE_ACCOUNT_ID', 'CLOUDFLARE_D1_DATABASE_ID', 'CLOUDFLARE_WORKER_NAME', 'APP_URL', 'OAUTH_CLIENT_ID', 'OAUTH_CLIENT_SECRET', 'SESSION_SECRET'];
+          const missing = keys.filter(key => !process.env[key]);
+          appendFileSync(process.env.GITHUB_OUTPUT, `ready=${missing.length === 0}\n`);
+          if (missing.length) {
+            console.log(`Deployment is not configured. Add repository secrets: ${missing.join(', ')}`);
+            if (process.env.EVENT_NAME === 'workflow_dispatch') process.exitCode = 1;
+          }
+          NODE
+  deploy:
+    needs: configuration
+    if: needs.configuration.outputs.ready == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_D1_DATABASE_ID: ${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}
+      CLOUDFLARE_WORKER_NAME: ${{ secrets.CLOUDFLARE_WORKER_NAME }}
+      APP_URL: ${{ secrets.APP_URL }}
+      OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
+      OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
+      SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.23.3
+          cache: npm
+      - run: npm ci
+      - run: node tests/run.js
+      - run: npm run test:cloud
+      - run: npm run deploy:check
+      - run: npm run build
+      - run: node scripts/deploy.mjs

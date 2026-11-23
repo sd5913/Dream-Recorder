@@ -101,6 +101,13 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - Restored non-blocking online font loading, which had also been reverted by the typical-scenes merge.
 - Added static regressions for the visible entry and font-loading mode; preserved sky/demo script guards and typical dream scenes. This follow-up is tracked in its PR and deployment checks.
 
+## 19 Nov 2026 — Optional account archive
+
+- Added a Cloudflare Worker with GitHub OAuth, signed sessions and D1 storage keyed by immutable GitHub user ID. The current static site remains usable with browser-local records.
+- Signed-in accounts have separate local caches. Importing old signed-out records requires an explicit click, avoiding silent transfer between people using one browser.
+- Node tests cover two-account isolation, unsigned writes, invalid OAuth state and cross-origin writes. Existing scene and archive suites still pass.
+- Real GitHub sign-in, remote D1 and cross-device recovery require the team's OAuth App and Cloudflare configuration; they have not been tested in a deployed environment.
+
 ## 19 Nov 2026 — Correct unified archive behaviour
 
 - User clarified that the six original examples belong inside the normal archive, not behind another option. Removed the extra links and their layout/text changes from the preceding update.
@@ -108,9 +115,4 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - Build example geometry synchronously without committing a temporary dream or changing the visible picture. Sky and list use the same entries. Old ?demo links open this same archive for compatibility.
 - Tests cover six defaults with no writes, preservation of two personal plus six old examples, no duplicate presets and a future save appearing in the unified archive. All six suites and the scene registry checks pass. Browser and deployment results are tracked in the follow-up PR.
 
-## 23 Nov 2026 — Add a mood image to every recognised dream
 
-- Keep up to three recognised keyword or concept scenes, then add one abstract deck image selected for the current mood. A scene with no recognised object still uses the existing three-card mood spread.
-- Put the extra image in the sky layer when three hero objects are already present, so all four elements remain visible in the stage composition.
-- Extend the tarot checks to cover one and three recognised scenes, retention of concrete elements, and repeatable mood-card selection.
-- Follow-up: every generated composition now has at least three image elements. A single recognised scene such as “小女孩睡觉” receives two distinct mood images; the original three-card fallback and three-scene-plus-mood compositions remain intact.

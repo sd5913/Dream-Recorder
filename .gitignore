@@ -2,3 +2,7 @@
 node_modules/
 *.log
 .env
+.dev.vars
+dist/
+.wrangler/
+.wrangler-production.json
