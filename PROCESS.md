@@ -1,4 +1,4 @@
-# Weekly progress
+# Weekly process
 
 Each week: goal, done, evidence, tutor feedback, blockers, next goal with owners.
 
