@@ -113,3 +113,4 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - Keep up to three recognised keyword or concept scenes, then add one abstract deck image selected for the current mood. A scene with no recognised object still uses the existing three-card mood spread.
 - Put the extra image in the sky layer when three hero objects are already present, so all four elements remain visible in the stage composition.
 - Extend the tarot checks to cover one and three recognised scenes, retention of concrete elements, and repeatable mood-card selection.
+- Follow-up: every generated composition now has at least three image elements. A single recognised scene such as “小女孩睡觉” receives two distinct mood images; the original three-card fallback and three-scene-plus-mood compositions remain intact.

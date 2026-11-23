@@ -54,6 +54,7 @@ for(const m in D)for(const t of D[m]){
 const varied=Object.values(heartsPerMood).filter(s=>s.size>1).length;
 /* Recognised dreams keep their concrete scenes and add one mood image. */
 for(const [text,mood] of [
+  ['小女孩睡觉','calm'],
   ['我梦见一只猫','calm'],
   ['I saw an elephant, a tiger and a rabbit','joy'],
   ['I saw a moon above the sea','fear']
@@ -63,7 +64,9 @@ for(const [text,mood] of [
   if(names.fallback)fail(`"${text}": known scenes used the fallback spread`);
   if(!names.moodCard||!names.includes('card:'+names.moodCard))fail(`"${text}": mood card missing`);
   if(!original.every(n=>names.includes(n)))fail(`"${text}": a recognised scene was replaced`);
-  if(names.length!==original.length+1)fail(`"${text}": expected ${original.length} scenes plus one mood card, got ${names.length}`);
+  if(names.length!==Math.max(3,original.length+1))fail(`"${text}": expected at least three elements plus a mood card, got ${names.length}`);
+  if(names.moodCards.length!==names.length-original.length)fail(`"${text}": incorrect number of mood cards`);
+  if(new Set(names).size!==names.length)fail(`"${text}": duplicate image element`);
   if(original.length===3&&original.every(n=>SC[n].cat==='hero')&&SC['card:'+names.moodCard].cat!=='sky')fail(`"${text}": fourth hero would be omitted by the composer`);
   const repeat=detectScenes(text,mood,unmatchedTokens(tokenize(text)));
   if(repeat.moodCard!==names.moodCard)fail(`"${text}": mood card changed for the same dream`);

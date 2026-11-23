@@ -105,14 +105,19 @@ function detectScenes(text,emo,dust){
   }
   if(!out.fallback&&out.length){
     const used=new Set(out.map(n=>SC[n]&&SC[n].fam).filter(Boolean));
-    const heroes=out.filter(n=>SC[n]&&SC[n].cat==='hero').length;
-    /* Keep all three recognised scenes. A fourth hero would be dropped by compose(),
-       so use the sky layer when the scene already has three heroes. */
-    const pos=heroes>=3?'sky':'heart';
-    const card=pickCard(rd,text,pos,used);
-    out.push(ensureCard(card.fam));
-    basis.push({word:'',fam:card.fam,kind:'card',why:card.mz,pos});
-    out.moodCard=card.fam;
+    const target=Math.max(3,out.length+1);
+    out.moodCards=[];
+    while(out.length<target){
+      const cats=out.map(n=>SC[n].cat),heroes=cats.filter(c=>c==='hero').length;
+      /* The composer has room for three hero objects. Put any further mood image
+         in an open sky or ground layer so no recognised object disappears. */
+      const pos=heroes>=3?'sky':!out.moodCards.length?'heart':!cats.includes('sky')?'sky':'ground';
+      const card=pickCard(rd,text,pos,used);
+      out.push(ensureCard(card.fam));
+      basis.push({word:'',fam:card.fam,kind:'card',why:card.mz,pos});
+      out.moodCards.push(card.fam);
+    }
+    out.moodCard=out.moodCards[0];
   }
   out.basis=basis;
   out.hits=hits;out.symbols=use.map(u=>u.word);

@@ -6,7 +6,7 @@ Course: Designing Multimedia Entertainment · Group project 2026 · Repository: 
 
 ## Audience and interaction
 
-For people who want to keep the feeling of a dream as well as its events. Type a dream in Chinese or English, or use optional browser voice input. Keyword and concept rules choose scenes; the dream's words form the picture. Every recognised dream also draws one image from the abstract deck chosen for its mood; dreams without recognised scenes keep the three-card mood spread. Six moods change the palette and motion. The interface can be switched between Chinese and English.
+For people who want to keep the feeling of a dream as well as its events. Type a dream in Chinese or English, or use optional browser voice input. Keyword and concept rules choose scenes; the dream's words form the picture. Every recognised dream also draws images from the abstract deck chosen for its mood until the composition has at least three elements; dreams without recognised scenes keep the three-card mood spread. Six moods change the palette and motion. The interface can be switched between Chinese and English.
 
 - All scene drawings and all six moods use a softer colour palette with brighter centres and fading edges.
 - Every phrase has independent, small drifting movement and slight rotation while the overall picture remains anchored.
