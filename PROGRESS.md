@@ -121,3 +121,10 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - Deployment script validates the HTTPS Worker origin and config, creates temporary Wrangler settings and runtime secrets, and removes both after the run. No secret values are committed.
 - The workflow skips automatic deployment until the team configures its GitHub OAuth App and Cloudflare account. A manual run reports missing secret names.
 - Live login and two-account recovery still require a deployed acceptance check; local test success does not establish that result.
+
+## 23 Nov 2026 — Cloudflare resource setup
+
+- Created the `dream-recorder` D1 database in the team's Cloudflare account and applied `0001_archives.sql` remotely.
+- Deployed the Worker at https://dream-recorder.final-work.workers.dev/. The homepage and `/api/me` respond; the signed-out `/api/archive` route rejects requests with 401.
+- Configured five GitHub Actions secrets: account ID, D1 ID, Worker name, Worker URL and session secret. The OAuth App client ID and secret plus a Cloudflare CI API token are still pending.
+- Live GitHub login and cross-device retrieval have not yet been verified.

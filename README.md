@@ -98,6 +98,12 @@ uses the Week 11 pattern: GitHub OAuth verifies identity, a signed session
 cookie identifies the account, and D1 stores its archive under the immutable
 numeric GitHub ID. GitHub itself does not hold the dreams.
 
+The team's Worker is at [dream-recorder.final-work.workers.dev](https://dream-recorder.final-work.workers.dev/).
+The Worker and D1 database were created on 23 Nov 2026, and the first D1
+migration was applied. GitHub sign-in remains unavailable until the OAuth App
+and remaining deployment secrets are configured and the deployed login flow
+is verified. A reachable page alone does not prove account sync is active.
+
 The Week 11 deployment workflow is in `.github/workflows/deploy.yml`. An
 administrator must create a Cloudflare D1 database and GitHub OAuth App.
 Set the OAuth App homepage to the HTTPS Worker origin and its callback to
