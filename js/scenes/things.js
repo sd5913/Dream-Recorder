@@ -65,9 +65,8 @@ def('swirl','漩涡','hero',LEX.swirl,()=>{
     S(p,(x,y)=>[(250+Math.hypot(x,y)*120)%360,70,56+Math.hypot(x,y)*14],{keep:1});}
 });
 
-/* which scenes to draw for a dream.
-   1. keywords pick known scenes;  2. with room to spare, an unknown noun becomes an abstract symbol;
-   3. with no keyword at all, the emotion picks a default scene and unknown nouns become symbols. */
+/* Known scenes and symbols are always joined by a card chosen from the mood deck.
+   With no recognisable scene, the existing three-card spread carries the picture. */
 function detectScenes(text,emo,dust){
   const hits=matchScenes(text),names=pickScenes(hits);
   /* tarot cards: an idea drawn as two existing pictures */
@@ -103,6 +102,17 @@ function detectScenes(text,emo,dust){
     const u=c.kind==='concept'?c:{word:c.word,fam:pickCard(rd,text,'heart',used).fam,kind:'tarot',why:'',pos:'heart'};
     if(u.kind==='tarot')u.why=CARD[u.fam].mz;
     out.push(ensureSymbol(u.word,u.fam));basis.push(u);use.push(u);
+  }
+  if(!out.fallback&&out.length){
+    const used=new Set(out.map(n=>SC[n]&&SC[n].fam).filter(Boolean));
+    const heroes=out.filter(n=>SC[n]&&SC[n].cat==='hero').length;
+    /* Keep all three recognised scenes. A fourth hero would be dropped by compose(),
+       so use the sky layer when the scene already has three heroes. */
+    const pos=heroes>=3?'sky':'heart';
+    const card=pickCard(rd,text,pos,used);
+    out.push(ensureCard(card.fam));
+    basis.push({word:'',fam:card.fam,kind:'card',why:card.mz,pos});
+    out.moodCard=card.fam;
   }
   out.basis=basis;
   out.hits=hits;out.symbols=use.map(u=>u.word);

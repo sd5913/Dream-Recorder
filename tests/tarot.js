@@ -52,6 +52,22 @@ for(const m in D)for(const t of D[m]){
   if(!matchScenes(t).length&&!comboMatches(t).length){fallbacks++;if(!names.fallback||names.length!==3)fail(`"${t}": expected a 3-card fallback picture, got ${names.join(',')}`);}
 }
 const varied=Object.values(heartsPerMood).filter(s=>s.size>1).length;
+/* Recognised dreams keep their concrete scenes and add one mood image. */
+for(const [text,mood] of [
+  ['我梦见一只猫','calm'],
+  ['I saw an elephant, a tiger and a rabbit','joy'],
+  ['I saw a moon above the sea','fear']
+]){
+  const names=detectScenes(text,mood,unmatchedTokens(tokenize(text)));
+  const original=ctx.pickScenes(matchScenes(text));
+  if(names.fallback)fail(`"${text}": known scenes used the fallback spread`);
+  if(!names.moodCard||!names.includes('card:'+names.moodCard))fail(`"${text}": mood card missing`);
+  if(!original.every(n=>names.includes(n)))fail(`"${text}": a recognised scene was replaced`);
+  if(names.length!==original.length+1)fail(`"${text}": expected ${original.length} scenes plus one mood card, got ${names.length}`);
+  if(original.length===3&&original.every(n=>SC[n].cat==='hero')&&SC['card:'+names.moodCard].cat!=='sky')fail(`"${text}": fourth hero would be omitted by the composer`);
+  const repeat=detectScenes(text,mood,unmatchedTokens(tokenize(text)));
+  if(repeat.moodCard!==names.moodCard)fail(`"${text}": mood card changed for the same dream`);
+}
 console.log(`deck ${DECK.length} cards (sky ${byLayer.sky.length}, heart ${byLayer.heart.length}, ground ${byLayer.ground.length}), all drawn: ${drawn}`);
 console.log(`energy: intense ${hi.energy.toFixed(2)}, still ${lo.energy.toFixed(2)}`);
 console.log(`dreams with no picture word that got a 3-card spread in detectScenes: ${fallbacks}`);

@@ -6,7 +6,7 @@ Course: Designing Multimedia Entertainment · Group project 2026 · Repository: 
 
 ## Audience and interaction
 
-For people who want to keep the feeling of a dream as well as its events. Type a dream in Chinese or English, or use optional browser voice input. Keyword and concept rules choose scenes; the dream's words form the picture. Six moods change the palette and motion. The interface can be switched between Chinese and English.
+For people who want to keep the feeling of a dream as well as its events. Type a dream in Chinese or English, or use optional browser voice input. Keyword and concept rules choose scenes; the dream's words form the picture. Every recognised dream also draws one image from the abstract deck chosen for its mood; dreams without recognised scenes keep the three-card mood spread. Six moods change the palette and motion. The interface can be switched between Chinese and English.
 
 - All scene drawings and all six moods use a softer colour palette with brighter centres and fading edges.
 - Every phrase has independent, small drifting movement and slight rotation while the overall picture remains anchored.
@@ -22,7 +22,7 @@ Use a modern browser. The app is a static HTML/CSS/JavaScript project with Canva
 2. The normal archive includes the six original example dreams alongside saved entries.
 3. Old `index.html?demo` links open this same archive.
 
-Online fonts come from Google Fonts and load without blocking startup; system fonts are used when unavailable. The existing Pages address is [sd5913.github.io/Dream-Recorder](https://sd5913.github.io/Dream-Recorder/). **This handoff has not been pushed or deployed; the hosted page can differ from this source.**
+Online fonts come from Google Fonts and load without blocking startup; system fonts are used when unavailable. The existing Pages address is [sd5913.github.io/Dream-Recorder](https://sd5913.github.io/Dream-Recorder/). The hosted page may differ from a feature branch until its pull request is merged and deployed.
 
 ## Archive
 

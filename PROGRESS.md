@@ -107,3 +107,9 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - The normal archive now combines the six built-in examples with saved personal entries and older demo-key entries. A saved copy of an example suppresses its built-in duplicate. Both existing stores are read without startup writes, resets or migrations; new saves use the existing personal key.
 - Build example geometry synchronously without committing a temporary dream or changing the visible picture. Sky and list use the same entries. Old ?demo links open this same archive for compatibility.
 - Tests cover six defaults with no writes, preservation of two personal plus six old examples, no duplicate presets and a future save appearing in the unified archive. All six suites and the scene registry checks pass. Browser and deployment results are tracked in the follow-up PR.
+
+## 23 Nov 2026 — Add a mood image to every recognised dream
+
+- Keep up to three recognised keyword or concept scenes, then add one abstract deck image selected for the current mood. A scene with no recognised object still uses the existing three-card mood spread.
+- Put the extra image in the sky layer when three hero objects are already present, so all four elements remain visible in the stage composition.
+- Extend the tarot checks to cover one and three recognised scenes, retention of concrete elements, and repeatable mood-card selection.
