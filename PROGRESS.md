@@ -100,3 +100,10 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - Added explicit bilingual Example sky / My archive links on the normal sample row and archive header. Six preset dreams remain separate from real archives; no existing records are reset or migrated.
 - Restored non-blocking online font loading, which had also been reverted by the typical-scenes merge.
 - Added static regressions for the visible entry and font-loading mode; preserved sky/demo script guards and typical dream scenes. This follow-up is tracked in its PR and deployment checks.
+
+## 19 Nov 2026 — Optional account archive
+
+- Added a Cloudflare Worker with GitHub OAuth, signed sessions and D1 storage keyed by immutable GitHub user ID. The current static site remains usable with browser-local records.
+- Signed-in accounts have separate local caches. Importing old signed-out records requires an explicit click, avoiding silent transfer between people using one browser.
+- Node tests cover two-account isolation, unsigned writes, invalid OAuth state and cross-origin writes. Existing scene and archive suites still pass.
+- Real GitHub sign-in, remote D1 and cross-device recovery require the team's OAuth App and Cloudflare configuration; they have not been tested in a deployed environment.

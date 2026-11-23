@@ -4,9 +4,13 @@ const KEY=new URLSearchParams(location.search).has('demo')?'dream-recorder-demo-
 try{const a=JSON.parse(localStorage.getItem(KEY)||'[]');archive=Array.isArray(a)?a.filter(a=>a&&typeof a.text==='string'&&a.text.trim()).slice(0,24):[];}catch(e){archive=[];}
 /* Commit to memory only after storage succeeds. Retry without thumbnails on quota pressure. */
 function persist(next=archive){
-  try{localStorage.setItem(KEY,JSON.stringify(next));archive=next;return 'saved';}catch(e){}
+  const storageKey=typeof cloudUser!=='undefined'&&cloudUser?'dream-recorder-user-'+cloudUser.id:KEY;
+  try{localStorage.setItem(storageKey,JSON.stringify(next));archive=next;if(typeof queueCloudSync==='function')queueCloudSync(next);return 'saved';}catch(e){}
   const lean=next.map(a=>({...a,thumb:''}));
-  try{localStorage.setItem(KEY,JSON.stringify(lean));archive=lean;return 'savedTrim';}catch(e){return null;}
+  try{localStorage.setItem(storageKey,JSON.stringify(lean));archive=lean;if(typeof queueCloudSync==='function')queueCloudSync(lean);return 'savedTrim';}catch(e){
+    if(typeof cloudUser!=='undefined'&&cloudUser){archive=lean;queueCloudSync(lean);return 'cloudPending';}
+    return null;
+  }
 }
 function snap(){
   const o=document.createElement('canvas'),n=220;o.width=o.height=n;const c=o.getContext('2d');
