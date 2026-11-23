@@ -5,7 +5,8 @@ let cloudUser=null,cloudTimer=0,cloudPending=null,cloudChain=Promise.resolve();
 const cloudText=(zh,en)=>LANG==='en'?en:zh;
 const cloudStatus=(zh,en)=>{$('#cloudStatus').textContent=cloudText(zh,en);};
 function queueCloudSync(entries){
-  if(!cloudUser||new URLSearchParams(location.search).has('demo'))return;
+  if(!cloudUser)return;
+  try{localStorage.setItem('dream-recorder-user-'+cloudUser.id+'-dirty','1');}catch{}
   cloudPending={id:cloudUser.id,entries:structuredClone(entries)};
   cloudStatus('正在同步到账号…','Syncing to your account…');
   clearTimeout(cloudTimer);
@@ -15,14 +16,16 @@ function queueCloudSync(entries){
       if(!job||!cloudUser||cloudUser.id!==job.id)return;
       const response=await fetch('/api/archive',{method:'PUT',credentials:'same-origin',headers:{'content-type':'application/json'},body:JSON.stringify({entries:job.entries})});
       if(!response.ok)throw Error('sync failed');
-      if(cloudUser&&cloudUser.id===job.id&&!cloudPending)cloudStatus('已同步到 GitHub 账号','Synced to your GitHub account');
+      if(cloudUser&&cloudUser.id===job.id&&!cloudPending){
+        try{localStorage.removeItem('dream-recorder-user-'+job.id+'-dirty');}catch{}
+        cloudStatus('已同步到 GitHub 账号','Synced to your GitHub account');
+      }
     }).catch(()=>cloudStatus('云端同步失败；本机副本仍在，请稍后重试','Cloud sync failed; a local copy remains. Please retry later'));
   },500);
 }
 function validEntries(value){return Array.isArray(value)?value.filter(x=>x&&typeof x.id==='string'&&typeof x.text==='string'&&x.text.trim()).slice(0,24):[];}
 function readLocal(key){try{return validEntries(JSON.parse(localStorage.getItem(key)||'[]'));}catch{return[];}}
 async function initCloud(){
-  if(new URLSearchParams(location.search).has('demo'))return;
   let response;try{response=await fetch('/api/me',{credentials:'same-origin'});}catch{return;}
   if(!response.ok)return;
   const me=await response.json();
@@ -37,7 +40,8 @@ async function initCloud(){
     const result=await fetch('/api/archive',{credentials:'same-origin'});
     if(!result.ok)throw Error('read failed');
     const remote=validEntries((await result.json()).entries);
-    const merged=[...new Map([...remote,...cached].map(x=>[x.id,x])).values()].sort((a,b)=>b.ts-a.ts).slice(0,24);
+    const dirty=localStorage.getItem(cacheKey+'-dirty')==='1';
+    const merged=dirty?[...new Map([...remote,...cached].map(x=>[x.id,x])).values()].sort((a,b)=>b.ts-a.ts).slice(0,24):remote;
     archive=merged;localStorage.setItem(cacheKey,JSON.stringify(merged));renderArchive();
     if(JSON.stringify(merged)!==JSON.stringify(remote))queueCloudSync(merged);
     else cloudStatus('已同步到 GitHub 账号','Synced to your GitHub account');

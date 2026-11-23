@@ -19,14 +19,14 @@ For people who want to keep the feeling of a dream as well as its events. Type a
 Use a modern browser. The app is a static HTML/CSS/JavaScript project with Canvas 2D: no build, package installation, backend or API key is required.
 
 1. Open `index.html`, or serve this folder with `python -m http.server 8000` and open [localhost:8000](http://localhost:8000).
-2. To try six synthetic examples separately from real records, open `index.html?demo`.
-3. `index.html?demo&picture=2` starts with the house-and-cat picture. The `picture` index selects a sample; it does not enable a different rendering effect.
+2. The normal archive includes the six original example dreams alongside saved entries.
+3. Old `index.html?demo` links open this same archive.
 
-Online fonts come from Google Fonts and load without blocking startup; system fonts are used when unavailable. The existing Pages address is [sd5913.github.io/Dream-Recorder](https://sd5913.github.io/Dream-Recorder/). **This handoff has not been pushed or deployed; the hosted page can differ from this source.**
+Online fonts come from Google Fonts and load without blocking startup; system fonts are used when unavailable. The existing Pages address is [sd5913.github.io/Dream-Recorder](https://sd5913.github.io/Dream-Recorder/). The optional account archive requires a separate Worker deployment; the Pages site keeps records in the browser.
 
 ## Archive
 
-User submissions are saved after the picture settles, or earlier when another dream or the archive is opened. Records stay in the same browser and origin: real entries use `dream-recorder-v1`, and optional demo entries use `dream-recorder-demo-v1`. Up to 24 entries are retained.
+User submissions are saved after the picture settles, or earlier when another dream or the archive is opened. Records stay in the same browser and origin: new entries use `dream-recorder-v1`. Existing records from the earlier `dream-recorder-demo-v1` key remain visible in the same archive without rewriting either store. Up to 24 new personal entries are retained, alongside existing legacy entries and the original examples.
 
 - **Sky:** drag to orbit, use the wheel to move nearer/farther, select a nebula to fly to it, then select it again or press **Open / 打开**.
 - The scene uses 3D positions, particle depth and camera perspective, rendered through Canvas 2D. Each dream silhouette faces the viewer while its position changes with the camera.
@@ -59,7 +59,7 @@ index.html             page and ordered classic scripts
 css/style.css          responsive layout
 js/                    shared rendering, words, physics, archive, sky, UI, audio, export
 js/scenes/             scene drawing rules
-js/demo.js             optional synthetic examples in separate storage
+js/demo.js             the six original examples in the normal archive
 tests/                 portable Node test scripts and sample dreams
 docs/                  assignment brief, mapping docs and handoff checks
 PROGRESS.md            retained project history and latest integration notes
@@ -124,8 +124,8 @@ silently copy another person's dreams into the signed-in account.
 
 ### 19 Nov archive-sky entry fix
 
-The archive sky requires js/sky.js after js/archive.js and before js/ui.js. tests/sky.js now checks this entry and load order, in addition to the projection math, to catch omissions during later merges. This follow-up restores both the sky script and the js/demo.js entry for the existing six synthetic examples at ?demo, retaining the typical-dream scene module. Normal archives remain separate and existing records are not reset. Codex helped diagnose and verify the regression; repository/deployment results are tracked in the fix PR.
+The archive sky requires js/sky.js after js/archive.js and before js/ui.js. tests/sky.js now checks this entry and load order, in addition to the projection math, to catch omissions during later merges. This follow-up restores both the sky script and the js/demo.js entry for the original six examples inside the normal archive, retaining the typical-dream scene module and existing saved records. Codex helped diagnose and verify the regression; repository/deployment results are tracked in the fix PR.
 
-### Normal-page example access
+### Unified archive
 
-The normal homepage now has an Example sky link in both the sample row and archive header. It opens the original six presets at `?demo`; that view links back to My archive. Presets stay in their separate key and existing real records are not modified. Online font CSS loads without blocking app initialization, with system-font fallback.
+The original six examples appear inside the ordinary Archive together with saved dreams. There is no separate Example sky/My archive option. Built-in examples are generated in memory; stored copies of the same example are not duplicated, and both existing personal and older demo-key records remain visible. Built-in examples are read-only; saved records retain their normal deletion controls. Opening the app writes no example data or migrations to browser storage. Old ?demo links simply open the same archive.

@@ -107,3 +107,10 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - Signed-in accounts have separate local caches. Importing old signed-out records requires an explicit click, avoiding silent transfer between people using one browser.
 - Node tests cover two-account isolation, unsigned writes, invalid OAuth state and cross-origin writes. Existing scene and archive suites still pass.
 - Real GitHub sign-in, remote D1 and cross-device recovery require the team's OAuth App and Cloudflare configuration; they have not been tested in a deployed environment.
+
+## 19 Nov 2026 — Correct unified archive behaviour
+
+- User clarified that the six original examples belong inside the normal archive, not behind another option. Removed the extra links and their layout/text changes from the preceding update.
+- The normal archive now combines the six built-in examples with saved personal entries and older demo-key entries. A saved copy of an example suppresses its built-in duplicate. Both existing stores are read without startup writes, resets or migrations; new saves use the existing personal key.
+- Build example geometry synchronously without committing a temporary dream or changing the visible picture. Sky and list use the same entries. Old ?demo links open this same archive for compatibility.
+- Tests cover six defaults with no writes, preservation of two personal plus six old examples, no duplicate presets and a future save appearing in the unified archive. All six suites and the scene registry checks pass. Browser and deployment results are tracked in the follow-up PR.
