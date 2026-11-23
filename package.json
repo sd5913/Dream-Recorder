@@ -4,7 +4,9 @@
     "build": "node scripts/build.mjs",
     "test:cloud": "node --test tests/cloud.test.mjs",
     "dev:cloud": "npm run build && wrangler dev",
-    "db:local": "wrangler d1 migrations apply dream-recorder --local"
+    "db:local": "wrangler d1 migrations apply dream-recorder --local",
+    "deploy:check": "node scripts/deploy.mjs --check",
+    "deploy": "npm run build && node scripts/deploy.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"

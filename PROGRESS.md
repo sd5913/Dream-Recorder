@@ -114,3 +114,10 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - The normal archive now combines the six built-in examples with saved personal entries and older demo-key entries. A saved copy of an example suppresses its built-in duplicate. Both existing stores are read without startup writes, resets or migrations; new saves use the existing personal key.
 - Build example geometry synchronously without committing a temporary dream or changing the visible picture. Sky and list use the same entries. Old ?demo links open this same archive for compatibility.
 - Tests cover six defaults with no writes, preservation of two personal plus six old examples, no duplicate presets and a future save appearing in the unified archive. All six suites and the scene registry checks pass. Browser and deployment results are tracked in the follow-up PR.
+
+## 23 Nov 2026 — Week 11 account archive deployment path
+
+- Added a GitHub Actions workflow following the course template: check eight repository secrets, run existing and cloud tests, build, migrate remote D1 and deploy the Worker.
+- Deployment script validates the HTTPS Worker origin and config, creates temporary Wrangler settings and runtime secrets, and removes both after the run. No secret values are committed.
+- The workflow skips automatic deployment until the team configures its GitHub OAuth App and Cloudflare account. A manual run reports missing secret names.
+- Live login and two-account recovery still require a deployed acceptance check; local test success does not establish that result.

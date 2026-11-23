@@ -98,17 +98,26 @@ uses the Week 11 pattern: GitHub OAuth verifies identity, a signed session
 cookie identifies the account, and D1 stores its archive under the immutable
 numeric GitHub ID. GitHub itself does not hold the dreams.
 
-An administrator must create a D1 database, replace the placeholder
-`database_id` in `wrangler.jsonc`, and create a personal GitHub OAuth App.
-Its callback must be the Worker origin plus
-`/api/auth/github/callback`. Set Worker secrets `GITHUB_CLIENT_ID`,
-`GITHUB_CLIENT_SECRET`, and `SESSION_SECRET` (at least 32 characters), and
-set `APP_URL` to the exact Worker origin. Never commit secret values.
+The Week 11 deployment workflow is in `.github/workflows/deploy.yml`. An
+administrator must create a Cloudflare D1 database and GitHub OAuth App.
+Set the OAuth App homepage to the HTTPS Worker origin and its callback to
+that origin plus `/api/auth/github/callback`. Add these eight repository
+Actions secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`,
+`CLOUDFLARE_D1_DATABASE_ID`, `CLOUDFLARE_WORKER_NAME`, `APP_URL`,
+`OAUTH_CLIENT_ID`, `OAUTH_CLIENT_SECRET`, and `SESSION_SECRET` (at least
+32 characters). `APP_URL` must be the exact HTTPS Worker origin. Never
+commit secret values. The workflow injects the D1 ID and Worker name into
+an ignored temporary config, checks code, migrates remote D1, then deploys
+the Worker with OAuth and session secrets.
 For local development, use a separate OAuth App and ignored `.dev.vars`:
 `npm ci`, `npm run build`, `npm run db:local`, `npm run dev:cloud`.
-Production requires applying the migration to remote D1 and deploying
-with Wrangler. Real login and cross-device recovery require those external
-accounts; source code alone does not activate them.
+After the secrets are configured, the workflow runs on a push to `main`, or
+an administrator can run it manually from GitHub Actions. If secrets are
+missing, an automatic run skips deployment; a manual run reports the missing
+names and fails. Test the deployed Worker URL using two GitHub accounts:
+account A saves and reloads a dream; account B sees only B's records; a
+signed-out request to `/api/archive` is rejected. The GitHub Pages URL stays
+browser-local; share the Worker URL for account sync.
 
 Signed-out records stay local. After login, cloud data and a local cache
 are scoped to that GitHub ID. Existing signed-out entries are imported only
