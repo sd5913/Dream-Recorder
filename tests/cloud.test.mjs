@@ -50,3 +50,14 @@ test('verified accounts read only their own archive and reject unsigned writes',
     assert.equal((await call(env, '/api/auth/github/callback?state=wrong&code=code', { headers: { cookie: stateCookie } })).status, 400);
   } finally { globalThis.fetch = originalFetch; }
 });
+
+test('cancelled GitHub authorization returns to the entry screen', async () => {
+  const env = environment();
+  const begin = await call(env, '/api/auth/github');
+  const state = new URL(begin.headers.get('location')).searchParams.get('state');
+  const stateCookie = begin.headers.get('set-cookie').split(';')[0];
+  const callback = await call(env, '/api/auth/github/callback?error=access_denied&state=' + state, { headers: { cookie: stateCookie } });
+  assert.equal(callback.status, 302);
+  assert.equal(callback.headers.get('location'), '/?loginFailed=1');
+  assert.match(callback.headers.get('set-cookie'), /^dream_oauth_state=;.*Max-Age=0/);
+});

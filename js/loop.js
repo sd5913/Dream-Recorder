@@ -6,8 +6,10 @@ function frame(now){
   drawBg(dt);
   ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,cv.width,cv.height);
   ctx.textAlign='center';ctx.textBaseline='middle';ctx.font=`${fontPx}px ${FONT}`;
+  const entryOpen=!$('#entry').hidden;
   const RR=U*.3,tr=reduce?0:E.trem*U;
   for(const p of parts){
+    if(entryOpen&&!p.dim)continue;
     p.age+=dt;if(p.age<p.delay)continue;
     const a=p.age-p.delay,ease=Math.min(1,a/1.5),ke=E.k*(.12+.88*ease*ease),ce=E.c*(.55+.45*ease);
     const drift=wordDrift(p,T);

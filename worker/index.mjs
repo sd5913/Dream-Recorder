@@ -40,14 +40,16 @@ export default {
       }
       if (url.pathname === '/api/auth/github/callback' && request.method === 'GET') {
         const state = cookies(request).dream_oauth_state;
-        if (!state || state !== url.searchParams.get('state') || !url.searchParams.get('code')) return json({ error: 'Invalid OAuth state' }, 400);
+        if (!state || state !== url.searchParams.get('state')) return json({ error: 'Invalid OAuth state' }, 400);
+        const retryLogin = () => redirect('/?loginFailed=1', { 'set-cookie': cookie('dream_oauth_state', '', url, 0) });
+        if (url.searchParams.has('error') || !url.searchParams.get('code')) return retryLogin();
         const callback = new URL('/api/auth/github/callback', env.APP_URL || url.origin).href;
         const tokenResponse = await fetch('https://github.com/login/oauth/access_token', { method: 'POST', headers: { accept: 'application/json', 'content-type': 'application/json' }, body: JSON.stringify({ client_id: env.GITHUB_CLIENT_ID, client_secret: env.GITHUB_CLIENT_SECRET, code: url.searchParams.get('code'), redirect_uri: callback }) });
         const token = await tokenResponse.json();
-        if (!tokenResponse.ok || !token.access_token) return json({ error: 'GitHub sign-in failed' }, 502);
+        if (!tokenResponse.ok || !token.access_token) return retryLogin();
         const profileResponse = await fetch('https://api.github.com/user', { headers: { authorization: `Bearer ${token.access_token}`, accept: 'application/vnd.github+json', 'user-agent': 'Dream-Recorder' } });
         const profile = await profileResponse.json();
-        if (!profileResponse.ok || !Number.isSafeInteger(profile.id)) return json({ error: 'GitHub profile verification failed' }, 502);
+        if (!profileResponse.ok || !Number.isSafeInteger(profile.id)) return retryLogin();
         const expires = Date.now() + 30 * 86400000;
         const value = `${profile.id}.${expires}`;
         const headers = new Headers({ location: '/', 'cache-control': 'no-store' });

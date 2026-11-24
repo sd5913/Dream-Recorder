@@ -4,7 +4,10 @@
 let LANG='zh';
 try{LANG=localStorage.getItem('dream-recorder-lang')||(/^zh/i.test(navigator.language||'zh')?'zh':'en');}catch(e){LANG=/^zh/i.test(navigator.language||'zh')?'zh':'en';}
 const STR={
-  zh:{sound:'声音',soundOn:'声音 开',archive:'档案',samples:'示例',emotion:'情绪',placeholder:'写下你的梦…',go:'生成',close:'关闭',archTitle:'梦境档案',
+  zh:{entryPrompt:'选择进入方式',entryLogin:'使用 GitHub 登录',entryGuest:'以游客身份进入',
+    accountLogin:'GitHub 登录',accountLogout:'退出',loginUnavailable:'当前无法使用 GitHub 登录，你可以先以游客身份进入。',
+    loginFailed:'GitHub 登录未完成，请重试或以游客身份进入。',logoutFailed:'退出失败，请重试。',
+    sound:'声音',soundOn:'声音 开',archive:'档案',samples:'示例',emotion:'情绪',placeholder:'写下你的梦…',go:'生成',close:'关闭',archTitle:'梦境档案',
     tSound:'梦境音景',tArch:'梦境档案',tMic:'语音输入',tLang:'EN',aCanvas:'由梦境文字组成的图像',aEmo:'梦里的情绪',
     hint:'用手指拨动文字',nothing:'没认出具体的东西，按情绪画了这一幅',heard:'识别到：',sep:'、',miss:'少了什么？',missToast:'已记下这个梦，谢谢',
     combo:(w,y)=>`${w}（组合：${y}）`,concept:(w,y)=>`${w}（象征：${y}）`,unclass:w=>`${w}（未归类）`,tarotWord:(w,c,y)=>`${w}（按情绪抽到：${c}，${y}）`,
@@ -15,7 +18,10 @@ empty:'还没有记录。生成一个梦，它会自动保存在这里，之后�
     micErr:'无法使用语音输入，请直接输入文字',micErr2:'无法使用麦克风，请直接输入文字',noSound:'此设备不支持声音',
     boot:'我梦见一朵巨大的向日葵，在海边的风里慢慢转动，月亮挂在天上，我伸手想碰它，它却越来越亮',micLang:'zh-CN',
     samplesList:[['海里飞翔','我在海里游着，忽然像鸟一样飞了起来，风很轻'],['夜晚的门','深夜的楼梯尽头有一扇发光的门，我一直在爬，星星很近'],['旧房子与猫','小时候的老房子，院子里有一只猫，我很想念那里'],['不停坠落','我一直在坠落，什么也抓不住，很害怕']]},
-  en:{sound:'Sound',soundOn:'Sound on',archive:'Archive',samples:'Try',emotion:'Mood',placeholder:'Write your dream…',go:'Draw',close:'Close',archTitle:'Dream archive',
+  en:{entryPrompt:'Choose how to enter',entryLogin:'Sign in with GitHub',entryGuest:'Continue as guest',
+    accountLogin:'GitHub sign-in',accountLogout:'Sign out',loginUnavailable:'GitHub sign-in is unavailable. You can continue as a guest.',
+    loginFailed:'GitHub sign-in could not be completed. Try again or continue as a guest.',logoutFailed:'Sign-out failed. Please try again.',
+    sound:'Sound',soundOn:'Sound on',archive:'Archive',samples:'Try',emotion:'Mood',placeholder:'Write your dream…',go:'Draw',close:'Close',archTitle:'Dream archive',
     tSound:'Dream soundscape',tArch:'Dream archive',tMic:'Voice input',tLang:'中',aCanvas:'A picture made of the words of a dream',aEmo:'Mood of the dream',
     hint:'Drag a finger through the words',nothing:'Nothing concrete recognised, so this is drawn from the mood',heard:'Recognised: ',sep:', ',miss:'Something missing?',missToast:'Noted, thank you',
     combo:(w,y)=>`${w} (combo: ${y})`,concept:(w,y)=>`${w} (symbol: ${y})`,unclass:w=>`${w} (unclassified)`,tarotWord:(w,c,y)=>`${w} (drawn by mood: ${c}, ${y})`,
