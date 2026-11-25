@@ -38,8 +38,6 @@ button:focus-visible,textarea:focus-visible{outline:2px solid var(--emo);outline
 .signin-content h1{margin:0;font:400 clamp(32px,6vw,42px)/1.12 var(--font-brand);text-wrap:balance}
 :lang(en) .signin-content h1{font-style:italic}
 .signin-content p{margin:18px auto 28px;color:#abb8be;font-size:14px;line-height:1.65;text-wrap:balance}
-.signin-back{min-height:44px;margin-top:8px;padding:0 8px;color:#abb8be;font-size:13px}
-.signin-back:hover{color:var(--fg);text-decoration:underline;text-underline-offset:3px}
 .signin-content :focus-visible,#entry.signin-open #entryLang:focus-visible{outline:2px solid #75b5cc;outline-offset:3px}
 .signin-content .entry-status{margin:4px auto 0;color:#efb3a4;font-size:13px}
 .signin-content .entry-status:empty{display:none}

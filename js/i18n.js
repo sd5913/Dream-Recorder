@@ -5,7 +5,7 @@ let LANG='zh';
 try{LANG=localStorage.getItem('dream-recorder-lang')||(/^zh/i.test(navigator.language||'zh')?'zh':'en');}catch(e){LANG=/^zh/i.test(navigator.language||'zh')?'zh':'en';}
 const STR={
   zh:{entryPrompt:'选择进入方式',entryLogin:'使用 GitHub 登录',entryGuest:'以游客身份进入',
-    githubSignInTitle:'你的梦境档案',githubSignInHelp:'选择 GitHub 账号，打开你的云端档案。',
+    githubSignInHelp:'选择 GitHub 账号，打开你的云端档案。',
     githubContinue:'继续前往 GitHub',githubBack:'返回选择进入方式',
     accountLogin:'GitHub 登录',accountLogout:'退出',accountDetails:'账号详情',accountProfile:'查看 GitHub 主页',loginUnavailable:'当前无法使用 GitHub 登录，你可以先以游客身份进入。',
     loginFailed:'GitHub 登录未完成，请重试或以游客身份进入。',logoutFailed:'退出失败，请重试。',
@@ -21,7 +21,7 @@ empty:'还没有记录。生成一个梦，它会自动保存在这里，之后�
     boot:'我梦见一朵巨大的向日葵，在海边的风里慢慢转动，月亮挂在天上，我伸手想碰它，它却越来越亮',micLang:'zh-CN',
     samplesList:[['海里飞翔','我在海里游着，忽然像鸟一样飞了起来，风很轻'],['夜晚的门','深夜的楼梯尽头有一扇发光的门，我一直在爬，星星很近'],['旧房子与猫','小时候的老房子，院子里有一只猫，我很想念那里'],['不停坠落','我一直在坠落，什么也抓不住，很害怕']]},
   en:{entryPrompt:'Choose how to enter',entryLogin:'Sign in with GitHub',entryGuest:'Continue as guest',
-    githubSignInTitle:'Your dream archive',githubSignInHelp:'Choose your GitHub account to open your cloud archive.',
+    githubSignInHelp:'Choose your GitHub account to open your cloud archive.',
     githubContinue:'Continue to GitHub',githubBack:'Back to entry options',
     accountLogin:'GitHub sign-in',accountLogout:'Sign out',accountDetails:'Account details',accountProfile:'View GitHub profile',loginUnavailable:'GitHub sign-in is unavailable. You can continue as a guest.',
     loginFailed:'GitHub sign-in could not be completed. Try again or continue as a guest.',logoutFailed:'Sign-out failed. Please try again.',
