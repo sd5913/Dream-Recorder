@@ -129,6 +129,9 @@ account A saves and reloads a dream; account B sees only B's records; a
 signed-out request to `/api/archive` is rejected. GitHub Pages guest archives are stored separately from archives on the Worker
 because the two sites have different origins.
 
+Sign-out ends the Dream Recorder session. The next GitHub sign-in opens
+GitHub’s account picker, where you can select an account or sign in.
+
 Signed-out records stay local. After login, cloud data and a local cache
 are scoped to that GitHub ID. Existing signed-out entries are imported only
 when the user selects **Import local archive**, so a shared browser does not

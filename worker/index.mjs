@@ -36,6 +36,7 @@ export default {
         destination.searchParams.set('redirect_uri', callback);
         destination.searchParams.set('state', state);
         destination.searchParams.set('scope', 'read:user');
+        destination.searchParams.set('prompt', 'select_account');
         return redirect(destination.href, { 'set-cookie': cookie('dream_oauth_state', state, url, 600) });
       }
       if (url.pathname === '/api/auth/github/callback' && request.method === 'GET') {

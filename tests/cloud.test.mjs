@@ -31,7 +31,9 @@ test('verified accounts read only their own archive and reject unsigned writes',
   };
   try {
     const begin = await call(env, '/api/auth/github');
-    const state = new URL(begin.headers.get('location')).searchParams.get('state');
+    const authorize = new URL(begin.headers.get('location'));
+    assert.equal(authorize.searchParams.get('prompt'), 'select_account');
+    const state = authorize.searchParams.get('state');
     const stateCookie = begin.headers.get('set-cookie').split(';')[0];
     const callback = await call(env, '/api/auth/github/callback?state=' + state + '&code=code', { headers: { cookie: stateCookie } });
     assert.equal(callback.status, 302);
