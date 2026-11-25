@@ -1,3 +1,5 @@
+import { handleCommunity } from './community.mjs';
+
 const encoder = new TextEncoder();
 const json = (data, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 const cookies = request => Object.fromEntries((request.headers.get('cookie') || '').split(';').map(x => x.trim().split('=').map(decodeURIComponent)).filter(x => x.length === 2));
@@ -62,6 +64,9 @@ export default {
         return json({ user, available: Boolean(env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET) });
       }
       if (url.pathname === '/api/auth/logout' && request.method === 'POST') return new Response(null, { status: 204, headers: { 'set-cookie': cookie('dream_session', '', url, 0), 'cache-control': 'no-store' } });
+      if (url.pathname === '/api/community' || url.pathname.startsWith('/api/community/')) {
+        return await handleCommunity(request, url, env, { json, session });
+      }
       if (url.pathname === '/api/archive') {
         const user = await session(request, env);
         if (!user) return json({ error: 'Sign in required' }, 401);
