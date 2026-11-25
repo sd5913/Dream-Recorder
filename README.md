@@ -1,5 +1,8 @@
 # Dream Recorder
-https://sd5913.github.io/Dream-Recorder/
+
+- [Try Dream Recorder with GitHub sign-in or guest access](https://dream-recorder.final-work.workers.dev/) · Cloudflare-hosted app.
+- [GitHub Pages demo](https://sd5913.github.io/Dream-Recorder/) · Published from the `main` branch.
+
 Dream Recorder turns a dream into a picture made from its own words. The words follow the outlines of objects and scenes, drift gently, and spring back after touch or drag. Saved dreams can be explored as camera-facing nebulae in a perspective-projected 3D archive.
 
 Course: Designing Multimedia Entertainment · Group project 2026 · Repository: [sd5913/Dream-Recorder](https://github.com/sd5913/Dream-Recorder)
