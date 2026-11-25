@@ -5,6 +5,7 @@ const secure = url => url.protocol === 'https:' ? '; Secure' : '';
 const cookie = (name, value, url, maxAge) => `${name}=${encodeURIComponent(value)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAge}${secure(url)}`;
 const b64 = bytes => btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 const random = () => b64(crypto.getRandomValues(new Uint8Array(24)));
+const githubLogin = value => typeof value === 'string' && /^[a-zA-Z0-9_-]{1,64}$/.test(value) ? value : null;
 async function key(secret) {
   if (!secret || secret.length < 32) throw new Error('SESSION_SECRET must contain at least 32 characters');
   return crypto.subtle.importKey('raw', encoder.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign', 'verify']);
@@ -14,11 +15,24 @@ async function session(request, env) {
   const raw = cookies(request).dream_session;
   if (!raw) return null;
   const pieces = raw.split('.');
-  if (pieces.length !== 3 || !/^\d+$/.test(pieces[0]) || !/^\d+$/.test(pieces[1]) || Number(pieces[1]) < Date.now()) return null;
-  const value = pieces.slice(0, 2).join('.');
-  const signature = await sign(value, env.SESSION_SECRET);
-  if (signature !== pieces[2]) return null;
-  return { id: pieces[0] };
+  if (pieces.length !== 3 && pieces.length !== 4) return null;
+  const [id, expires] = pieces;
+  if (!/^\d+$/.test(id) || !/^\d+$/.test(expires) || Number(expires) < Date.now()) return null;
+  const signature = await sign(pieces.slice(0, -1).join('.'), env.SESSION_SECRET);
+  if (signature !== pieces.at(-1)) return null;
+  return { id, login: pieces.length === 4 ? githubLogin(pieces[2]) : null };
+}
+// Older session cookies only contain the ID. A failed profile lookup leaves the session usable.
+async function lookupLogin(id) {
+  try {
+    const response = await fetch('https://api.github.com/user/' + id, {
+      headers: { accept: 'application/vnd.github+json', 'user-agent': 'Dream-Recorder' },
+      signal: AbortSignal.timeout(2000)
+    });
+    return response.ok ? githubLogin((await response.json()).login) : null;
+  } catch {
+    return null;
+  }
 }
 const redirect = (where, headers = {}) => new Response(null, { status: 302, headers: { location: where, 'cache-control': 'no-store', ...headers } });
 export default {
@@ -52,7 +66,8 @@ export default {
         const profile = await profileResponse.json();
         if (!profileResponse.ok || !Number.isSafeInteger(profile.id)) return retryLogin();
         const expires = Date.now() + 30 * 86400000;
-        const value = `${profile.id}.${expires}`;
+        const login = githubLogin(profile.login);
+        const value = login ? `${profile.id}.${expires}.${login}` : `${profile.id}.${expires}`;
         const headers = new Headers({ location: '/', 'cache-control': 'no-store' });
         headers.append('set-cookie', cookie('dream_session', `${value}.${await sign(value, env.SESSION_SECRET)}`, url, 30 * 86400));
         headers.append('set-cookie', cookie('dream_oauth_state', '', url, 0));
@@ -60,6 +75,7 @@ export default {
       }
       if (url.pathname === '/api/me' && request.method === 'GET') {
         const user = await session(request, env);
+        if (user && !user.login) user.login = await lookupLogin(user.id);
         return json({ user, available: Boolean(env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET) });
       }
       if (url.pathname === '/api/auth/logout' && request.method === 'POST') return new Response(null, { status: 204, headers: { 'set-cookie': cookie('dream_session', '', url, 0), 'cache-control': 'no-store' } });

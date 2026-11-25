@@ -114,6 +114,15 @@ accountCheck.then(async me=>{
   }
   entryLogin.disabled=entryGuest.disabled=true;
   await loadAccountArchive(me);
-  $('#btnLogout').hidden=false;
+  const {id,login}=me.user;
+  $('#accountName').textContent=login?'@'+login:'GitHub';
+  $('#accountId').textContent='GitHub ID · '+id;
+  if(login){
+    $('#accountAvatar').textContent=$('#accountBadge').textContent=login[0].toUpperCase();
+    const profile=$('#accountProfile');
+    profile.href='https://github.com/'+encodeURIComponent(login);
+    profile.hidden=false;
+  }
+  $('#btnAccount').hidden=false;
   enterRecorder();
 });

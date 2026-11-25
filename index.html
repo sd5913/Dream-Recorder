@@ -30,11 +30,22 @@
     <div class="brand">Dream Recorder</div>
     <div class="tools">
       <a class="tbtn" id="btnLogin" href="/api/auth/github" data-i18n="accountLogin" hidden>GitHub 登录</a>
-      <button class="tbtn" id="btnLogout" data-i18n="accountLogout" hidden>退出</button>
       <button class="tbtn" id="btnSound" aria-pressed="false" data-i18n-title="tSound" title="梦境音景"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 010 7"/></svg><span id="sndLab">声音</span></button>
       <button class="tbtn" id="btnArch" data-i18n-title="tArch" title="梦境档案"><svg viewBox="0 0 24 24"><rect x="3.5" y="4" width="17" height="5" rx="1"/><path d="M5 9v10h14V9M10 13h4"/></svg><span data-i18n="archive">档案</span> <span class="n" id="archN">0</span></button>
       <button class="tbtn" id="btnSave" data-i18n-title="tSave" data-i18n-aria="tSave" title="保存为图片" aria-label="保存为图片"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg></button>
       <button class="tbtn" id="btnLang" data-i18n="tLang" title="English / 中文">EN</button>
+      <button type="button" class="tbtn" id="btnAccount" popovertarget="accountPanel" data-i18n-aria="accountDetails" data-i18n-title="accountDetails" aria-label="账号详情" title="账号详情" hidden>
+        <span class="account-avatar" id="accountBadge" aria-hidden="true">G</span>
+      </button>
+      <section id="accountPanel" popover aria-labelledby="accountTitle">
+        <h2 id="accountTitle" data-i18n="accountDetails">账号详情</h2>
+        <div class="account-identity">
+          <span class="account-avatar" id="accountAvatar" aria-hidden="true">G</span>
+          <div><p id="accountName"></p><p id="accountId"></p></div>
+        </div>
+        <a class="tbtn" id="accountProfile" target="_blank" rel="noopener noreferrer" data-i18n="accountProfile" hidden>查看 GitHub 主页</a>
+        <button type="button" class="tbtn" id="btnLogout" data-i18n="accountLogout">退出</button>
+      </section>
     </div>
   </div>
   <div id="cap" aria-live="polite"></div>

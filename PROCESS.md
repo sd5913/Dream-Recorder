@@ -149,3 +149,4 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 ## 25 Nov 2026 · GitHub account selection
 
 - GitHub sign-in opens GitHub’s account picker so returning users can choose which account to use.
+- Added an account menu with the signed-in GitHub username, ID, profile link and sign-out action.

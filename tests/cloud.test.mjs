@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { createHmac } from 'node:crypto';
 import worker from '../worker/index.mjs';
 
 function environment() {
@@ -26,7 +27,12 @@ test('verified accounts read only their own archive and reject unsigned writes',
   const env = environment(), originalFetch = globalThis.fetch;
   globalThis.fetch = async (input, options) => {
     if (String(input).includes('access_token')) return Response.json({ access_token: JSON.parse(options.body).code === 'second' ? 'second-token' : 'first-token' });
-    if (String(input).includes('/user')) return Response.json({ id: options.headers.authorization.includes('first-token') ? 101 : 202 });
+    if (String(input) === 'https://api.github.com/user') {
+      return Response.json(options.headers.authorization.includes('first-token')
+        ? { id: 101, login: 'dream-reader' }
+        : { id: 202, login: 'second-reader' });
+    }
+    if (String(input) === 'https://api.github.com/user/101') return Response.json({ id: 101, login: 'dream-reader' });
     throw Error('unexpected fetch');
   };
   try {
@@ -38,6 +44,12 @@ test('verified accounts read only their own archive and reject unsigned writes',
     const callback = await call(env, '/api/auth/github/callback?state=' + state + '&code=code', { headers: { cookie: stateCookie } });
     assert.equal(callback.status, 302);
     const sessionCookie = callback.headers.getSetCookie().find(x => x.startsWith('dream_session=')).split(';')[0];
+    const profile = async cookie => (await (await call(env, '/api/me', { headers: { cookie } })).json()).user;
+    assert.deepEqual(await profile(sessionCookie), { id: '101', login: 'dream-reader' });
+    const previousSession = '101.' + (Date.now() + 60000);
+    const previousSignature = createHmac('sha256', env.SESSION_SECRET).update(previousSession).digest('base64url');
+    assert.deepEqual(await profile('dream_session=' + previousSession + '.' + previousSignature), { id: '101', login: 'dream-reader' });
+    assert.equal(await profile(sessionCookie.replace('dream-reader', 'second-reader')), null);
     const put = await call(env, '/api/archive', { method: 'PUT', headers: { cookie: sessionCookie, origin: url(''), 'content-type': 'application/json' }, body: JSON.stringify({ entries: [{ id: 'a', text: 'moon', emo: 'calm', ts: 1 }] }) });
     assert.equal(put.status, 200);
     assert.equal((await (await call(env, '/api/archive', { headers: { cookie: sessionCookie } })).json()).entries[0].text, 'moon');

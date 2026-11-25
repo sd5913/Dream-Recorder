@@ -130,7 +130,8 @@ signed-out request to `/api/archive` is rejected. GitHub Pages guest archives ar
 because the two sites have different origins.
 
 Sign-out ends the Dream Recorder session. The next GitHub sign-in opens
-GitHub’s account picker, where you can select an account or sign in.
+GitHub’s account picker, where you can select an account or sign in. Once
+signed in, open the account menu to see your GitHub username and profile link.
 
 Signed-out records stay local. After login, cloud data and a local cache
 are scoped to that GitHub ID. Existing signed-out entries are imported only

@@ -42,6 +42,21 @@ button:focus-visible,textarea:focus-visible{outline:2px solid var(--emo);outline
 .tbtn:hover,.tbtn[aria-pressed="true"]{color:var(--fg)}
 .tbtn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .tbtn .n{font-variant-numeric:tabular-nums;color:var(--dim)}
+#btnAccount{padding-inline:5px}
+.account-avatar{display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:50%;
+  background:#142630;color:#a4d0e0;font-weight:600}
+#accountPanel{position:fixed;inset:max(52px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) auto auto;
+  width:min(240px,calc(100vw - 32px));box-sizing:border-box;margin:0;padding:12px;
+  background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:12px;
+  box-shadow:0 10px 32px #0008}
+#accountPanel h2{margin:0 0 10px;color:var(--dim);font-size:12px;font-weight:500}
+.account-identity{display:flex;align-items:center;gap:10px;padding-bottom:12px;margin-bottom:4px;border-bottom:1px solid var(--line)}
+.account-identity .account-avatar{width:36px;height:36px}
+.account-identity p{margin:0;overflow-wrap:anywhere}
+#accountName{font-weight:500}
+#accountId{font-size:12px;color:var(--dim)}
+#accountPanel .tbtn{width:100%;box-sizing:border-box;text-decoration:none}
+#accountPanel .tbtn:hover,#accountPanel .tbtn:focus-visible{background:#ffffff0a}
 
 #cap{margin-top:auto;pointer-events:none;text-align:center;font-size:13px;min-height:42px;padding-bottom:6px;color:var(--dim);transition:opacity .6s}
 #cap .tags{color:var(--fg);letter-spacing:.08em}
