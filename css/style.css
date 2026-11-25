@@ -31,21 +31,18 @@ button:focus-visible,textarea:focus-visible{outline:2px solid var(--emo);outline
 .entry-primary{background:#75b5cc;border-color:#75b5cc;color:#08101b}
 .entry-primary:hover:not(:disabled){background:#91c7d9}
 .entry-primary svg{width:20px;height:20px}
-#githubSignIn{position:absolute;inset:0;display:grid;place-items:safe center;overflow:auto;
-  padding:72px 24px 56px;
-  background:radial-gradient(ellipse at 50% 48%,#24465732,transparent 58%)}
+#githubSignIn{position:absolute;inset:0;display:grid;place-items:safe center;overflow:auto;padding:64px 24px 88px}
 .signin-brand{position:absolute;top:max(20px,env(safe-area-inset-top));left:max(24px,env(safe-area-inset-left))}
 #entry.signin-open #entryLang{z-index:1}
-.signin-card{box-sizing:border-box;width:min(100%,400px);padding:clamp(24px,5vw,38px);
-  background:linear-gradient(150deg,#14232bea,#0b0e16f2 76%);border:1px solid #38505b;border-radius:18px;
-  box-shadow:0 20px 64px #0008}
-.signin-card h1{margin:0;font-size:clamp(22px,5vw,30px);font-weight:500;line-height:1.25}
-.signin-card p{margin:14px 0 24px;color:#abb8be;font-size:14px;line-height:1.65}
-.signin-back{margin-top:14px;padding:8px 0;color:#a9c5d1;text-decoration:underline;text-underline-offset:3px}
-.signin-back:hover{color:var(--fg)}
-.signin-card :focus-visible,#entry.signin-open #entryLang:focus-visible{outline:2px solid #75b5cc;outline-offset:3px}
-.signin-card .entry-status{margin:12px 0 0;color:#efb3a4;font-size:13px}
-.signin-card .entry-status:empty{display:none}
+.signin-content{width:min(100%,348px);text-align:center}
+.signin-content h1{margin:0;font:400 clamp(32px,6vw,42px)/1.12 var(--font-brand);text-wrap:balance}
+:lang(en) .signin-content h1{font-style:italic}
+.signin-content p{margin:18px auto 28px;color:#abb8be;font-size:14px;line-height:1.65;text-wrap:balance}
+.signin-back{min-height:44px;margin-top:8px;padding:0 8px;color:#abb8be;font-size:13px}
+.signin-back:hover{color:var(--fg);text-decoration:underline;text-underline-offset:3px}
+.signin-content :focus-visible,#entry.signin-open #entryLang:focus-visible{outline:2px solid #75b5cc;outline-offset:3px}
+.signin-content .entry-status{margin:4px auto 0;color:#efb3a4;font-size:13px}
+.signin-content .entry-status:empty{display:none}
 
 #top{display:flex;align-items:center;justify-content:space-between;height:52px;flex:none}
 .brand{font:italic 400 20px/1 var(--font-brand);letter-spacing:.01em;white-space:nowrap}
