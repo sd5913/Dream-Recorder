@@ -145,3 +145,9 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - Added a bilingual welcome screen with GitHub sign-in and guest entry. The screen reuses the canvas background and drifting words.
 - Guest mode uses the current browser archive. GitHub Pages sends sign-in to the Cloudflare Worker, where a verified session opens the account archive.
 - If authorization is cancelled, the Worker returns to the entry screen with a retry message.
+
+## 25 Nov 2026 · GitHub account selection
+
+- GitHub sign-in opens GitHub’s account picker so returning users can choose which account to use.
+- Added an account menu with the signed-in GitHub username, ID, profile link and sign-out action.
+- Added a separate bilingual sign-in screen with the existing star field and dream words between the entry options and GitHub authorization. Guest entry stays direct.
