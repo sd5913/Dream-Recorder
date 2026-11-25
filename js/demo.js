@@ -22,5 +22,3 @@ function exampleShape(text,emo){
 }
 archiveExamples=EXAMPLE_DREAMS.map(([text,emo],i)=>({id:'example:'+i,text,emo,ts:0,_preset:true,shape:exampleShape(text,emo)})).reverse();
 renderArchive();
-/* Old shared links open the same archive; no separate storage or mode. */
-if(new URLSearchParams(location.search).has('demo'))openArchive();

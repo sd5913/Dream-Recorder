@@ -5,7 +5,7 @@ try{const a=JSON.parse(localStorage.getItem(KEY)||'[]');archive=Array.isArray(a)
 try{const a=JSON.parse(localStorage.getItem(LEGACY_KEY)||'[]');legacyArchive=Array.isArray(a)?a.filter(a=>a&&typeof a.text==='string'&&a.text.trim()):[];}catch(e){}
 function archiveEntries(){
   const entries=archive.slice(),ids=new Set(entries.map(a=>a.id));
-  for(const a of legacyArchive)if(!ids.has(a.id)){entries.push({...a,_legacy:true});ids.add(a.id);}
+  for(const a of (typeof cloudUser!=='undefined'&&cloudUser?[]:legacyArchive))if(!ids.has(a.id)){entries.push({...a,_legacy:true});ids.add(a.id);}
   const present=new Set(entries.map(a=>a.text+'\n'+a.emo));
   return entries.concat(archiveExamples.filter(a=>!present.has(a.text+'\n'+a.emo)));
 }

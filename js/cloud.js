@@ -25,19 +25,38 @@ function queueCloudSync(entries){
 }
 function validEntries(value){return Array.isArray(value)?value.filter(x=>x&&typeof x.id==='string'&&typeof x.text==='string'&&x.text.trim()).slice(0,24):[];}
 function readLocal(key){try{return validEntries(JSON.parse(localStorage.getItem(key)||'[]'));}catch{return[];}}
-async function initCloud(){
-  let response;try{response=await fetch('/api/me',{credentials:'same-origin'});}catch{return;}
-  if(!response.ok)return;
-  const me=await response.json();
-  if(!me.available)return;
-  $('#btnLogin').hidden=!!me.user;$('#btnLogout').hidden=!me.user;
-  if(!me.user){cloudStatus('仅保存在此浏览器；登录后可跨设备找回','Saved in this browser only; sign in to sync across devices');return;}
+const entry=$('#entry'),entryLogin=$('#entryLogin'),entryGuest=$('#entryGuest');
+const entryQuery=new URLSearchParams(location.search);
+const accountPath='/api/auth/github';
+const hostedLogin=location.hostname==='sd5913.github.io'?'https://dream-recorder.final-work.workers.dev'+accountPath:'';
+function showEntryStatus(key){
+  const status=$('#entryStatus');
+  status.dataset.i18n=key;
+  status.textContent=tx(key);
+}
+function enterRecorder(){
+  const moveFocus=entry.contains(document.activeElement);
+  entry.hidden=true;
+  document.body.classList.remove('entry-open');
+  $('#ui').inert=false;
+  cv.removeAttribute('aria-hidden');
+  if(entryQuery.has('demo'))openArchive();
+  if(moveFocus)(entryQuery.has('demo')?$('#archClose'):$('#btnArch')).focus();
+}
+async function checkAccount(){
+  if(location.protocol==='file:'||hostedLogin)return null;
+  try{
+    const response=await fetch('/api/me',{credentials:'same-origin',signal:AbortSignal.timeout(4000)});
+    return response.ok?await response.json():null;
+  }catch{return null;}
+}
+async function loadAccountArchive(me){
   cloudUser=me.user;
   const cacheKey='dream-recorder-user-'+cloudUser.id;
   const cached=readLocal(cacheKey);
   archive=cached;renderArchive();
   try{
-    const result=await fetch('/api/archive',{credentials:'same-origin'});
+    const result=await fetch('/api/archive',{credentials:'same-origin',signal:AbortSignal.timeout(5000)});
     if(!result.ok)throw Error('read failed');
     const remote=validEntries((await result.json()).entries);
     const dirty=localStorage.getItem(cacheKey+'-dirty')==='1';
@@ -54,7 +73,47 @@ $('#btnImport').onclick=()=>{
   persist(archive);renderArchive();$('#btnImport').hidden=true;
 };
 $('#btnLogout').onclick=async()=>{
-  await fetch('/api/auth/logout',{method:'POST',credentials:'same-origin'});
-  location.reload();
+  const button=$('#btnLogout');
+  button.disabled=true;
+  try{
+    flushSave();
+    const response=await fetch('/api/auth/logout',{method:'POST',credentials:'same-origin',signal:AbortSignal.timeout(4000)});
+    if(!response.ok)throw Error('sign-out failed');
+    location.reload();
+  }catch{button.disabled=false;toast(tx('logoutFailed'));}
 };
-initCloud();
+const accountCheck=checkAccount();
+const loginLink=$('#btnLogin');
+if(hostedLogin){
+  loginLink.href=hostedLogin;
+  loginLink.hidden=false;
+}
+$('#entryLang').onclick=()=>setLang(LANG==='en'?'zh':'en');
+entryGuest.onclick=enterRecorder;
+entryLogin.onclick=async()=>{
+  entryLogin.disabled=true;
+  const destination=hostedLogin||((await accountCheck)?.available?accountPath:'');
+  if(entry.hidden)return;
+  if(destination){location.assign(destination);return;}
+  showEntryStatus('loginUnavailable');
+  entryLogin.disabled=false;
+};
+if(entryQuery.has('loginFailed')){
+  showEntryStatus('loginFailed');
+  const cleanUrl=new URL(location.href);
+  cleanUrl.searchParams.delete('loginFailed');
+  history.replaceState(history.state,'',cleanUrl);
+}
+addEventListener('pageshow',event=>{if(event.persisted)entryLogin.disabled=false;});
+accountCheck.then(async me=>{
+  if(!me?.available)return;
+  if(!me.user||entry.hidden){
+    loginLink.hidden=false;
+    cloudStatus('仅保存在此浏览器；登录后可跨设备找回','Saved in this browser only; sign in to sync across devices');
+    return;
+  }
+  entryLogin.disabled=entryGuest.disabled=true;
+  await loadAccountArchive(me);
+  $('#btnLogout').hidden=false;
+  enterRecorder();
+});

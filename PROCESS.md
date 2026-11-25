@@ -138,3 +138,10 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - Configured five GitHub Actions secrets: account ID, D1 ID, Worker name, Worker URL and session secret. The OAuth App client ID and secret plus a Cloudflare CI API token are still pending.
 - Live GitHub login and cross-device retrieval have not yet been verified.
 >>>>>>> main
+
+
+## 24 Nov 2026 · Recorder entry screen
+
+- Added a bilingual welcome screen with GitHub sign-in and guest entry. The screen reuses the canvas background and drifting words.
+- Guest mode uses the current browser archive. GitHub Pages sends sign-in to the Cloudflare Worker, where a verified session opens the account archive.
+- If authorization is cancelled, the Worker returns to the entry screen with a retry message.
