@@ -32,18 +32,19 @@ button:focus-visible,textarea:focus-visible{outline:2px solid var(--emo);outline
 .entry-primary:hover:not(:disabled){background:#91c7d9}
 .entry-primary svg{width:20px;height:20px}
 #githubSignIn{position:absolute;inset:0;display:grid;place-items:safe center;overflow:auto;
-  padding:88px 24px 40px;background:#f4f5f2;color:#17252c;color-scheme:light}
+  padding:72px 24px 56px;
+  background:radial-gradient(ellipse at 50% 48%,#24465732,transparent 58%)}
 .signin-brand{position:absolute;top:max(20px,env(safe-area-inset-top));left:max(24px,env(safe-area-inset-left))}
-#entry.signin-open #entryLang{z-index:1;color:#344a55}
+#entry.signin-open #entryLang{z-index:1}
 .signin-card{box-sizing:border-box;width:min(100%,400px);padding:clamp(24px,5vw,38px);
-  background:#fff;border:1px solid #d8e2e0;border-radius:18px;box-shadow:0 10px 35px #1637410d}
+  background:linear-gradient(150deg,#14232bea,#0b0e16f2 76%);border:1px solid #38505b;border-radius:18px;
+  box-shadow:0 20px 64px #0008}
 .signin-card h1{margin:0;font-size:clamp(22px,5vw,30px);font-weight:500;line-height:1.25}
-.signin-card p{margin:14px 0 24px;color:#536871;font-size:14px;line-height:1.65}
-#githubContinue{background:#173c4d;border-color:#173c4d;color:#fff}
-#githubContinue:hover:not(:disabled){background:#245569}
-.signin-back{margin-top:14px;padding:8px 0;color:#315967;text-decoration:underline;text-underline-offset:3px}
-.signin-card :focus-visible,#entry.signin-open #entryLang:focus-visible{outline:2px solid #2c718b;outline-offset:3px}
-.signin-card .entry-status{margin:12px 0 0;color:#873e28;font-size:13px}
+.signin-card p{margin:14px 0 24px;color:#abb8be;font-size:14px;line-height:1.65}
+.signin-back{margin-top:14px;padding:8px 0;color:#a9c5d1;text-decoration:underline;text-underline-offset:3px}
+.signin-back:hover{color:var(--fg)}
+.signin-card :focus-visible,#entry.signin-open #entryLang:focus-visible{outline:2px solid #75b5cc;outline-offset:3px}
+.signin-card .entry-status{margin:12px 0 0;color:#efb3a4;font-size:13px}
 .signin-card .entry-status:empty{display:none}
 
 #top{display:flex;align-items:center;justify-content:space-between;height:52px;flex:none}
