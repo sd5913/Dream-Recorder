@@ -14,7 +14,7 @@
 <canvas id="cv" aria-hidden="true" data-i18n-aria="aCanvas" aria-label="由梦境文字组成的图像"></canvas>
 <main id="entry" aria-labelledby="entryTitle">
   <button type="button" class="tbtn" id="entryLang" data-i18n="tLang" title="English / 中文">EN</button>
-  <div class="entry-content">
+  <div class="entry-content" id="entryChoices">
     <h1 id="entryTitle">Dream Recorder</h1>
     <p class="entry-prompt" data-i18n="entryPrompt">选择进入方式</p>
     <button type="button" class="entry-action entry-primary" id="entryLogin">
@@ -22,8 +22,17 @@
       <span data-i18n="entryLogin">使用 GitHub 登录</span>
     </button>
     <button type="button" class="entry-action" id="entryGuest" data-i18n="entryGuest">以游客身份进入</button>
-    <p id="entryStatus" class="entry-status" role="status"></p>
   </div>
+  <section id="githubSignIn" aria-labelledby="githubSignInTitle" hidden>
+    <div class="signin-brand brand">Dream Recorder</div>
+    <div class="signin-card">
+      <h1 id="githubSignInTitle" data-i18n="githubSignInTitle" tabindex="-1">登录你的梦境档案</h1>
+      <p data-i18n="githubSignInHelp">前往 GitHub 选择账号并授权，回来后即可打开你的云端梦境档案。</p>
+      <button type="button" class="entry-action" id="githubContinue" data-i18n="githubContinue">继续前往 GitHub</button>
+      <button type="button" class="signin-back" id="githubBack" data-i18n="githubBack">返回选择进入方式</button>
+      <p id="entryStatus" class="entry-status" role="status"></p>
+    </div>
+  </section>
 </main>
 <div id="ui" inert>
   <div id="top">

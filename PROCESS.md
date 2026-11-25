@@ -150,3 +150,4 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 
 - GitHub sign-in opens GitHub’s account picker so returning users can choose which account to use.
 - Added an account menu with the signed-in GitHub username, ID, profile link and sign-out action.
+- Added a separate bilingual sign-in screen between the entry options and GitHub authorization. Guest entry stays direct.

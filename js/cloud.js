@@ -26,6 +26,8 @@ function queueCloudSync(entries){
 function validEntries(value){return Array.isArray(value)?value.filter(x=>x&&typeof x.id==='string'&&typeof x.text==='string'&&x.text.trim()).slice(0,24):[];}
 function readLocal(key){try{return validEntries(JSON.parse(localStorage.getItem(key)||'[]'));}catch{return[];}}
 const entry=$('#entry'),entryLogin=$('#entryLogin'),entryGuest=$('#entryGuest');
+const signInPanel=$('#githubSignIn'),signInContinue=$('#githubContinue');
+const signInHash='#github-sign-in';
 const entryQuery=new URLSearchParams(location.search);
 const accountPath='/api/auth/github';
 const hostedLogin=location.hostname==='sd5913.github.io'?'https://dream-recorder.final-work.workers.dev'+accountPath:'';
@@ -34,8 +36,18 @@ function showEntryStatus(key){
   status.dataset.i18n=key;
   status.textContent=tx(key);
 }
+function renderSignIn(moveFocus){
+  if(entry.hidden)return;
+  const show=location.hash===signInHash;
+  $('#entryChoices').hidden=show;
+  signInPanel.hidden=!show;
+  entry.classList.toggle('signin-open',show);
+  entry.setAttribute('aria-labelledby',show?'githubSignInTitle':'entryTitle');
+  if(moveFocus)(show?$('#githubSignInTitle'):entryLogin).focus();
+}
 function enterRecorder(){
   const moveFocus=entry.contains(document.activeElement);
+  if(location.hash===signInHash)history.replaceState(null,'',location.pathname+location.search);
   entry.hidden=true;
   document.body.classList.remove('entry-open');
   $('#ui').inert=false;
@@ -90,21 +102,34 @@ if(hostedLogin){
 }
 $('#entryLang').onclick=()=>setLang(LANG==='en'?'zh':'en');
 entryGuest.onclick=enterRecorder;
-entryLogin.onclick=async()=>{
-  entryLogin.disabled=true;
+entryLogin.onclick=()=>{
+  history.pushState({dreamGitHubSignIn:true},'',signInHash);
+  renderSignIn(true);
+};
+$('#githubBack').onclick=()=>{
+  if(history.state?.dreamGitHubSignIn){history.back();return;}
+  history.replaceState(null,'',location.pathname+location.search);
+  renderSignIn(true);
+};
+addEventListener('popstate',()=>renderSignIn(true));
+signInContinue.onclick=async()=>{
+  signInContinue.disabled=true;
   const destination=hostedLogin||((await accountCheck)?.available?accountPath:'');
-  if(entry.hidden)return;
-  if(destination){location.assign(destination);return;}
-  showEntryStatus('loginUnavailable');
-  entryLogin.disabled=false;
+  if(!entry.hidden&&!signInPanel.hidden){
+    if(destination){location.assign(destination);return;}
+    showEntryStatus('loginUnavailable');
+  }
+  signInContinue.disabled=false;
 };
 if(entryQuery.has('loginFailed')){
   showEntryStatus('loginFailed');
   const cleanUrl=new URL(location.href);
   cleanUrl.searchParams.delete('loginFailed');
-  history.replaceState(history.state,'',cleanUrl);
+  cleanUrl.hash=signInHash;
+  history.replaceState(null,'',cleanUrl);
 }
-addEventListener('pageshow',event=>{if(event.persisted)entryLogin.disabled=false;});
+renderSignIn(false);
+addEventListener('pageshow',event=>{if(event.persisted)signInContinue.disabled=false;});
 accountCheck.then(async me=>{
   if(!me?.available)return;
   if(!me.user||entry.hidden){
@@ -112,7 +137,7 @@ accountCheck.then(async me=>{
     cloudStatus('仅保存在此浏览器；登录后可跨设备找回','Saved in this browser only; sign in to sync across devices');
     return;
   }
-  entryLogin.disabled=entryGuest.disabled=true;
+  signInContinue.disabled=entryLogin.disabled=entryGuest.disabled=true;
   await loadAccountArchive(me);
   const {id,login}=me.user;
   $('#accountName').textContent=login?'@'+login:'GitHub';

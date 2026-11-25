@@ -95,8 +95,9 @@ Review and planning records: [pull requests](https://github.com/sd5913/Dream-Rec
 
 ## Optional account archive
 
-The entry screen offers **Sign in with GitHub** and **Continue as guest**. On
-GitHub Pages, sign-in opens the team’s Cloudflare Worker. Guests stay on the
+The entry screen offers **Sign in with GitHub** and **Continue as guest**.
+The GitHub option opens a dedicated sign-in screen. From there, **Continue
+to GitHub** starts GitHub authorization through the team’s Cloudflare Worker. Guests stay on the
 current site and save dreams in that browser. Standalone copies without an
 account service can continue as guests. The Cloudflare Worker
 uses the Week 11 pattern: GitHub OAuth verifies identity, a signed session
