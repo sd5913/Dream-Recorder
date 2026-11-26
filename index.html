@@ -25,6 +25,22 @@
     <p id="entryStatus" class="entry-status" role="status"></p>
   </div>
 </main>
+<dialog id="communityDream" class="community-dream" aria-labelledby="communityDreamTitle">
+  <header>
+    <button type="button" class="tbtn" id="communityDreamBack" data-i18n="communityBack">返回社区</button>
+    <button type="button" class="tbtn" id="communityDreamShare" data-i18n="communityShare" hidden>复制链接</button>
+  </header>
+  <input id="communityDreamLink" type="url" readonly data-i18n-aria="communityShareLink" hidden>
+  <p id="communityDreamShareStatus" role="status"></p>
+  <p id="communityDreamStatus" role="status"></p>
+  <article id="communityDreamContent" hidden>
+    <h2 id="communityDreamTitle"></h2>
+    <p id="communityDreamMeta"></p>
+    <canvas id="communityDreamCanvas" tabindex="0" role="img" aria-describedby="communityDreamHint" data-i18n-aria="aCanvas"></canvas>
+    <p id="communityDreamHint" data-i18n="communityPictureHint">拖动画面或按空格拨动梦境文字。</p>
+    <p id="communityDreamText"></p>
+  </article>
+</dialog>
 <div id="ui" inert>
   <div id="top">
     <div class="brand">Dream Recorder</div>
@@ -73,6 +89,8 @@
 <script src="js/scenes/typical.js"></script>
 <script src="js/symbols.js"></script>
 <script src="js/tarot.js"></script>
+<link rel="stylesheet" href="css/community-dream.css">
+<script src="js/community-dream.js"></script>
 <script src="js/compose.js"></script>
 <script src="js/words.js"></script>
 <script src="js/particles.js"></script>

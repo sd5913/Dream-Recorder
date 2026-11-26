@@ -1,0 +1,18 @@
+.community-dream {
+  box-sizing:border-box;width:min(94vw,720px);max-height:90dvh;overflow:auto;
+  padding:clamp(14px,3vw,28px);background:var(--bg);color:var(--fg);
+  border:1px solid var(--line);border-radius:16px;overflow-wrap:anywhere
+}
+.community-dream::backdrop {background:#050507e6}
+.community-dream header {display:flex;justify-content:space-between;gap:8px}
+.community-dream header button {color:#91c7d9}
+.community-dream h2 {margin:12px 0 4px;font:italic 400 clamp(23px,5vw,36px)/1.2 var(--font-brand)}
+.community-dream #communityDreamMeta,.community-dream #communityDreamHint {color:#aaa69e;font-size:13px}
+.community-dream #communityDreamStatus:empty,.community-dream #communityDreamShareStatus:empty {display:none}
+.community-dream #communityDreamText {white-space:pre-wrap;line-height:1.75}
+.community-dream #communityDreamCanvas {
+  display:block;width:100%;height:clamp(200px,43dvh,430px);
+  border-radius:12px;background:radial-gradient(ellipse at 52% 55%,#151e2c,#090a11 72%);
+  cursor:crosshair;touch-action:pan-y
+}
+.community-dream #communityDreamLink {box-sizing:border-box;width:100%;margin-top:8px;font:inherit}
