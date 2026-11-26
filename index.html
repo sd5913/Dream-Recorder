@@ -78,6 +78,14 @@
   <div id="grid"></div>
   <p id="cloudStatus" role="status"></p>
 </aside>
+<dialog id="communityPublish" class="publish-dialog" aria-labelledby="publishTitle">
+  <header>
+    <h2 id="publishTitle"></h2>
+    <button type="button" class="tbtn" id="publishClose" data-i18n="close">关闭</button>
+  </header>
+  <p id="publishStatus" role="status"></p>
+  <div id="publishBody"></div>
+</dialog>
 <div id="toast" role="status"></div>
 <script src="js/core.js"></script>
 <script src="js/i18n.js"></script>
@@ -99,7 +107,9 @@
 <script src="js/canvas.js"></script>
 <script src="js/bg.js"></script>
 <script src="js/sound.js"></script>
+<link rel="stylesheet" href="css/community-publish.css">
 <script src="js/archive.js"></script>
+<script src="js/community-publish.js"></script>
 <script src="js/sky.js"></script>
 <script src="js/export.js"></script>
 <script src="js/misses.js"></script>
