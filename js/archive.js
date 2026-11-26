@@ -36,6 +36,7 @@ function save(text,emo){
 const pad2=n=>String(n).padStart(2,'0');
 function renderArchive(){
   const entries=archiveEntries();$('#archN').textContent=entries.length;
+  if(typeof updateCommunityPublishControls==='function')updateCommunityPublishControls();
   const g=$('#grid');g.textContent='';
   if(!entries.length){const d=document.createElement('p');d.className='empty';d.textContent=tx('empty');g.append(d);return;}
   entries.forEach(a=>{
@@ -48,7 +49,9 @@ function renderArchive(){
     b.onclick=()=>{closeArchive();$('#inp').value=a.text;autosize();commit(a.text,'archive',a.emo);};
     const x=document.createElement('button');x.className='del';x.textContent='×';x.setAttribute('aria-label',tx('del'));
     x.onclick=()=>{if(removeArchiveEntry(a))renderArchive();};
-    w.append(b);if(!a._preset)w.append(x);g.append(w);});
+    w.append(b);if(!a._preset)w.append(x);
+    if(typeof addCommunityPublishAction==='function')addCommunityPublishAction(w,a);
+    g.append(w);});
 }
 function openArchive(){flushSave();$('#arch').hidden=false;setSkyView(skyView);}
 function closeArchive(){$('#arch').hidden=true;stopSky();}
