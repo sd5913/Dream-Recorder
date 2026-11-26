@@ -115,6 +115,28 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - Build example geometry synchronously without committing a temporary dream or changing the visible picture. Sky and list use the same entries. Old ?demo links open this same archive for compatibility.
 - Tests cover six defaults with no writes, preservation of two personal plus six old examples, no duplicate presets and a future save appearing in the unified archive. All six suites and the scene registry checks pass. Browser and deployment results are tracked in the follow-up PR.
 
+<<<<<<< feat/mood-image-every-dream
+## 23 Nov 2026 — Add a mood image to every recognised dream
+
+- Keep up to three recognised keyword or concept scenes, then add one abstract deck image selected for the current mood. A scene with no recognised object still uses the existing three-card mood spread.
+- Put the extra image in the sky layer when three hero objects are already present, so all four elements remain visible in the stage composition.
+- Extend the tarot checks to cover one and three recognised scenes, retention of concrete elements, and repeatable mood-card selection.
+- Follow-up: every generated composition now has at least three image elements. A single recognised scene such as “小女孩睡觉” receives two distinct mood images; the original three-card fallback and three-scene-plus-mood compositions remain intact.
+=======
+## 23 Nov 2026 — Week 11 account archive deployment path
+
+- Added a GitHub Actions workflow following the course template: check eight repository secrets, run existing and cloud tests, build, migrate remote D1 and deploy the Worker.
+- Deployment script validates the HTTPS Worker origin and config, creates temporary Wrangler settings and runtime secrets, and removes both after the run. No secret values are committed.
+- The workflow skips automatic deployment until the team configures its GitHub OAuth App and Cloudflare account. A manual run reports missing secret names.
+- Live login and two-account recovery still require a deployed acceptance check; local test success does not establish that result.
+
+## 23 Nov 2026 — Cloudflare resource setup
+
+- Created the `dream-recorder` D1 database in the team's Cloudflare account and applied `0001_archives.sql` remotely.
+- Deployed the Worker at https://dream-recorder.final-work.workers.dev/. The homepage and `/api/me` respond; the signed-out `/api/archive` route rejects requests with 401.
+- Configured five GitHub Actions secrets: account ID, D1 ID, Worker name, Worker URL and session secret. The OAuth App client ID and secret plus a Cloudflare CI API token are still pending.
+- Live GitHub login and cross-device retrieval have not yet been verified.
+>>>>>>> main
 
 
 
@@ -124,4 +146,17 @@ Status: local handoff; not committed, pushed, merged or deployed. Based on main 
 - Added a bilingual welcome screen with GitHub sign-in and guest entry. The screen reuses the canvas background and drifting words.
 - Guest mode uses the current browser archive. GitHub Pages sends sign-in to the Cloudflare Worker, where a verified session opens the account archive.
 - If authorization is cancelled, the Worker returns to the entry screen with a retry message.
+
+<<<<<<< feat/community-api
+## 25 Nov 2026 · Community feature
+
+- Prepared four local change sets for the community API, publishing, feed, and interactive details.
+- Verified the combined flow against a local Worker and D1 database, including guest reads and owner-only withdrawal.
+=======
+## 25 Nov 2026 · GitHub account selection
+
+- GitHub sign-in opens GitHub’s account picker so returning users can choose which account to use.
+- Added an account menu with the signed-in GitHub username, ID, profile link and sign-out action.
+- Added a separate bilingual sign-in screen with the existing star field and dream words between the entry options and GitHub authorization. Guest entry stays direct.
+>>>>>>> main
 
